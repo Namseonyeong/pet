@@ -1,0 +1,87 @@
+#ft .desktop .footer-section {
+  width: 100%;
+  height: 550px;
+  background: #393C47; }
+  #ft .desktop .footer-section .footer-container {
+    width: 1116px;
+    height: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden; }
+    #ft .desktop .footer-section .footer-container .footer-left {
+      margin-top: 130px;
+      padding-left: 168px; }
+      #ft .desktop .footer-section .footer-container .footer-left .logo {
+        width: 112px;
+        height: 30px;
+        display: block; }
+      #ft .desktop .footer-section .footer-container .footer-left .info {
+        width: 600px;
+        margin: 57px auto 0px auto;
+        display: block;
+        font-size: 12px;
+        line-height: 27px;
+        color: #A0A0A0; }
+  #ft .desktop .footer-section .nav {
+    text-align: right; }
+    #ft .desktop .footer-section .nav ul {
+      display: block;
+      width: 220px;
+      margin: 0; }
+      #ft .desktop .footer-section .nav ul li {
+        list-style-type: none;
+        margin-bottom: 10px; }
+        #ft .desktop .footer-section .nav ul li a {
+          font-size: 25px;
+          color: #CDCDCD;
+          text-decoration: none;
+          font-weight: 300; }
+        #ft .desktop .footer-section .nav ul li p {
+          font-size: 13px;
+          color: #A0A0A0;
+          padding: 2px 0px 0px 0px; }
+
+#ft .mobile {
+  width: 100%;
+  height: 390px; }
+  #ft .mobile .footer-section {
+    width: 100%;
+    height: 390px;
+    background: #222222; }
+    #ft .mobile .footer-section .footer-container {
+      width: 320px;
+      height: 390px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: hidden; }
+      #ft .mobile .footer-section .footer-container .logo {
+        width: 82px;
+        height: 22px;
+        margin: 72px auto 0px auto;
+        display: block; }
+      #ft .mobile .footer-section .footer-container .sns {
+        width: 138px;
+        height: 32px;
+        margin: 38px auto 0px auto;
+        padding: 0px; }
+        #ft .mobile .footer-section .footer-container .sns ul {
+          width: 100%;
+          display: block;
+          margin: 0;
+          padding: 0; }
+          #ft .mobile .footer-section .footer-container .sns ul li {
+            float: left;
+            list-style-type: none; }
+            #ft .mobile .footer-section .footer-container .sns ul li img {
+              width: 32px;
+              height: 32px;
+              margin: 0px 7px; }
+      #ft .mobile .footer-section .footer-container .info {
+        width: 240px;
+        margin: 46px auto 0px auto;
+        display: block;
+        text-align: center;
+        font-size: 11px;
+        line-height: 19px;
+        color: #A0A0A0; }
+
