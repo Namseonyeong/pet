@@ -22,4 +22,6 @@ public class LayoutController {
 	public String IdpwFind_Page() {
 		return "layout/IdpwFind_Page.html";
 	}
+	
+	
 }

@@ -43,4 +43,5 @@ public class MemberControlloer {
 		return "member/MyPage_getboardlist.html";
 	}
 	
+	
 }
