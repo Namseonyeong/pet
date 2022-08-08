@@ -1,10 +1,11 @@
 package com.ezen.service;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,7 +13,7 @@ import com.ezen.domain.Product;
 import com.ezen.persistence.ProductRepository;
 
 @Service
-public class ProductSercvice {
+public class ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -39,12 +40,17 @@ public class ProductSercvice {
 		productRepository.save(product);
 		
 	}
-	
+
 	// 상품 목록
-	public List<Product> productList() {
-		
-		return productRepository.findAll();
+	public Page<Product> productList(Pageable pageable) {
+		System.out.println("서비스==>" + pageable);
+		return productRepository.findAll(pageable);
 	}
+	
+//	public List<Product> productList() {
+//		
+//		return productRepository.findAll();
+//	}
 	
 	// 특정 게시글 부러오기
 	public Product productView(Integer p_seq) {

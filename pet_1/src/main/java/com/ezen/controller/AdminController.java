@@ -2,6 +2,7 @@ package com.ezen.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort; 
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,10 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.domain.Product;
-import com.ezen.service.ProductSercvice;
+import com.ezen.service.ProductService;
 
 //admin 컨트롤러 (DB)
 
@@ -20,7 +22,7 @@ import com.ezen.service.ProductSercvice;
 public class AdminController {
 
 	@Autowired
-	private ProductSercvice productSercvice;
+	private ProductService productService;
 	
 	// 대시보드로 이동
 	@RequestMapping(value = "/Dashboards")
@@ -35,10 +37,10 @@ public class AdminController {
 	}
 	
 	// 매니저 상품 등록
-	@RequestMapping(value = "/ProductCrystal")
-	public String ProductCrystal() {
-		return "admin/ProductCrystal.html";
-	}
+//	@RequestMapping(value = "/ProductCrystal")
+//	public String ProductCrystal() {
+//		return "admin/ProductCrystal.html";
+//	}
 	
 	// 상품관리 (카테고리별 매출현황)
 	@RequestMapping(value = "/ProductManagement")
@@ -75,7 +77,7 @@ public class AdminController {
 	@PostMapping("/productwrite")
 	public String productwrite(Product product, Model model, MultipartFile file) throws Exception  {
 		
-		productSercvice.write(product, file);
+		productService.write(product, file);
 		System.out.println("번호 : " + product.getP_seq());
 //		System.out.println("분류 : " + product.getP_kind());
 		System.out.println("이름 : " + product.getP_name()); 
@@ -93,24 +95,24 @@ public class AdminController {
 //		return "ProductRegistration";
 	}
 	
-//	// 상품 목록 리스트
-	@GetMapping("/Productlist")
-	public String productlist(Model model) {
-		
-		model.addAttribute("list", productSercvice.productList());
-		
-		return "admin/Productlist";
-	}
-	
-	
-	// 상품 목록 리스트 (페이징처리 테스트)
+	// 상품 목록 리스트
 //	@GetMapping("/Productlist")
-//	public String productlist(Model model, @PageableDefault(page = 0, size = 10, sort = "p_seq") Pageable pageable) {
+//	public String productlist(Model model) {
 //		
-//		model.addAttribute("list", productSercvice.productList());
+//		model.addAttribute("list", productService.productList());
 //		
 //		return "admin/Productlist";
 //	}
+//	
+	
+	// 상품 목록 리스트 (페이징처리 테스트)
+	@GetMapping("/Productlist")
+	public String productlist(Model model, @PageableDefault(page = 0, size = 5, sort = "p_seq", direction = Sort.Direction.DESC) Pageable pageable) {
+		System.out.println("pageable==>" + pageable);
+		model.addAttribute("list", productService.productList(pageable));
+		
+		return "admin/Productlist";
+	}
 	
 	
 	
@@ -118,7 +120,7 @@ public class AdminController {
 	@GetMapping("/ProductModify/{p_seq}")
 	public String productModify(@PathVariable("p_seq") Integer p_seq, Model model) {
 		
-		model.addAttribute("product", productSercvice.productView(p_seq));
+		model.addAttribute("product", productService.productView(p_seq));
 		
 		return "admin/ProductModify";
 	}
@@ -128,7 +130,7 @@ public class AdminController {
 	public String productUpdate(@PathVariable("p_seq") Integer p_seq, Product product, Model model, MultipartFile file) throws Exception{
 		
 		// 기존의 글에서 데이터값 가져오기
-		Product productTemp = productSercvice.productView(p_seq);
+		Product productTemp = productService.productView(p_seq);
 		productTemp.setP_name(product.getP_name());
 		productTemp.setPrice1(product.getPrice1());
 		productTemp.setPrice2(product.getPrice2());
@@ -136,7 +138,7 @@ public class AdminController {
 		productTemp.setP_image(product.getP_image());
 		productTemp.setP_path(product.getP_path());
 		
-		productSercvice.write(productTemp, file);
+		productService.write(productTemp, file);
 		
 		model.addAttribute("message", "상품 수정이 완료되었습니다.");
 		model.addAttribute("searchUrl", "/Productlist"); 
@@ -145,16 +147,17 @@ public class AdminController {
 	
 	}
 	
-	// 상품 삭제
-//	@PostMapping("/prodelete/delete")
-//	public String productDelete(Integer p_seq) {
-//		
-//	
-//		productSercvice.productDelete(p_seq);
-//		
-//		return "redirect:/productwrite";
-//	}
+	// 상품 삭제 (Productlist 참고)
 	
+	
+	@PostMapping("/productDelete")
+	public String productDelete(@RequestParam Integer[] valueArr) {
+		for(int i = 0; i < valueArr.length; i++) {
+			productService.productDelete(valueArr[i]);	
+		}
+			
+		return "redirect:/Productlist";
+	}
 	
 	
 
