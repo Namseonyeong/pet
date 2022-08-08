@@ -149,7 +149,7 @@ public class AdminController {
 	@PostMapping("/prodelete/delete")
 	public String productDelete(Integer p_seq) {
 		
-		String[] ajaxMsg = request.getParameterValuse("valueArr");
+	
 		productSercvice.productDelete(p_seq);
 		
 		return "redirect:/productwrite";
