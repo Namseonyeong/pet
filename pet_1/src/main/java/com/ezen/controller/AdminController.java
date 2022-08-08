@@ -104,13 +104,13 @@ public class AdminController {
 	
 	
 	// 상품 목록 리스트 (페이징처리 테스트)
-	@GetMapping("/Productlist")
-	public String productlist(Model model, @PageableDefault(page = 0, size = 10, sort = "p_seq") Pageable pageable) {
-		
-		model.addAttribute("list", productSercvice.productList());
-		
-		return "admin/Productlist";
-	}
+//	@GetMapping("/Productlist")
+//	public String productlist(Model model, @PageableDefault(page = 0, size = 10, sort = "p_seq") Pageable pageable) {
+//		
+//		model.addAttribute("list", productSercvice.productList());
+//		
+//		return "admin/Productlist";
+//	}
 	
 	
 	
@@ -146,14 +146,14 @@ public class AdminController {
 	}
 	
 	// 상품 삭제
-	@PostMapping("/prodelete/delete")
-	public String productDelete(Integer p_seq) {
-		
-	
-		productSercvice.productDelete(p_seq);
-		
-		return "redirect:/productwrite";
-	}
+//	@PostMapping("/prodelete/delete")
+//	public String productDelete(Integer p_seq) {
+//		
+//	
+//		productSercvice.productDelete(p_seq);
+//		
+//		return "redirect:/productwrite";
+//	}
 	
 	
 	

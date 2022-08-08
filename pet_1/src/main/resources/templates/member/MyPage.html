@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<!--선영-->
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!-- head section strats -->
 <head th:replace="/include/head :: head"></head>
+<!-- head header section -->
 
 <body class="sub_page">
 	<div class="hero_area">
 		<div class="bg-box">
 			<img th:src="@{bootstrap/images/pet_1.jpg}" alt="" />
 		</div>
-		<!-- header section strats -->
-		<header th:replace="/include/header :: header"></header>
-		<!-- end header section -->
+            <!-- header section strats -->
+            <header th:replace="/include/header :: header"></header>
+            <!-- end header section -->
 	</div>
 
 	<section class="book_section layout_padding">
@@ -43,25 +44,25 @@
 											height="16">
 											<use xlink:href="${MyPage.html}" /></svg> 개인정보 수정
 								</a></li>
-								<li><a href="#" class="nav-link link-dark"> <svg
-											class="bi me-2" width="16" height="16">
-											<use xlink:href="${MyPage_getboardlist}" /></svg> 작성 글 조회
+								<li><a href="#" class="nav-link link-dark"> 
+								<svg class="bi me-2" width="16" height="16">
+							    <use th:href="@{/MyPage_getboardlist}" /></svg> 작성 글 조회
 								</a></li>
 								<li><a href="#" class="nav-link link-dark"> <svg
 											class="bi me-2" width="16" height="16">
-											<use xlink:href="${MyPage_order}" /></svg> 장바구니 목록
+											<use xlink:href="${/MyPage_order}" /></svg> 장바구니 목록
 								</a></li>
 								<li><a href="#" class="nav-link link-dark"> <svg
 											class="bi me-2" width="16" height="16">
-											<use xlink:href="${MyPage_OrderDetails}" /></svg> 구매이력
+											<use xlink:href="${/MyPage_OrderDetails}" /></svg> 구매이력
 								</a></li>
 								<li><a href="#" class="nav-link link-dark"> <svg
 											class="bi me-2" width="16" height="16">
-											<use xlink:href="${MyPage_Reservation}" /></svg> 예약현황
+											<use xlink:href="${/MyPage_Reservation}" /></svg> 예약현황
 								</a></li>
 								<li><a href="#" class="nav-link link-dark"> <svg
 											class="bi me-2" width="16" height="16">
-											<use xlink:href="{MyPage_Withdrawal}" /></svg> 회원탈퇴
+											<use xlink:href="{/MyPage_Withdrawal}" /></svg> 회원탈퇴
 								</a></li>
 							</ul>
 						</div>

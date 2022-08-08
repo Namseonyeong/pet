@@ -12,13 +12,13 @@ public class LayoutController {
 		return "layout/Login.html";
 	}
 	
-	@RequestMapping(value = "/UserJoin_Page")
+	@RequestMapping(value = "/UserJoin")
 	public String UserJoin_Page() {
 		
 		return "layout/UserJoin_Page.html";
 	}
 	
-	@RequestMapping(value = "/IdpwFind_Page")
+	@RequestMapping(value = "/IdpwFind")
 	public String IdpwFind_Page() {
 		return "layout/IdpwFind_Page.html";
 	}

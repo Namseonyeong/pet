@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!-- head section strats -->
 <head th:replace="/include/head :: head"></head>
+<!-- head header section -->
+
 
 
 <body class="sub_page" style="overflow-y: hidden">
@@ -9,8 +12,9 @@
 		<div class="bg-box">
 			<img th:src="@{bootstrap/images/pet_1.jpg}" alt="" />
 		</div>
+		
 		<!-- header section strats -->
-		<header data-include="include/header.html"></header>
+		<header th:replace="/include/header :: header"></header>
 		<!-- end header section -->
 	</div>
 	
@@ -37,10 +41,8 @@
 							</div>
 
 							<div style="margin-top: 15px">
-								<a href="IdpwFind_Page.html"
-									onclick="window.open(this.href, '_blank', 'width=300, height=700'); return false;">아이디/비밀번호
-									찾기</a> <a href="UserJoin_Page.html"
-									style="margin-left: 110px; color: black">회원가입</a>
+								<a th:href="@{/IdpwFind}" th:onclick="window.open(this.href, '_blank', 'width=300, height=700'); return false;">아이디/비밀번호 찾기</a> 
+								<a th:href="@{/UserJoin}" style="margin-left: 110px; color: black">회원가입</a>
 								<!-- color: #ffbe33 -->
 							</div>
 						</form>
@@ -52,12 +54,13 @@
 	</section>
 	<!-- end book section -->
 
-	<!-- footer section -->
-	<footer th:replace="/include/footer :: footer"></footer>
-	<!-- footer section -->
+		<!-- footer section -->
+		<footer th:replace="/include/footer :: footer"></footer>
 
-	<!-- script section -->
-	<div th:replace="/include/script :: script"></div>
-	<!-- end script section -->
+        <!-- footer section -->
+
+		<!-- script section -->
+		<div th:replace="/include/script :: script"></div>
+		<!-- end script section -->
 </body>
 </html>
