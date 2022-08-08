@@ -1,0 +1,66 @@
+<!-- manager_sidebar section -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="col-md-3" style="padding-left: 100px; padding-top: 39px" th:fragment="manager_sidebar">
+            <div style="margin-bottom: 10px; text-align: right"></div>
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px">
+                <a th:href="@{#}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+                    <span class="fs-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M A N A G E R</span>
+                </a>
+                <hr />
+                <!-- 오렌지색 네모칸 -->
+                <!-- <div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div> -->
+                <ul class="nav nav-pills flex-column mb-auto,">
+                    <h5 style="font-family: 'DalseoHealingMedium'">매출현황</h5>
+                    <li class="nav-item">
+                        <a th:href="@{#}" class="nav-link active" aria-current="page">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#home" />
+                            </svg>
+                            카테고리별 매출현황
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{#}" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#speedometer2" />
+                            </svg>
+                            대시보드
+                        </a>
+                    </li>
+                    <br />
+                    <li>
+                        <a th:href="@{#}" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#table" />
+                            </svg>
+                            상품관리
+                        </a>
+                    </li>
+                    <br />
+                    <h5 style="font-family: 'DalseoHealingMedium'">사용자관리</h5>
+                    <li>
+                        <a th:href="@{#}" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#grid" />
+                            </svg>
+                            전체사용자 목록조회
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{#}" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#people-circle" />
+                            </svg>
+                            펫시터/훈련사<br />&nbsp;&nbsp;&nbsp;&nbsp;승인대기목록
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
