@@ -107,7 +107,8 @@ public class AdminController {
 	
 	// 상품 목록 리스트 (페이징처리 테스트)
 	@GetMapping("/Productlist")
-	public String productlist(Model model, @PageableDefault(page = 0, size = 5, sort = "p_seq", direction = Sort.Direction.DESC) Pageable pageable) {
+//	, sort = "p_seq", direction = Sort.Direction.DESC <- 코드를 넣는 순간 페이지 활성화가 안됨, 이유 찾을것 
+	public String productlist(Model model, @PageableDefault(page = 0, size = 5) Pageable pageable) {
 		System.out.println("pageable==>" + pageable);
 		model.addAttribute("list", productService.productList(pageable));
 		
@@ -159,6 +160,7 @@ public class AdminController {
 		return "redirect:/Productlist";
 	}
 	
+	// 상품 조회
 	
 
 

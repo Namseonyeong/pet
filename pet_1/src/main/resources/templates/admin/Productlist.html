@@ -37,14 +37,13 @@
                     <div class="col-md-6">
                         <div class="table-responsive container">
                             <div style="margin-bottom: 10px; text-align: right; float: right">
-                                <!-- 드롭다운 버튼으로 상품 내역 끌어와서 할지, 아니면 사용자 입력으로 할것인지 결정-->
                                 <div class="btn-group">
                                     <select class="form-control nice-select wide">
                                         <!-- disabled selected : 버튼 위에 처음에 보여지고 비활성화 됨 -->
-                                        <option value="">사료</option>
-                                        <option value="">간식</option>
-                                        <option value="">용품</option>
-                                        <option value="">의상</option>
+                                        <option value="사료">사료</option>
+                                        <option value="간식">간식</option>
+                                        <option value="용품">용품</option>
+                                        <option value="의상">의상</option>
                                     </select>
                                 </div>
 
@@ -59,7 +58,7 @@
                                         <!-- 게시판 행 크기 조절-->
                                         <th scope="col" style="width: 3%"><input type="checkbox" id="allCheck" name="allCheck" th:onclick="setCheckAll('p_seq')"/></th>
                                         <th scope="col" style="width: 10%">NO</th>
-<!--                                         <th scope="col" style="width: 10%">상품분류</th> -->
+                                        <th scope="col" style="width: 10%">상품분류</th>
                                         <th scope="col" style="width: 40%">상품명</th>
                                         <th scope="col" style="width: 15%">원가</th>
                                         <th scope="col" style="width: 15%">판매가</th>

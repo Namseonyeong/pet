@@ -22,7 +22,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer p_seq; // 상품 등록번호
 //	@Column (length = 1)
-//	private String p_kind;  // 상품 분류
+	private String p_kind;  // 상품 분류
 	@Column(length = 100)
 	private String p_name; // 상품명
 	private Integer price1; // 원가
