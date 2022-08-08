@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-   <head th:replace="/include/head :: head"></head>
+<!-- head section strats -->
+<head th:replace="/include/head :: head"></head>
+<!-- head header section -->
 
     <body>
         <div class="hero_area">
@@ -11,7 +13,6 @@
             </div>
 
             <!-- header section strats -->
-<!--        <header th:data-include="@{/bootstrap/include/header.html}"></header> -->
             <header th:replace="/include/header :: header"></header>
             <!-- end header section -->
 
@@ -244,22 +245,8 @@
 
         <!-- footer section -->
 
-        <!-- jQery -->
-        <script th:src="@{bootstrap/js/jquery-3.4.1.min.js}"></script>
-        <!-- popper js -->
-        <script th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js}" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <!-- bootstrap js -->
-        <script th:src="@{bootstrap/js/bootstrap.js}"></script>
-        <!-- owl slider -->
-        <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js}"></script>
-        <!-- isotope js -->
-        <script th:src="@{https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js}"></script>
-        <!-- nice select -->
-        <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js}"></script>
-        <!-- custom js -->
-        <script th:src="@{bootstrap/js/custom.js}"></script>
-        <!-- Google Map -->
-        <script th:src="@{https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap}"></script>
-        <!-- End Google Map -->
+		<!-- script section -->
+		<div th:replace="/include/script :: script"></div>
+		<!-- end script section -->
     </body>
 </html>

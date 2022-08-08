@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="/include/head :: head"></head>
+
+<!-- head section strats -->
+<head th:replace="/include/head :: head">
+
+</head>
+<!-- head header section -->
 
     <body class="sub_page">
         <div class="hero_area">
@@ -45,14 +50,14 @@
 
                                 <button class="btn btn-warning" onclick="alert('조회할거야?')">조회</button>
                                 <button class="btn btn-success" th:onclick="location.href='ProductRegistration'">등록</button>
-                                <button class="btn btn-danger" th:onclick="location.href='productDelete'">삭제</button>
+                                <button class="btn btn-danger" th:onclick="deleteValue();">삭제</button>
                             </div>
                             <!-- <table class="table table-striped w-auto"> -->
                             <table class="table table-striped table-md" style="text-align: center">
                                 <thead>
                                     <tr>
                                         <!-- 게시판 행 크기 조절-->
-                                        <th scope="col" style="width: 3%"></th>
+                                        <th scope="col" style="width: 3%"><input  id="allCheck" type="checkbox" name="allCheck"/></th>
                                         <th scope="col" style="width: 10%">NO</th>
 <!--                                         <th scope="col" style="width: 10%">상품분류</th> -->
                                         <th scope="col" style="width: 40%">상품명</th>
@@ -120,13 +125,74 @@
             </div>
         </section>
 
+            <!-- 체크박스 test -->
+        <script type=text/javascript>  
+          $(function() {
+            var chkObj = document.getElementsByName("p_seq"); 
+            var rowCnt = chkObj.length;
+         
+         $("input[name='allCheck']").click(function() {
+            var chk_listArr = $("input[name='p_seq']"); 
+            for (var i=0; i<chk_listArr.length; i++){
+            chk_listArr[i].checked = this.checked;
+            }
+      });
+      $("input[name='p_seq']").click(function() {
+            if($("input[name="p_seq']:checked").length == rowCnt) {
+               $("input[name='allCheck']")[0].checked = true; 
+            }
+            else{
+               $("input[name='allCheck']")[0].checked = false;
+            }
+            
+         });
+      });
+      function deleteValue() {
+      var url = "/prodelete/delete"; // Controller로 보내고자 하는 URL
+      var valueArr = new Array();
+      var list = $("input[name='p_seq']"); 
+      for(var i = 0; i < list.length; i++){ 
+         if(list[i].checked){ // 선택되어 있으면 배열에 값을 저장함
+            valueArr.push(list[i].value);
+         }
+      }
+      if (valueArr.length == 0){
+         alert("선택된 게시글이 없습니다.");
+      else{
+         var chk = confirm("정말 삭제하시겠습니까?");
+         $.ajax({
+         url : uri,  // 전송 URL
+         type : 'POST', // POST 방식
+         traditional : true, 
+         data : {
+            valueArr : valueArr // 보내고자 하는 data 변수 설정
+         },
+         success: function(jdata) {
+            if(data = 1) {
+               alert("삭제 성공"); 
+               location.replace("list") //list로 페이지 새로 고침
+               HEZ
+            }
+            else{
+               alert("삭제 실패");
+            }
+         }
+      });
+   }
+}
+      </script>
         
 
-       <!-- footer section -->
+      	<!-- footer section -->
 		<footer th:replace="/include/footer :: footer"></footer>
         <!-- footer section -->
 
-        <div th:replace="/include/script :: script"></div>
-        
-    </body>
+		<!-- script section -->
+		<div th:replace="/include/script :: script"></div>
+		<!-- end script section -->
+		
+		 
+	
+
+ </body>
 </html>
