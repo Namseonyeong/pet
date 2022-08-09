@@ -1,268 +1,254 @@
 <!DOCTYPE html>
-<!-- 완 -->
-<html>
-    <head>
-        <!-- Basic -->
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- Mobile Metas -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <!-- Site Metas -->
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <link rel="shortcut icon" href="images/favicon.png" type="" />
 
-        <title>날케어하시개</title>
+<html xmlns:th="http://www.thymeleaf.org">
 
-        <!-- bootstrap core css -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<head th:replace="/include/head :: head"></head>
 
-        <!--owl slider stylesheet -->
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-        <!-- nice select  -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
-        <!-- font awesome style -->
-        <link href="css/font-awesome.min.css" rel="stylesheet" />
-        <script src="https://kit.fontawesome.com/891c0679f6.js" crossorigin="anonymous"></script>
+<body class="sub_page">
+	<div class="hero_area">
+		<div class="bg-box">
+			<img th:src="@{bootstrap/images/pet_1.jpg}" alt="" />
+		</div>
+		<!-- header section strats -->
+		<header th:replace="/include/header :: header"></header>
+		<!-- end header section -->
+	</div>
+	<div>
 
-        <!-- Custom styles for this template -->
-        <link href="css/style.css" rel="stylesheet" />
-        <!-- responsive style -->
-        <link href="css/responsive.css" rel="stylesheet" />
-        <script src="js/include.js" defer></script>
-        <style>
-            
-        </style>
-    </head>
+		<!-- 상단 이미지 부분 시작 -->
+		<div>
+			<div class="mainGallery"
+				style="z-index: 0; display: flex; flex-direction: row; width: 100%; height: 580px; margin-top: 0px; position: relative;">
+				<div style="width: 62.5%; height: 580px; overflow: hidden">
+					<img width="900" height="580" class="inactiveImage"
+						th:src="@{bootstrap/images/petProfile_1.jpg}"
+						style="object-fit: cover; width: 100%; user-select: none; cursor: pointer">
+				</div>
 
-    <body class="sub_page">
-        <div class="hero_area">
-            <div class="bg-box">
-                <img src="images/pet_1.jpg" alt="" />
-            </div>
-                    <!-- header section strats -->
-                    <header data-include="include/header.html"></header>
-                    <!-- end header section -->
-        </div>
-        <div>
-
-            <!-- 상단 이미지 부분 시작 -->
-                    <div>
-                        <div class="mainGallery" style="z-index:0;display:flex;flex-direction:row;width:100%;height:580px;margin-top:0px;position:relative;">
-                            <div style="width:62.5%;height:580px;overflow:hidden">
-                                <img width="900" height="580" class="inactiveImage" src="images/petProfile_1.jpg" style="object-fit:cover;width:100%;user-select:none;cursor:pointer">
-                            </div>
-                        
-                            <div style="display:flex;flex-grow:1;width:auto;height:auto;flex-direction:column">
-                                <div style="width:auto;height:auto;overflow:hidden;">
-                                    <img class="normalImage" src="images/petProfile_2.jpg" style=" object-fit:cover;user-select:none;cursor:pointer;width:100%;max-height: 100%;">
-                                </div>
-                                <div style="width:auto;height:auto;overflow:hidden;">
-                                    <img class="normalImage" src="images/petProfile_3.jpg" style="object-fit:cover;user-select:none;cursor:pointer;width:100%;max-height: auto;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            <!-- 상단 이미지 끝-->
+				<div
+					style="display: flex; flex-grow: 1; width: auto; height: auto; flex-direction: column">
+					<div style="width: auto; height: auto; overflow: hidden;">
+						<img class="normalImage"
+							th:src="@{bootstrap/images/petProfile_2.jpg}"
+							style="object-fit: cover; user-select: none; cursor: pointer; width: 100%; max-height: 100%;">
+					</div>
+					<div style="width: auto; height: auto; overflow: hidden;">
+						<img class="normalImage"
+							th:src="@{bootstrap/images/petProfile_3.jpg}"
+							style="object-fit: cover; user-select: none; cursor: pointer; width: 100%; max-height: auto;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 상단 이미지 끝-->
 
 
-            
 
-                <!-- 프로필 시작 ! -->
-                    <div style="margin-top:0px;margin-left:auto;margin-right:auto;width:1027px;display:flex;flex-direction:row;justify-content:space-between">
-                        <div style="width:570px;position:relative;padding-bottom:150px">
-                            <div style="position:absolute;top:-60px;left:0">
-                                <img src="https://dugs12pdb1jsf.cloudfront.net/profile/8c06f4f423fd4efdbbe85133d991d0ca.png"
-                                    style="width:120px;height:120px;border-radius:60px" alt="김승규 훈련사">
-                            </div>
-                            <div style="padding-bottom:50px;border-bottom:1px solid #EBEBEB">
-                                <h2 style="font-size:27px;font-weight:500;color:#333333;letter-spacing:-0.2px;margin-top:105px;line-height:38px">
-                                    우리 아이들의 마음을 이해하는 소통의 창이 되어드릴께요
-                                </h2>
-                                <div style="margin-top:23px;display:flex;flex-direction:row;align-items:center">
-                                    <span style="font-size:17px;color:#333333;margin-right:14px">
-                                        김승규 훈련사
-                                    </span>
-                                    <div style="display:flex;align-items:center">
-                                        <div style="display:flex;margin-right:3px;align-items:center">
-                                            <img src="images/star_1.png" style="width:12px;height:12px;margin-right:4px">
-                                            <span style="font-size:17px;font-weight:600;color:#555555;margin-right:9px">
-                                                5.0
-                                            </span>
-                                            <span style="font-size:15px;font-weight:500;color:#A0A0A0;text-decoration:underline;margin-top:5px">
-                                                235개의 리뷰
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-top:39px;padding-bottom:48px;border-bottom:1px solid #EBEBEB">
-                                <div style="display:flex;flex-direction:row">
-                                    <img src="images/img_career_1.png" style="width:32px;height:32px">
-                                    <div style="margin-top:4px;margin-left:18px">
-                                        <p style="font-weight:500;font-size:17px;color:#333333;letter-spacing:-0.2px">
-                                            대표 경력
-                                        </p>
-                                        <p style="font-size:15px;color:#777777;line-height:20px;margin-top:10px">
-                                            방문훈련 전문, 동물병원근무, 행동교정 전문
-                                        </p>
-                                    </div>
-                                </div>
-                                <div style="display:flex;flex-direction:row;margin-top:27px">
-                                    <img src="images/img_career_2.png" style="width:32px;height:32px">
-                                    <div style="margin-top:4px;margin-left:18px">
-                                        <p style="font-weight:500;font-size:17px;color:#333333;letter-spacing:-0.2px">
-                                            전문 분야
-                                        </p>
-                                        <p style="font-size:15px;color:#777777;line-height:20px;margin-top:10px">
-                                            공격성 교육 전문, 소/중형견 전문
-                                        </p>
-                                    </div>
-                                </div>
-                                <div style="display:flex;flex-direction:row;margin-top:27px"><img
-                                        src="images/img_career_3.png"
-                                        style="width:32px;height:32px">
-                                    <div style="margin-top:4px;margin-left:18px">
-                                        <p style="font-weight:500;font-size:17px;color:#333333;letter-spacing:-0.2px">
-                                            방문 지역
-                                        </p>
-                                        <p style="font-size:15px;color:#777777;line-height:20px;margin-top:10px">
-                                            서울특별시, 인천광역시 연수구, 남동구, 미추홀구, 동구, 부평구, 계양구, 서구, 경기 파주시, 고양시,
-                                            의정부시, 남양주시, 하남시, 광주시, 성남시, 용인시, 과천시, 김포시, 광명시, 시흥시, 의왕시, 수원시,
-                                            오산시, 화성시, 부천시, 안산시, 양주시, 구리시, 안양시, 군포시, 남양주시
-                                            (그 외 지역은 출장비 발생)
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
 
-                        <!-- 자격증부분 시작 -->
-                            <div>
-                                <div style="margin-top:50px">
-                                    <p style="font-size:20px;font-weight:600;color:#333333;letter-spacing:-0.2px">
-                                        경력·자격
-                                    </p>
-                                </div>
-                                <div style="padding-bottom:45px;border-bottom:1px solid #EBEBEB">
-                                    <div style="margin-top:28px;display:flex;flex-direction:row;align-items:center">
-                                        <div style="border:1px solid #EBEBEB;border-radius:5px">
-                                            <img
-                                                src="https://dugs12pdb1jsf.cloudfront.net/resized/page/e72d6c0b97ef46d3b29a9189173b9c68.jpeg"
-                                                style="width:120px;height:76px;border-radius:5px;object-fit:cover"
-                                                alt="KKC 인증 3급 훈련사">
-                                        </div>
-                                        <div style="margin-left:28px">
-                                            <p style="font-size:17px;font-weight:500;color:#333333;letter-spacing:-0.2px;line-height:20px">
-                                                KKC 인증 3급 훈련사
-                                            </p>
-                                            <p style="font-size:15px;color:#777777;margin-top:13px;line-height:18px">
-                                                한국애견협회(KKC)
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin-top:28px;display:flex;flex-direction:row;align-items:center">
-                                        <div style="border:1px solid #EBEBEB;border-radius:5px">
-                                            <img
-                                                src="https://dugs12pdb1jsf.cloudfront.net/resized/page/90ae73c004de450fbe4c23a0bb8bcaae.jpeg"
-                                                style="width:120px;height:76px;border-radius:5px;object-fit:cover"
-                                                alt="반려동물관리사 1급">
-                                        </div>
-                                        <div style="margin-left:28px">
-                                            <p style="font-size:17px;font-weight:500;color:#333333;letter-spacing:-0.2px;line-height:20px">
-                                                반려동물관리사 1급
-                                            </p>
-                                            <p style="font-size:15px;color:#777777;margin-top:13px;line-height:18px">
-                                                한국반려동물자격협회
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin-top:28px;display:flex;flex-direction:row;align-items:center">
-                                        <div style="border:1px solid #EBEBEB;border-radius:5px">
-                                            <img
-                                                src="https://dugs12pdb1jsf.cloudfront.net/resized/page/48684b924cd343efa1f290dddfd76d82.jpeg"
-                                                style="width:120px;height:76px;border-radius:5px;object-fit:cover"
-                                                alt="반려동물행동교정사 1급"></div>
-                                        <div style="margin-left:28px">
-                                            <p
-                                                style="font-size:17px;font-weight:500;color:#333333;letter-spacing:-0.2px;line-height:20px">
-                                                반려동물행동교정사 1급</p>
-                                            <p
-                                                style="font-size:15px;color:#777777;margin-top:13px;line-height:18px">
-                                                한국반려동물자격협회</p>
-                                        </div>
-                                    </div>
-                                    <div
-                                        style="margin-top:28px;display:flex;flex-direction:row;align-items:center">
-                                        <div style="border:1px solid #EBEBEB;border-radius:5px"><img
-                                                src="https://dugs12pdb1jsf.cloudfront.net/resized/page/2e150a9f974c4cd9a8d4e7401b5c6a67.jpeg"
-                                                style="width:120px;height:76px;border-radius:5px;object-fit:cover"
-                                                alt="반려동물장례지도사 1급"></div>
-                                        <div style="margin-left:28px">
-                                            <p
-                                                style="font-size:17px;font-weight:500;color:#333333;letter-spacing:-0.2px;line-height:20px">
-                                                반려동물장례지도사 1급</p>
-                                            <p
-                                                style="font-size:15px;color:#777777;margin-top:13px;line-height:18px">
-                                                한국반려동물자격협회</p>
-                                        </div>
-                                    </div>
-                                    <div style="margin-top:28px;display:flex;flex-direction:row;align-items:center">
-                                        <div style="border:1px solid #EBEBEB;border-radius:5px">
-                                            <img
-                                                src="https://dugs12pdb1jsf.cloudfront.net/resized/page/b514c57d7dde4dd6910d33797872d37a.jpeg"
-                                                style="width:120px;height:76px;border-radius:5px;object-fit:cover"
-                                                alt="축산기능사">
-                                        </div>
-                                        <div style="margin-left:28px">
-                                            <p style="font-size:17px;font-weight:500;color:#333333;letter-spacing:-0.2px;line-height:20px">
-                                                축산기능사
-                                            </p>
-                                            <p style="font-size:15px;color:#777777;margin-top:13px;line-height:18px">
-                                                한국산업인력공단
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style="margin-top:28px;display:flex;flex-direction:row;align-items:center">
-                                        <div style="border:1px solid #EBEBEB;border-radius:5px">
-                                            <img
-                                                src="https://dugs12pdb1jsf.cloudfront.net/resized/page/91f83a3390b54023a9f45438ac0fa1d7.jpeg"
-                                                style="width:120px;height:76px;border-radius:5px;object-fit:cover"
-                                                alt="서정대학교 애완동물과 졸업">
-                                        </div>
-                                        <div style="margin-left:28px">
-                                            <p style="font-size:17px;font-weight:500;color:#333333;letter-spacing:-0.2px;line-height:20px">
-                                                서정대학교 애완동물과 졸업
-                                            </p>
-                                            <p style="font-size:15px;color:#777777;margin-top:13px;line-height:18px">
-                                                서정대학교
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <!-- 자격증부분 끝 -->
+		<!-- 프로필 시작 ! -->
+		<div
+			style="margin-top: 0px; margin-left: auto; margin-right: auto; width: 1027px; display: flex; flex-direction: row; justify-content: space-between">
+			<div style="width: 570px; position: relative; padding-bottom: 150px">
+				<div style="position: absolute; top: -60px; left: 0">
+					<img
+						th:src="@{https://dugs12pdb1jsf.cloudfront.net/profile/8c06f4f423fd4efdbbe85133d991d0ca.png}"
+						style="width: 120px; height: 120px; border-radius: 60px"
+						alt="김승규 훈련사">
+				</div>
+				<div style="padding-bottom: 50px; border-bottom: 1px solid #EBEBEB">
+					<h2
+						style="font-size: 27px; font-weight: 500; color: #333333; letter-spacing: -0.2px; margin-top: 105px; line-height: 38px">
+						우리 아이들의 마음을 이해하는 소통의 창이 되어드릴께요</h2>
+					<div
+						style="margin-top: 23px; display: flex; flex-direction: row; align-items: center">
+						<span style="font-size: 17px; color: #333333; margin-right: 14px">
+							김승규 훈련사 </span>
+						<div style="display: flex; align-items: center">
+							<div
+								style="display: flex; margin-right: 3px; align-items: center">
+								<img th:src="@{bootstrap/images/star_1.png}"
+									style="width: 12px; height: 12px; margin-right: 4px"> <span
+									style="font-size: 17px; font-weight: 600; color: #555555; margin-right: 9px">
+									5.0 </span> <span
+									style="font-size: 15px; font-weight: 500; color: #A0A0A0; text-decoration: underline; margin-top: 5px">
+									235개의 리뷰 </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					style="margin-top: 39px; padding-bottom: 48px; border-bottom: 1px solid #EBEBEB">
+					<div style="display: flex; flex-direction: row">
+						<img th:src="@{bootstrap/images/img_career_1.png}"
+							style="width: 32px; height: 32px">
+						<div style="margin-top: 4px; margin-left: 18px">
+							<p
+								style="font-weight: 500; font-size: 17px; color: #333333; letter-spacing: -0.2px">
+								대표 경력</p>
+							<p
+								style="font-size: 15px; color: #777777; line-height: 20px; margin-top: 10px">
+								방문훈련 전문, 동물병원근무, 행동교정 전문</p>
+						</div>
+					</div>
+					<div style="display: flex; flex-direction: row; margin-top: 27px">
+						<img th:src="@{bootstrap/images/img_career_2.png}"
+							style="width: 32px; height: 32px">
+						<div style="margin-top: 4px; margin-left: 18px">
+							<p
+								style="font-weight: 500; font-size: 17px; color: #333333; letter-spacing: -0.2px">
+								전문 분야</p>
+							<p
+								style="font-size: 15px; color: #777777; line-height: 20px; margin-top: 10px">
+								공격성 교육 전문, 소/중형견 전문</p>
+						</div>
+					</div>
+					<div style="display: flex; flex-direction: row; margin-top: 27px">
+						<img th:src="@{bootstrap/images/img_career_3.png}"
+							style="width: 32px; height: 32px">
+						<div style="margin-top: 4px; margin-left: 18px">
+							<p
+								style="font-weight: 500; font-size: 17px; color: #333333; letter-spacing: -0.2px">
+								방문 지역</p>
+							<p
+								style="font-size: 15px; color: #777777; line-height: 20px; margin-top: 10px">
+								서울특별시, 인천광역시 연수구, 남동구, 미추홀구, 동구, 부평구, 계양구, 서구, 경기 파주시, 고양시,
+								의정부시, 남양주시, 하남시, 광주시, 성남시, 용인시, 과천시, 김포시, 광명시, 시흥시, 의왕시, 수원시,
+								오산시, 화성시, 부천시, 안산시, 양주시, 구리시, 안양시, 군포시, 남양주시 (그 외 지역은 출장비 발생)</p>
+						</div>
+					</div>
+				</div>
 
-                        <!-- 자기소개 시작 -->
-                            <div style="border-bottom:1px solid #EBEBEB">
-                                <div style="margin-top:50px">
-                                    <p tyle="font-size:20px;font-weight:600;color:#333333;letter-spacing:-0.2px">
-                                        자기소개
-                                    </p>
-                                    <div style="margin-top:28px">
-                                        <p style="font-size:17px;color:#555555;line-height:28px">
-                                            지금 우리의 옆에
-                                            같이 있는 가족 반려견 우리 아이들에 대해 얼마나 알고 계신가요? 서로를 위해 우리 아이들은 우리들의 옆에 정말
-                                            가까이 있습니다. 가까이 있으면서 문제가 생기기는 일은 당연한 일입니다. 가까운 사이 일수록 더욱 지치기도 쉽고
-                                            다투기도 잦습니다.
+				<!-- 자격증부분 시작 -->
+				<div>
+					<div style="margin-top: 50px">
+						<p
+							style="font-size: 20px; font-weight: 600; color: #333333; letter-spacing: -0.2px">
+							경력·자격</p>
+					</div>
+					<div style="padding-bottom: 45px; border-bottom: 1px solid #EBEBEB">
+						<div
+							style="margin-top: 28px; display: flex; flex-direction: row; align-items: center">
+							<div style="border: 1px solid #EBEBEB; border-radius: 5px">
+								<img
+									th:src="@{https://dugs12pdb1jsf.cloudfront.net/resized/page/e72d6c0b97ef46d3b29a9189173b9c68.jpeg}"
+									style="width: 120px; height: 76px; border-radius: 5px; object-fit: cover"
+									alt="KKC 인증 3급 훈련사">
+							</div>
+							<div style="margin-left: 28px">
+								<p
+									style="font-size: 17px; font-weight: 500; color: #333333; letter-spacing: -0.2px; line-height: 20px">
+									KKC 인증 3급 훈련사</p>
+								<p
+									style="font-size: 15px; color: #777777; margin-top: 13px; line-height: 18px">
+									한국애견협회(KKC)</p>
+							</div>
+						</div>
+						<div
+							style="margin-top: 28px; display: flex; flex-direction: row; align-items: center">
+							<div style="border: 1px solid #EBEBEB; border-radius: 5px">
+								<img
+									th:src="@{https://dugs12pdb1jsf.cloudfront.net/resized/page/90ae73c004de450fbe4c23a0bb8bcaae.jpeg}"
+									style="width: 120px; height: 76px; border-radius: 5px; object-fit: cover"
+									alt="반려동물관리사 1급">
+							</div>
+							<div style="margin-left: 28px">
+								<p
+									style="font-size: 17px; font-weight: 500; color: #333333; letter-spacing: -0.2px; line-height: 20px">
+									반려동물관리사 1급</p>
+								<p
+									style="font-size: 15px; color: #777777; margin-top: 13px; line-height: 18px">
+									한국반려동물자격협회</p>
+							</div>
+						</div>
+						<div
+							style="margin-top: 28px; display: flex; flex-direction: row; align-items: center">
+							<div style="border: 1px solid #EBEBEB; border-radius: 5px">
+								<img
+									th:src="@{https://dugs12pdb1jsf.cloudfront.net/resized/page/48684b924cd343efa1f290dddfd76d82.jpeg}"
+									style="width: 120px; height: 76px; border-radius: 5px; object-fit: cover"
+									alt="반려동물행동교정사 1급">
+							</div>
+							<div style="margin-left: 28px">
+								<p
+									style="font-size: 17px; font-weight: 500; color: #333333; letter-spacing: -0.2px; line-height: 20px">
+									반려동물행동교정사 1급</p>
+								<p
+									style="font-size: 15px; color: #777777; margin-top: 13px; line-height: 18px">
+									한국반려동물자격협회</p>
+							</div>
+						</div>
+						<div
+							style="margin-top: 28px; display: flex; flex-direction: row; align-items: center">
+							<div style="border: 1px solid #EBEBEB; border-radius: 5px">
+								<img
+									th:src="@{https://dugs12pdb1jsf.cloudfront.net/resized/page/2e150a9f974c4cd9a8d4e7401b5c6a67.jpeg}"
+									style="width: 120px; height: 76px; border-radius: 5px; object-fit: cover"
+									alt="반려동물장례지도사 1급">
+							</div>
+							<div style="margin-left: 28px">
+								<p
+									style="font-size: 17px; font-weight: 500; color: #333333; letter-spacing: -0.2px; line-height: 20px">
+									반려동물장례지도사 1급</p>
+								<p
+									style="font-size: 15px; color: #777777; margin-top: 13px; line-height: 18px">
+									한국반려동물자격협회</p>
+							</div>
+						</div>
+						<div
+							style="margin-top: 28px; display: flex; flex-direction: row; align-items: center">
+							<div style="border: 1px solid #EBEBEB; border-radius: 5px">
+								<img
+									th:src="@{https://dugs12pdb1jsf.cloudfront.net/resized/page/b514c57d7dde4dd6910d33797872d37a.jpeg}"
+									style="width: 120px; height: 76px; border-radius: 5px; object-fit: cover"
+									alt="축산기능사">
+							</div>
+							<div style="margin-left: 28px">
+								<p
+									style="font-size: 17px; font-weight: 500; color: #333333; letter-spacing: -0.2px; line-height: 20px">
+									축산기능사</p>
+								<p
+									style="font-size: 15px; color: #777777; margin-top: 13px; line-height: 18px">
+									한국산업인력공단</p>
+							</div>
+						</div>
+						<div
+							style="margin-top: 28px; display: flex; flex-direction: row; align-items: center">
+							<div style="border: 1px solid #EBEBEB; border-radius: 5px">
+								<img
+									th:src="@{https://dugs12pdb1jsf.cloudfront.net/resized/page/91f83a3390b54023a9f45438ac0fa1d7.jpeg}"
+									style="width: 120px; height: 76px; border-radius: 5px; object-fit: cover"
+									alt="서정대학교 애완동물과 졸업">
+							</div>
+							<div style="margin-left: 28px">
+								<p
+									style="font-size: 17px; font-weight: 500; color: #333333; letter-spacing: -0.2px; line-height: 20px">
+									서정대학교 애완동물과 졸업</p>
+								<p
+									style="font-size: 15px; color: #777777; margin-top: 13px; line-height: 18px">
+									서정대학교</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 자격증부분 끝 -->
 
-                                            저는 우리 아이들에게 그리고 보호자님에게 서로의 마음으로 하는 소통의 창을 열어드리고자 합니다. 수년간의 동물병원의
-                                            지식과 수많은 방문훈련의 경험으로 보호자님과 반려견과의 소통의 창을 만들어 드리겠습니다.
-                                        </p>
-                                    </div>
-                                </div>
+				<!-- 자기소개 시작 -->
+				<div style="border-bottom: 1px solid #EBEBEB">
+					<div style="margin-top: 50px">
+						<p
+							style="font-size:20px;font-weight:600;color:#333333;letter-spacing:-0.2px">
+							자기소개</p>
+						<div style="margin-top: 28px">
+							<p style="font-size: 17px; color: #555555; line-height: 28px">
+								지금 우리의 옆에 같이 있는 가족 반려견 우리 아이들에 대해 얼마나 알고 계신가요? 서로를 위해 우리 아이들은
+								우리들의 옆에 정말 가까이 있습니다. 가까이 있으면서 문제가 생기기는 일은 당연한 일입니다. 가까운 사이 일수록
+								더욱 지치기도 쉽고 다투기도 잦습니다. 저는 우리 아이들에게 그리고 보호자님에게 서로의 마음으로 하는 소통의 창을
+								열어드리고자 합니다. 수년간의 동물병원의 지식과 수많은 방문훈련의 경험으로 보호자님과 반려견과의 소통의 창을 만들어
+								드리겠습니다.</p>
+						</div>
+					</div>
 
-                            <!-- 자기소개 더보기 보류 ~~~~~~
+					<!-- 자기소개 더보기 보류 ~~~~~~
                                 <div style="margin-top:19px;padding-bottom:45px">
                                     <details style="display:flex;align-items:center;cursor:pointer">
                                         <summary style="font-size:15px;height:8px;margin-right:7px">
@@ -306,10 +292,10 @@
                                 </div>
                                 -->
 
-                            </div>
-                        <!-- 자기소개 끝!! -->
+				</div>
+				<!-- 자기소개 끝!! -->
 
-<!-- ************************ 후기 부분 시작 (보류) ****************** 
+				<!-- ************************ 후기 부분 시작 (보류) ****************** 
 
                             <div style="padding-top:50px">
                                 <div style="display:flex;flex-direction:row;justify-content:space-between;align-items:center;margin-bottom:28px">
@@ -511,95 +497,90 @@
                             </div>
              ************************ 후기 부분 끝!!! ************************ -->
 
-                        </div>
-<!-- ************************ 프로필 끝!!! ************************ -->
-                
-
-<!-- ************************ 우측 메뉴 시작 ************************ -->
-                        <div>
-                            <div style="width:375px;border-radius:8px;border:1px solid #EBEBEB;box-shadow:1px 3px 7px rgba(0,0,0,0.07);padding:38px 32px 32px 32px;margin-top:105px">
-                                <p style="font-size:17px;font-weight:500;letter-spacing:-0.2px;line-height:25px;color:#393C47">
-                                    궁금한 내용이 있다면<br>
-                                    김승규 훈련사님께 교육 문의를 보내보세요!
-                                </p>
-
-                            </div>
-                            <div style="width:375px;border-radius:8px;border:1px solid #EBEBEB;box-shadow:1px 3px 7px rgba(0,0,0,0.07);padding:43px 32px 38px 32px;margin-top:38px">
-                                <div style="display:flex;border-bottom:1px solid #EBEBEB;padding-bottom:25px">
-                                    <p style="font-size:17px;font-weight:600;letter-spacing:-0.2px;line-height:25px;color:#393C47">
-                                        이용 요금
-                                    </p>
-                                </div>
-                                <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:24px">
-                                    <div style="display:flex;flex-direction:row;align-items:center">
-                                        <div style="width:42px;height:22px;background-color:#f1ededc0;border-radius:3px;display:flex;justify-content:center;align-items:center">
-                                            <span style="font-size:13px;font-weight:600;color:#868585">
-                                                100분
-                                            </span>
-                                        </div>
-                                        <a style="font-size:15px;font-weight:500;line-height:19px;color:#393C47;margin-left:12px">
-                                            방문 교육
-                                        </a>
-                                    </div>
-                                    <div style="display:flex;flex-direction:row;align-items:center">
-                                        <a tyle="font-size:15px;color:#333333;line-height:18px;margin-left:9px">
-                                            ₩150,000
-                                        </a>
-                                    </div>
-                                </div>
-                                <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:18px">
-                                    <div style="display:flex;flex-direction:row;align-items:center">
-                                        <div style="width:42px;height:22px;background-color:#f0ecec;border-radius:3px;display:flex;justify-content:center;align-items:center">
-                                            <span style="font-size:13px;font-weight:600;color:#8d8d8d">
-                                                60분
-                                            </span>
-                                        </div>
-                                        <a style="font-size:15px;font-weight:500;line-height:19px;color:#393C47;margin-left:12px">
-                                            영상 교육
-                                        </a>
-                                    </div>
-                                    <div style="display:flex;flex-direction:row;align-items:center">
-                                        <a style="font-size:15px;color:#333333;line-height:18px;margin-left:9px">
-                                            ₩80,000
-                                        </a>
-                                    </div>
-                                </div>
-                                <div  style="display:flex;width:312px;height:59px;background-color:#F1C1C9;border-radius:5px;justify-content:center;align-items:center;margin-top:32px;cursor:pointer">
-                                    <a href="TrainerBooking_Page.html"  onclick="window.open(this.href, '_blank', 'width=440, height=700'); return false;" style="font-size:18px;font-weight:600;color:white;letter-spacing:0.2px">
-                                        예약하기
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-<!-- ************************ 우측 메뉴 끝!! ************************ -->
+			</div>
+			<!-- ************************ 프로필 끝!!! ************************ -->
 
 
-                    </div>
-                </div>
-            </div>
+			<!-- ************************ 우측 메뉴 시작 ************************ -->
+			<div>
+				<div
+					style="width: 375px; border-radius: 8px; border: 1px solid #EBEBEB; box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.07); padding: 38px 32px 32px 32px; margin-top: 105px">
+					<p
+						style="font-size: 17px; font-weight: 500; letter-spacing: -0.2px; line-height: 25px; color: #393C47">
+						궁금한 내용이 있다면<br> 김승규 훈련사님께 교육 문의를 보내보세요!
+					</p>
+
+				</div>
+				<div
+					style="width: 375px; border-radius: 8px; border: 1px solid #EBEBEB; box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.07); padding: 43px 32px 38px 32px; margin-top: 38px">
+					<div
+						style="display: flex; border-bottom: 1px solid #EBEBEB; padding-bottom: 25px">
+						<p
+							style="font-size: 17px; font-weight: 600; letter-spacing: -0.2px; line-height: 25px; color: #393C47">
+							이용 요금</p>
+					</div>
+					<div
+						style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 24px">
+						<div
+							style="display: flex; flex-direction: row; align-items: center">
+							<div
+								style="width: 42px; height: 22px; background-color: #f1ededc0; border-radius: 3px; display: flex; justify-content: center; align-items: center">
+								<span style="font-size: 13px; font-weight: 600; color: #868585">
+									100분 </span>
+							</div>
+							<a
+								style="font-size: 15px; font-weight: 500; line-height: 19px; color: #393C47; margin-left: 12px">
+								방문 교육 </a>
+						</div>
+						<div
+							style="display: flex; flex-direction: row; align-items: center">
+							<a
+								style="font-size:15px;color:#333333;line-height:18px;margin-left:9px">
+								₩150,000 </a>
+						</div>
+					</div>
+					<div
+						style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 18px">
+						<div
+							style="display: flex; flex-direction: row; align-items: center">
+							<div
+								style="width: 42px; height: 22px; background-color: #f0ecec; border-radius: 3px; display: flex; justify-content: center; align-items: center">
+								<span style="font-size: 13px; font-weight: 600; color: #8d8d8d">
+									60분 </span>
+							</div>
+							<a
+								style="font-size: 15px; font-weight: 500; line-height: 19px; color: #393C47; margin-left: 12px">
+								영상 교육 </a>
+						</div>
+						<div
+							style="display: flex; flex-direction: row; align-items: center">
+							<a
+								style="font-size: 15px; color: #333333; line-height: 18px; margin-left: 9px">
+								₩80,000 </a>
+						</div>
+					</div>
+					<div
+						style="display: flex; width: 312px; height: 59px; background-color: #F1C1C9; border-radius: 5px; justify-content: center; align-items: center; margin-top: 32px; cursor: pointer">
+						<a th:href="@{TrainerBooking_Page.html}"
+							th:onclick="window.open(this.href, '_blank', 'width=440, height=700'); return false;"
+							style="font-size: 18px; font-weight: 600; color: white; letter-spacing: 0.2px">
+							예약하기 </a>
+					</div>
+				</div>
+			</div>
+			<!-- ************************ 우측 메뉴 끝!! ************************ -->
 
 
-        <!-- footer section -->
-        <footer data-include="include/footer.html"></footer>
-        <!-- footer section -->
+		</div>
+	</div>
 
-        <!-- jQery -->
-        <script src="js/jquery-3.4.1.min.js"></script>
-        <!-- popper js -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <!-- bootstrap js -->
-        <script src="js/bootstrap.js"></script>
-        <!-- owl slider -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-        <!-- isotope js -->
-        <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
-        <!-- nice select -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
-        <!-- custom js -->
-        <script src="js/custom.js"></script>
-        <!-- Google Map -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
-        <!-- End Google Map -->
+
+
+	<!-- footer section -->
+	<footer th:replace="/include/footer :: footer"></footer>
+	<!-- footer section -->
+
+	<div th:replace="/include/script :: script"></div>
 </body>
 
 </html>
