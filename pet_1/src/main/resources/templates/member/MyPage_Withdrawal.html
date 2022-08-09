@@ -2,137 +2,76 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="/include/head :: head"></head>
-    
+
 
 <body class="sub_page">
-    <div class="hero_area">
-        <div class="bg-box">
-            <img th:src="@{bootstrap/images/pet_1.jpg}" alt="" />
-        </div>
-        <!-- header section strats -->
-        <header th:replace="/include/header :: header"></header>
-        <!-- end header section -->
-    </div>
+	<div class="hero_area">
+		<div class="bg-box">
+			<img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
+		</div>
+		<!-- header section strats -->
+		<header th:replace="/include/header :: header"></header>
+		<!-- end header section -->
+	</div>
 
-    <section class="book_section layout_padding">
-        <div class="container">
-            <div class="heading_container heading_center">
-                <h2 class="mb-1">회원탈퇴</h2>
-            </div>
-        </div>
-        <!--사이드 바 -->
-        <div class="position-relative">
-            <div class="position-absolute top-0 start-50 translate-middle-x"></div>
-            <div class="row">
-                <div class="col-md-3" style="padding-left: 100px; padding-top: 39px">
-                    <div th:replace="/include/member_sidebar :: member_sidebar">
-                    <div style="margin-bottom: 10px; text-align: right"></div>
-                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px">
-                        <a href=""
-                            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                            <svg class="bi me-2" width="40" height="32">
-                                <use xlink:href="#bootstrap" />
-                            </svg>
-                            <span class="fs-4">마이페이지</span>
-                        </a>
-                        <hr />
-                        <!-- 오렌지색 네모칸 -->
-                        <!-- <div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div> -->
-                        <ul class="nav nav-pills flex-column mb-auto,">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active" aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="${MyPage.html}" />
-                                    </svg>
-                                    개인정보 수정
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="${MyPage_getboardlist}" />
-                                    </svg>
-                                    작성 글 조회
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="${MyPage_order}" />
-                                    </svg>
-                                    장바구니 목록
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="${MyPage_OrderDetails}" />
-                                    </svg>
-                                    구매이력
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="${MyPage_Reservation}" />
-                                    </svg>
-                                    예약현황
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="{MyPage_Withdrawal}" />
-                                    </svg>
-                                    회원탈퇴
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-6">
-                    <div class="withdrawal" style="width: 500px; height: 350px; border-radius: 20px; border-color: #ceafff; border-style: solid; border-width: 2px; margin: 50px 0px 0px 60px; padding: 50px 0px 0px 110px;">
-                        <h4 class="noway">"정말.. 날 떠나 가시개....?"</h4>
-                        <br />
-                        <p>탈퇴를 원하시면 비밀번호를 입력해주세요</p>
-                        <br />
+	<section class="book_section layout_padding">
+		<div class="container">
+			<div class="heading_container heading_center">
+				<h2 class="mb-1">회원탈퇴</h2>
+			</div>
+		</div>
+		<!--사이드 바 -->
+		<div class="position-relative">
+			<div class="position-absolute top-0 start-50 translate-middle-x"></div>
+			<div class="row">
+				<div th:replace="/include/member_sidebar :: member_sidebar"></div>
+				<div class="col-md-1"></div>
+				<div class="col-md-6" style="margin-top: 3rem">
+					<div class="withdrawal"
+						style="width: 500px; height: 350px; border-radius: 20px; border-color: #ceafff; border-style: solid; border-width: 2px; margin: 50px 0px 0px 60px; padding: 50px 0px 0px 110px;">
+						<h4 class="noway">"정말.. 날 떠나 가시개....?"</h4>
+						<br />
+						<p>탈퇴를 원하시면 비밀번호를 입력해주세요</p>
+						<br />
 
-                        <div class="row">
-                            <div class="password">
-                                <label for="nickname">비밀번호</label>
-                            </div>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <div class="passwordinput">
-                                <input th:type="${member_pw}" class="form-control" id="password" placeholder="" value=""
-                                    required />
-                                <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"><input type="button" value="탈퇴" /></div>
-                            <div class="col-md-2"><input type="button" th:href="${MyPage_page_update}" value="취소" />
-                            </div>
-                            <div class="col-md-6"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-    </section>
+						<div class="row">
+							<div class="password">
+								<label for="nickname">비밀번호</label>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="passwordinput">
+								<input th:type="${member_pw}" class="form-control" id="password"
+									placeholder="" value="" required />
+								<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-2">
+								<input type="button" th:href="@{index}" value="탈퇴" />
+							</div>
+							<div class="col-md-2">	
+								<input type="button" th:onclick="location.href='MyPage'"
+									value="취소" />
+							</div>
+							<div class="col-md-6"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</div>
+	</section>
 
 
-    <!-- footer section -->
-		<footer th:replace="/include/footer :: footer"></footer>
-        <!-- end footer section -->
+	<!-- footer section -->
+	<footer th:replace="/include/footer :: footer"></footer>
+	<!-- end footer section -->
 
-    <!-- script section -->
-		<div th:replace="/include/script :: script"></div>
-		<!-- end script section -->
+	<!-- script section -->
+	<div th:replace="/include/script :: script"></div>
+	<!-- end script section -->
 </body>
 
 </html>
