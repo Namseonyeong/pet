@@ -1,95 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <!-- Basic -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <link rel="shortcut icon" href="images/favicon.png" type="" />
-
-    <title>날케어하시개</title>
-
-    <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
-    <!--owl slider stylesheet -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <!-- nice select  -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
-        integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
-        crossorigin="anonymous" />
-    <!-- font awesome style -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/891c0679f6.js" crossorigin="anonymous"></script>
-
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" />
-    <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet" />
-</head>
+<head th:replace="/include/head :: head"></head>
 
 <!-- book section -->
 <section class="book_section layout_padding">
-    <div class="container">
-        <div class="heading_container heading_center">
-            <h3 class="mb-1">예약내용 작성</h2>
-        </div>
+	<div class="container">
+		<div class="heading_container heading_center">
+			<h3 class="mb-1">예약내용 작성</h3>
+		</div>
 
-        <!-- 예약하기 -->
+		<!-- 예약하기 -->
 
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="form_container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="form_container">
 
-                    <form action="">
-                        예약 날짜
-                        <div>
-                            <input type="date" class="form-control" />
-                        </div>
-                        예약시간
-                        <p><input type="time" /> &nbsp; ~ &nbsp;<input type="time" /></p>
-                                    <label for="time">총 이용 시간</label><h6>※ 24시간 초과시 펫시터와 협의하세요.</h6>
-                                    <input type="phone" class="form-control" id="phone" placeholder="1" required min="1" max="24">
-                                    <div class="invalid-feedback">
-                                    최소 1시간에서 최대 24시간을 입력해주세요.
-                                    </div>
-                        견종
-                        <div>
-                            <input type="text" class="form-control" />
-                        </div>
-                        지역
-                        <div>
-                            <select class="form-control nice-select wide">
-                                <option value="" disabled selected>서울</option>
-                                <option value="">경기</option>
-                                <option value="">인천</option>
-                                <option value="">강원</option>
-                                <option value="">충남/충북</option>
-                                <option value="">전북/전남</option>
-                                <option value="">경남/경북</option>
-                                <option value="">부산/울산</option>
-                                <option value="">그 외</option>
-                            </select>
-
-                            <div class="btn_box ">
-                                <button style="padding: 10px 160px; margin-top: 0px">예약완료</button>
-                            </div>
-
-                    </form>
-                </div>
-                <div class="col-md-4"></div>
-            </div>
-        </div>
-    </div>
+					<form action="">
+						예약 날짜
+						<div>
+							<input type="date" class="form-control" />
+						</div>
+						예약시간
+						<p>
+							<input type="time" /> &nbsp; ~ &nbsp;<input type="time" />
+						</p>
+						<label for="time">총 이용 시간</label>
+						<h6>※ 24시간 초과시 펫시터와 협의하세요.</h6>
+						<input th:type="phone" class="form-control" id="phone"
+							placeholder="1" required min="1" max="24">
+						<div class="invalid-feedback">최소 1시간에서 최대 24시간을 입력해주세요.</div>
+						견종
+						<div>
+							<input type="text" class="form-control" />
+						</div>
+						지역
+						<div>
+							<select class="form-control nice-select wide">
+								<option value="" disabled selected>서울</option>
+								<option value="">경기</option>
+								<option value="">인천</option>
+								<option value="">강원</option>
+								<option value="">충남/충북</option>
+								<option value="">전북/전남</option>
+								<option value="">경남/경북</option>
+								<option value="">부산/울산</option>
+								<option value="">그 외</option>
+							</select>
+						</div>
+						<div class="btn_box ">
+							<button style="padding: 10px 160px; margin-top: 0px">예약완료</button>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</div>
+	</div>
 
 </section>
 

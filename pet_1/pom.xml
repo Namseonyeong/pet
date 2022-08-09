@@ -69,13 +69,23 @@
 			<scope>test</scope>
 		</dependency>
 		
+<<<<<<< HEAD
 		<!-- security
 		<dependency>
+=======
+		<!-- security-->
+		<!--<dependency>
+>>>>>>> branch 'develop' of https://github.com/Namseonyeong/pet.git
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+<<<<<<< HEAD
 		</dependency>
 		-->
+=======
+		</dependency>-->
+		
+>>>>>>> branch 'develop' of https://github.com/Namseonyeong/pet.git
 	</dependencies>
 
 	<build>
