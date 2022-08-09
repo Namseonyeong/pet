@@ -6,7 +6,7 @@
 <body class="sub_page">
 	<div class="hero_area">
 		<div class="bg-box">
-			<img th:src="@{bootstrap/images/pet_1.jpg}" alt="" />
+			<img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
 		</div>
 		<!-- header section strats -->
 		<!--        <header th:data-include="@{/bootstrap/include/header.html}"></header> -->
@@ -26,11 +26,12 @@
 			<div class="position-absolute top-0 start-50 translate-middle-x"></div>
 			<div class="row">
 				<div th:replace="/include/member_sidebar :: member_sidebar"></div>
+				
 				<div class="col-md-6" style="margin-top: 3rem">
 					<div class="table-responsive container">
 						<div style="margin-bottom: 10px; text-align: right">
 							<button type="button" class="btn btn-danger"
-								th:onClick="delete_Reservation">선택 예약 취소</button>
+								th:onclick="location.href='delete_Reservation'">선택 예약 취소</button>
 						</div>
 						<!-- <table class="table table-striped w-auto"> -->
 						<table class="table table-striped table-md">
@@ -164,6 +165,7 @@
 				<div class="col-md-3"></div>
 			</div>
 		</div>
+		
 	</section>
 
 	<!--박스-->
