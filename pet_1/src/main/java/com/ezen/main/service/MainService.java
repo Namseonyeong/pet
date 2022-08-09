@@ -1,4 +1,4 @@
-package com.ezen.service;
+package com.ezen.main.service;
 
 import java.io.File;
 import java.util.List;

@@ -1,9 +1,11 @@
 package com.ezen.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort; 
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.domain.Product;
-import com.ezen.service.ProductService;
+import com.ezen.product.service.ProductService;
+import com.ezen.product.service.ProductServiceimpl;
 
 //admin 컨트롤러 (DB)
 
@@ -77,7 +80,7 @@ public class AdminController {
 	@PostMapping("/productwrite")
 	public String productwrite(Product product, Model model, MultipartFile file) throws Exception  {
 		
-		productService.write(product, file);
+		productService.insertwrite(product, file);
 		System.out.println("번호 : " + product.getP_seq());
 //		System.out.println("분류 : " + product.getP_kind());
 		System.out.println("이름 : " + product.getP_name()); 
@@ -96,24 +99,31 @@ public class AdminController {
 	}
 	
 	// 상품 목록 리스트
-//	@GetMapping("/Productlist")
-//	public String productlist(Model model) {
-//		
-//		model.addAttribute("list", productService.productList());
-//		
-//		return "admin/Productlist";
-//	}
-//	
-	
-	// 상품 목록 리스트 (페이징처리 테스트)
 	@GetMapping("/Productlist")
-//	, sort = "p_seq", direction = Sort.Direction.DESC <- 코드를 넣는 순간 페이지 활성화가 안됨, 이유 찾을것 
-	public String productlist(Model model, @PageableDefault(page = 0, size = 5) Pageable pageable) {
-		System.out.println("pageable==>" + pageable);
-		model.addAttribute("list", productService.productList(pageable));
+	public String productList(Model model) {
+		
+		model.addAttribute("list", productService.productList());
 		
 		return "admin/Productlist";
 	}
+	
+	
+	// 상품 목록 리스트 (페이징처리 테스트)
+//	@GetMapping("/Productlist")
+	// @PageableDefault(page = 0, size = 5,)
+	//	, sort = "p_seq", direction = Sort.Direction.DESC <- 코드를 넣는 순간 페이지 활성화가 안됨, 이유 찾을것 
+//	public String productlist(@PageableDefault(page = 0, size = 4, sort = "p_seq", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+//		
+//		Page<Product> products = productService.getproductList(pageable);
+//		
+//		System.out.println("pageable==>" + pageable);
+//		model.addAttribute("list", products);
+//		
+//		return "admin/Productlist";
+//	}
+	
+	
+
 	
 	
 	
@@ -139,7 +149,7 @@ public class AdminController {
 		productTemp.setP_image(product.getP_image());
 		productTemp.setP_path(product.getP_path());
 		
-		productService.write(productTemp, file);
+		productService.insertwrite(productTemp, file);
 		
 		model.addAttribute("message", "상품 수정이 완료되었습니다.");
 		model.addAttribute("searchUrl", "/Productlist"); 
