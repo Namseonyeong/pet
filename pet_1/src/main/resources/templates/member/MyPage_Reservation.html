@@ -9,7 +9,6 @@
 			<img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
 		</div>
 		<!-- header section strats -->
-		<!--        <header th:data-include="@{/bootstrap/include/header.html}"></header> -->
 		<header th:replace="/include/header :: header"></header>
 		<!-- end header section -->
 	</div>
@@ -25,8 +24,10 @@
 		<div class="position-relative">
 			<div class="position-absolute top-0 start-50 translate-middle-x"></div>
 			<div class="row">
+				<!-- member sidebar section start -->
 				<div th:replace="/include/member_sidebar :: member_sidebar"></div>
-				
+				<!-- end member sidebar section -->
+
 				<div class="col-md-6" style="margin-top: 3rem">
 					<div class="table-responsive container">
 						<div style="margin-bottom: 10px; text-align: right">
@@ -183,58 +184,7 @@
             <a href="IdpwFind_Page.html" onclick="window.open(this.href, '_blank', 'width=300, height=300'); return false;" style="margin-left: 10px; color: #ffbe33">아이디/비밀번호 찾기</a>
             <a href="UserJoin_Page.html" style="margin-left: 110px; color: #ffbe33">회원가입</a>
         </div> -->
-	<!-- footer section -->
-	<footer class="footer_section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 footer-col">
-					<div class="footer_contact">
-						<h4>Contact Us</h4>
-						<div class="contact_link_box">
-							<a href=""> <i class="fa fa-map-marker" aria-hidden="true"></i>
-								<span> Location </span>
-							</a> <a href=""> <i class="fa fa-phone" aria-hidden="true"></i> <span>
-									Call +01 1234567890 </span>
-							</a> <a href=""> <i class="fa fa-envelope" aria-hidden="true"></i>
-								<span> demo@gmail.com </span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 footer-col">
-					<div class="footer_detail">
-						<a href="" class="footer-logo"> Feane </a>
-						<p>Necessary, making this the first true generator on the
-							Internet. It uses a dictionary of over 200 Latin words, combined
-							with</p>
-						<div class="footer_social">
-							<a href=""> <i class="fa fa-facebook" aria-hidden="true"></i>
-							</a> <a href=""> <i class="fa fa-twitter" aria-hidden="true"></i>
-							</a> <a href=""> <i class="fa fa-linkedin" aria-hidden="true"></i>
-							</a> <a href=""> <i class="fa fa-instagram" aria-hidden="true"></i>
-							</a> <a href=""> <i class="fa fa-pinterest" aria-hidden="true"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 footer-col">
-					<h4>Opening Hours</h4>
-					<p>Everyday</p>
-					<p>10.00 Am -10.00 Pm</p>
-				</div>
-			</div>
-			<div class="footer-info">
-				<p>
-					&copy; <span id="displayYear"></span> All Rights Reserved By <a
-						href="https://html.design/">Free Html Templates</a><br /> <br />
-					&copy; <span id="displayYear"></span> Distributed By <a
-						href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-				</p>
-			</div>
-		</div>
-	</footer>
-
-	<!-- footer section -->
+	
 	<!-- footer section -->
 	<footer th:replace="/include/footer :: footer"></footer>
 	<!-- end footer section -->
