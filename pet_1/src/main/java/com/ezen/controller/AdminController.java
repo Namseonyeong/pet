@@ -110,8 +110,8 @@ public class AdminController {
 	
 	// 상품 목록 리스트 (페이징처리 테스트)
 //	@GetMapping("/Productlist")
-	// @PageableDefault(page = 0, size = 5,)
-	//	, sort = "p_seq", direction = Sort.Direction.DESC <- 코드를 넣는 순간 페이지 활성화가 안됨, 이유 찾을것 
+//	// @PageableDefault(page = 0, size = 5,)
+////	, sort = "p_seq", direction = Sort.Direction.DESC <- 코드를 넣는 순간 페이지 활성화가 안됨, 이유 찾을것 
 //	public String productlist(@PageableDefault(page = 0, size = 4, sort = "p_seq", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
 //		
 //		Page<Product> products = productService.getproductList(pageable);

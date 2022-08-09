@@ -63,12 +63,12 @@ public class ProductServiceimpl implements ProductService {
 }
 	
 	// 페이징 테스트 
-	@Override
-	@Transactional (readOnly = true)
-	public Page<Product> getproductList(Pageable pageable) {
-	
-		return productRepository.findAll(pageable);
-}
+//	@Override
+//	@Transactional (readOnly = true)
+//	public Page<Product> getproductList(Pageable pageable) {
+//	
+//		return productRepository.findAll(pageable);
+//}
 	
 	
 	// 상품 조회 

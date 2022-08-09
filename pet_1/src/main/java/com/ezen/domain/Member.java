@@ -18,7 +18,7 @@ import lombok.ToString;
 @Setter
 @Entity  // 클래스의 테이블
 @Data
-public class Product {
+public class Member {
 
 	// 상품 등록
 	// ID = PK 키

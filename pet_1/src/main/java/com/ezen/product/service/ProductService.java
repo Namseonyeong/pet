@@ -22,6 +22,6 @@ public interface ProductService {
 	
 	public List<Product> productList();
 
-	public Page<Product> getproductList(Pageable pageable);
+//	public Page<Product> getproductList(Pageable pageable);
 	
 }
