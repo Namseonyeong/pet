@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ezen.domain.Product;
-import com.ezen.persistence.ProductRepository;
+import com.ezen.Repository.ProductRepository;
+import com.ezen.entity.Product;
 
 @Service
 public class MainService {

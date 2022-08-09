@@ -1,4 +1,4 @@
-package com.ezen.domain;
+package com.ezen.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,15 +13,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
-@Getter
-@Setter
+
 @Entity  // 클래스의 테이블
 @Data
-public class Member {
+public class Product {
 
 	// 상품 등록
-	// ID = PK 키
+	// ID = PK 키    (IDENTITY) 뭔지 찾압괴
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer p_seq; // 상품 등록번호

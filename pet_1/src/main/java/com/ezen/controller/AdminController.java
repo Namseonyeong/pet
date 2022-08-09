@@ -1,9 +1,13 @@
 package com.ezen.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort; 
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
@@ -15,65 +19,67 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ezen.domain.Product;
+import com.ezen.Repository.ProductRepository;
+import com.ezen.entity.Product;
 import com.ezen.product.service.ProductService;
 import com.ezen.product.service.ProductServiceimpl;
 
 //admin 컨트롤러 (DB)
 
 @Controller
+@RequestMapping("/product")
 public class AdminController {
 
 	@Autowired
 	private ProductService productService;
 	
-	// 대시보드로 이동
-	@RequestMapping(value = "/Dashboards")
-	public String Dashboards() {
-		return "admin/Dashboards.html";
-	}
-	
-	// 매니저 메인화면
-	@RequestMapping(value = "/Manager")
-	public String Manager() {
-		return "admin/Manager.html";
-	}
-	
-	// 매니저 상품 등록
-//	@RequestMapping(value = "/ProductCrystal")
-//	public String ProductCrystal() {
-//		return "admin/ProductCrystal.html";
+//	// 대시보드로 이동
+//	@RequestMapping(value = "/dashboards")
+//	public String dashboards() {
+//		return "admin/dashboards.html";
+//	}
+//	
+//	// 매니저 메인화면
+//	@RequestMapping(value = "/manager")
+//	public String manager() {
+//		return "admin/manager.html";
 //	}
 	
-	// 상품관리 (카테고리별 매출현황)
-	@RequestMapping(value = "/ProductManagement")
-	public String ProductManagement() {
-		return "admin/ProductManagement.html";
-	}
+	// 매니저 상품 등록
+//	@RequestMapping(value = "/productCrystal")
+//	public String ProductCrystal() {
+//		return "admin/productCrystal.html";
+//	}
 	
-	// 상품등록 (등록)
-	@RequestMapping(value = "/ProductRegistration")
-	public String ProductRegistration() {
-		return "admin/ProductRegistration.html";
-	}
-	
-	// 매출현황 (카테고리별 매출현황)
-	@RequestMapping(value = "/SalesManagement")
-	public String SalesManagement() {
-		return "admin/SalesManagement.html";
-	}
-	
-	// 펫시터/훈련사 승인대기목록
-	@RequestMapping(value = "/UserApproval")
-	public String UserApproval() {
-		return "admin/UserApproval.html";
-	}
-	
-	// 사용자 관리 (전체 사용자 목록 조회)
-	@RequestMapping(value = "/UserManagement")
-	public String UserManagement() {
-		return "admin/UserManagement.html";
-	}
+//	// 상품관리 (카테고리별 매출현황)
+//	@RequestMapping(value = "/productManagement")
+//	public String productManagement() {
+//		return "admin/productManagement.html";
+//	}
+//	
+//	// 상품등록 (등록)
+//	@RequestMapping(value = "/productRegistration")
+//	public String productRegistration() {
+//		return "admin/productRegistration.html";
+//	}
+//	
+//	// 매출현황 (카테고리별 매출현황)
+//	@RequestMapping(value = "/salesManagement")
+//	public String salesManagement() {
+//		return "admin/salesManagement.html";
+//	}
+//	
+//	// 펫시터/훈련사 승인대기목록
+//	@RequestMapping(value = "/userApproval")
+//	public String userApproval() {
+//		return "admin/userApproval.html";
+//	}
+//	
+//	// 사용자 관리 (전체 사용자 목록 조회)
+//	@RequestMapping(value = "/userManagement")
+//	public String userManagement() {
+//		return "admin/userManagement.html";
+//	}
 
 	
 	// 테스트 (상품 등록)
@@ -107,9 +113,19 @@ public class AdminController {
 		return "admin/Productlist";
 	}
 	
+	// 상품 목록 리스트 테스트
+	@GetMapping("/productlist")
+	public String list(Model model, Pageable pageable, Sort sort) {
+	
+		
+		model.addAttribute("productlist", productService.productList());
+		
+		return "admin/productlist";
+	}
+	
 	
 	// 상품 목록 리스트 (페이징처리 테스트)
-//	@GetMapping("/Productlist")
+//	@GetMapping("/productlist")
 //	// @PageableDefault(page = 0, size = 5,)
 ////	, sort = "p_seq", direction = Sort.Direction.DESC <- 코드를 넣는 순간 페이지 활성화가 안됨, 이유 찾을것 
 //	public String productlist(@PageableDefault(page = 0, size = 4, sort = "p_seq", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
@@ -122,11 +138,8 @@ public class AdminController {
 //		return "admin/Productlist";
 //	}
 	
-	
 
-	
-	
-	
+
 	// 상품 수정 페이지 이동
 	@GetMapping("/ProductModify/{p_seq}")
 	public String productModify(@PathVariable("p_seq") Integer p_seq, Model model) {

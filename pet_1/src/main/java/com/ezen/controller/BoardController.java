@@ -6,73 +6,73 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BoardController {
 	
-	@RequestMapping(value = "/Center_detail_Page")
-	public String Center_detail_Page() {
-		return "board/Center_detail_Page.html";
+	@RequestMapping(value = "/center_detail")
+	public String center_detail() {
+		return "board/center_detail.html";
 	}
 	
-	@RequestMapping(value = "/Center_Page")
-	public String Center_Page() {
-		return "board/Center_Page.html";
+	@RequestMapping(value = "/center")
+	public String center() {
+		return "board/center.html";
 	}
 	
-	@RequestMapping(value = "/Center_write_Page")
-	public String Center_write_Page() {
-		return "board/Center_write_Page.html";
+	@RequestMapping(value = "/center_write")
+	public String center_write() {
+		return "board/center_write.html";
 	}
 	
-	@RequestMapping(value = "/Menu")
-	public String Menu() {
-		return "board/Menu.html";
+	@RequestMapping(value = "/menu")
+	public String menu() {
+		return "board/menu.html";
 	}
 	
-	@RequestMapping(value = "/PetShop_DetailsPage")
-	public String PetShop_DetailsPage() {
-		return "board/PetShop_DetailsPage.html";
+	@RequestMapping(value = "/petShop_Details")
+	public String petShop_DetailsPage() {
+		return "board/petShop_Details.html";
 	}
 	
-	@RequestMapping(value = "/Sitter_Page")
-	public String Sitter_Page() {
-		return "board/Sitter_Page.html";
+	@RequestMapping(value = "/sitter")
+	public String sitter() {
+		return "board/sitter.html";
 	}
 	
-	@RequestMapping(value = "/Sitter1_Page")
-	public String Sitter1_Page() {
-		return "board/Sitter1_Page.html";
+	@RequestMapping(value = "/sitter1")
+	public String sitter1() {
+		return "board/sitter1.html";
 	}
 	
-	@RequestMapping(value = "/Sitter2_Page")
-	public String Sitter2_Page() {
-		return "board/Sitter2_Page.html";
+	@RequestMapping(value = "/sitter2")
+	public String sitter2() {
+		return "board/sitter2.html";
 	}
 	
-	@RequestMapping(value = "/SitterBooking_Page")
-	public String SitterBooking_Page() {
-		return "board/SitterBooking_Page.html";
+	@RequestMapping(value = "/sitterBooking")
+	public String sitterBooking() {
+		return "board/sitterBooking.html";
 	}
 	
-	@RequestMapping(value = "/SitterProfile_Page")
-	public String SitterProfile_Page() {
-		return "board/SitterProfile_Page.html";
+	@RequestMapping(value = "/sitterProfile")
+	public String sitterProfile() {
+		return "board/sitterProfile.html";
 	}
 	
-	@RequestMapping(value = "/Trainer_Page")
-	public String Trainer_Page() {
-		return "board/Trainer_Page.html";
+	@RequestMapping(value = "/trainer")
+	public String trainer() {
+		return "board/trainer.html";
 	}
 	
-	@RequestMapping(value = "/Trainer1_Page")
-	public String Trainer1_Page() {
-		return "board/Trainer1_Page.html";
+	@RequestMapping(value = "/trainer1")
+	public String trainer1() {
+		return "board/trainer1.html";
 	}
 	
-	@RequestMapping(value = "/TrainerBooking_Page")
-	public String TrainerBooking_Page() {
-		return "board/TrainerBooking_Page.html";
+	@RequestMapping(value = "/trainerBooking")
+	public String trainerBooking() {
+		return "board/trainerBooking.html";
 	}
 	
-	@RequestMapping(value = "/TrainerProfile_Page")
-	public String TrainerProfile_Page() {
-		return "board/TrainerProfile_Page.html";
+	@RequestMapping(value = "/trainerProfile")
+	public String trainerProfile() {
+		return "board/trainerProfile.html";
 	}
 }

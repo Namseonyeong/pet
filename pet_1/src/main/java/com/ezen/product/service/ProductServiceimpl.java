@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ezen.domain.Product;
-import com.ezen.persistence.ProductRepository;
+import com.ezen.Repository.ProductRepository;
+import com.ezen.entity.Product;
 
 @Service
 public class ProductServiceimpl implements ProductService {
@@ -61,6 +61,15 @@ public class ProductServiceimpl implements ProductService {
 	
 	return productRepository.findAll();
 }
+	
+//	@Override
+//	public Page<Product> productPage() {
+//	
+//	return productRepository.findAll();
+//	}
+	
+	
+	
 	
 	// 페이징 테스트 
 //	@Override
