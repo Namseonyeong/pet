@@ -5,15 +5,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "Member")
 @Data
+@NoArgsConstructor //디폴트생성자
+@AllArgsConstructor //모든 필드가 있는 생성자
 public class Member {
 	
 		// ID = PK 키
