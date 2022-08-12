@@ -29,6 +29,23 @@ public class OrdersDetail {
 	// 총 판매 수량
 	@Column(name = "quantity", nullable = false, columnDefinition="number(5) default 4")
 	private Integer quantity;
+
+
+
+
+
+	/*
+	// 상품등록번호
+	@OneToMany
+	@JoinColumn(name = "p_seq")
+    private List<Product> ProductList = new ArrayList<Product>();
+	// private int pSeq;
+	
+	// 주문번호
+	@OneToMany
+	@JoinColumn(name = "order_seq")
+	private List<Orders> OrderList = new ArrayList<Orders>();
+	// private int orderSeq;
 	
 //	// 상품등록번호
 //	@OneToMany
