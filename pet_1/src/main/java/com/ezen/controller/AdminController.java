@@ -135,7 +135,7 @@ public class AdminController {
 		model.addAttribute("nowPage", nowPage); 
 		model.addAttribute("prePage", prePage); // 이전
 		model.addAttribute("startPage", startPage); 
-		model.addAttribute("endPage", ㄴendPage);
+		model.addAttribute("endPage", endPage);
 		
 		return "admin/Productlist";
 	}
