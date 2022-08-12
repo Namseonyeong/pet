@@ -27,7 +27,7 @@ public class Product {
 	private Integer pSeq; 
 
 	// 상품 분류
-	@Column(name = "p_kind", columnDefinition = "char(5)", nullable = false)
+	@Column(name = "p_kind", columnDefinition = "char(5)")
 	private String pKind;  
 	
 	// 상품명
@@ -51,7 +51,7 @@ public class Product {
 	private String pContent; 
 	
 	// 상품 이미지
-	@Column(name = "p_image")
+	@Column(name = "p_image", length = 1000)
 	private String pImage; 
 	
 	// 이미지 이름

@@ -45,17 +45,17 @@ public class AdminController {
 //		return "admin/ProductCrystal.html";
 //	}
 	
-	// 상품관리 (카테고리별 매출현황)
-	@RequestMapping(value = "/ProductManagement")
-	public String ProductManagement() {
-		return "admin/ProductManagement.html";
-	}
+//	// 상품관리 (카테고리별 매출현황)
+//	@RequestMapping(value = "/ProductManagement")
+//	public String ProductManagement() {
+//		return "admin/ProductManagement.html";
+//	}
 	
-	// 상품등록 (등록)
-	@RequestMapping(value = "/ProductRegistration")
-	public String ProductRegistration() {
-		return "admin/ProductRegistration.html";
-	}
+//	// 상품등록 (등록)
+//	@RequestMapping(value = "/ProductRegistration")
+//	public String ProductRegistration() {
+//		return "admin/ProductRegistration.html";
+//	}
 	
 	// 매출현황 (카테고리별 매출현황)
 	@RequestMapping(value = "/SalesManagement")
@@ -97,7 +97,6 @@ public class AdminController {
 		
 		return "admin/message";
 		
-//		return "ProductRegistration";
 	}
 	
 	// 상품 목록 리스트
@@ -110,28 +109,36 @@ public class AdminController {
 //	}
 	
 	
-	// 상품 목록 리스트 (페이징처리 테스트)
+	// 상품 목록 리스트 (페이징처리)
 	@GetMapping("/Productlist")
-	public String productlist(Model model , @PageableDefault(page = 0, size = 10, sort = "pSeq", direction = Sort.Direction.DESC) Pageable pageable) {
+	public String productlist(Model model ,
+							  @PageableDefault(page = 0, size = 10, sort = "pSeq", direction = Sort.Direction.DESC) Pageable pageable,
+							  String searchKeyword){
 		
-		Page<Product> list = productService.productList(pageable);
+		Page<Product> list = null;
 		
-		int nowPage = list.getPageable().getPageNumber() + 1;  
+		if (searchKeyword == null) {
+			list = productService.productList(pageable);  // 기존에 보여주는 리스트 
+		} else {
+			list = productService.productSerchList(searchKeyword, pageable); // 검색 기능이 포함된 리스트
+		}
+		
+		//Page<Product> list = productService.productList(pageable);  // 페이지 데이터
+		
+		int nowPage = list.getPageable().getPageNumber() + 1;   // 총 페이지 수
+		int prePage = list.getPageable().getPageNumber();
 		int startPage =Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, list.getTotalPages());
 		
 		// 페이징 처리 넘겨주기
-		model.addAttribute("list", list);
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
+		model.addAttribute("list", list);  
+		model.addAttribute("nowPage", nowPage); 
+		model.addAttribute("prePage", prePage); // 이전
+		model.addAttribute("startPage", startPage); 
 		model.addAttribute("endPage", endPage);
 		
 		return "admin/Productlist";
 	}
-	
-	
-
-	
 	
 	
 	// 상품 수정 페이지 이동
@@ -142,7 +149,6 @@ public class AdminController {
 		
 		return "admin/ProductModify";
 	}
-	
 	
 	// 상품 수정 (저장)
 	@PostMapping("/product/update/{pSeq}")
@@ -177,11 +183,5 @@ public class AdminController {
 			
 		return "redirect:/Productlist";
 	}
-	
-	
-	
-	// 상품 조회
-	
-
 
 }
