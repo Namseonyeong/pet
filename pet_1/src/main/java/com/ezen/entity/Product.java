@@ -5,34 +5,58 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 
+//@SequenceGenerator(
+//		  name = "PRODUCT_SEQ_GENERATOR", 
+//		  sequenceName = "PSEQ", // 매핑할 데이터베이스 시퀀스 이름 
+//		  initialValue = 1,
+//		  allocationSize = 1)
+@Table(name = "Product")
 @Entity  // 클래스의 테이블
 @Data
 public class Product {
 
 	// 상품 등록
-	// ID = PK 키    (IDENTITY) 뭔지 찾압괴
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Integer p_seq; // 상품 등록번호
+	@Column(name = "p_seq")
+	private Integer pSeq; 
 
-	//	@Column (length = 1)
-	private String p_kind;  // 상품 분류
-	@Column(length = 100)
-	private String p_name; // 상품명
-	private Integer price1; // 원가
-	private Integer price2; // 판매가
-	private Integer price3; // 순수익
-	private String p_content; // 상세설명
-	private String p_image; // 상품 이미지
-	private String p_path; // 이미지 이름
+	// 상품 분류
+	@Column(name = "p_kind", columnDefinition = "char(5)", nullable = false)
+	private String pKind;  
+	
+	// 상품명
+	@Column(name = "p_name", nullable = false)
+	private String pName; 
+	
+	// 원가
+	@Column(name = "price1", columnDefinition="number(5) default 0", nullable = false)
+	private Integer price1; 
+	
+	// 판매가
+	@Column(name = "price2", columnDefinition="number(5) default 0", nullable = false)
+	private Integer price2; 
+	
+	// 순수익
+	@Column(name = "price3", columnDefinition="number(5) default 0")
+	private Integer price3; 
+	
+	// 상세설명
+	@Column(name = "p_content", length = 1000, nullable = false)
+	private String pContent; 
+	
+	// 상품 이미지
+	@Column(name = "p_image")
+	private String pImage; 
+	
+	// 이미지 이름
+	@Column(name = "p_path")
+	private String pPath; 
 	
 }
+

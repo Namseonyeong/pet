@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- head section strats -->
+<head th:replace="/include/head :: head"></head>
+<!-- head header section -->
+
+<body class="sub_page">
+	<div class="hero_area">
+		<div class="bg-box">
+			<img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
+		</div>
+
+		<!-- header section strats -->
+		<header th:replace="/include/header :: header"></header>
+		<!-- end header section -->
+	</div>
+
+	<section class="book_section layout_padding">
+		<div class="container">
+			<div class="heading_container heading_center">
+				<h2 class="mb-1">상품 등록</h2>
+			</div>
+		</div>
+		<!--사이드 바 -->
+		<div class="position-relative">
+			<div class="position-absolute top-0 start-50 translate-middle-x"></div>
+			<div class="row">
+
+				<!-- manager sidebar section start -->
+				<div th:replace="/include/manager_sidebar :: manager_sidebar"></div>
+				<!-- end manager sidebar section -->
+
+
+				<!-- 상품 등록 -->
+				<div class="col-md-6" style="margin-top: 50px;">
+					<div class="table-responsive container">
+						<!-- <table class="table table-striped w-auto"> -->
+						<div class="info">
+							<div class="input-form-backgroud row">
+								<div class="input-form col-md-12 mx-auto">
+									<form style="text-align: center;" class="validation-form" action="/Productwrite" 
+										novalidate name="frm" id="write_form" method="post"  
+										enctype="multipart/form-data">
+										<div class="row"
+											style="margin-left: 155px; margin-bottom: 12px;">
+											<div class="col-mb-3">
+												<label for="name">상품분류</label>
+											</div>
+											<div class="col-md-2 mb-3">
+												<select name="kind" id="kind">
+													<c:forEach items="${kindList}" var="kind"
+														varStatus="status">
+														<option value="${status.count}">${kind}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+										<div class="row"
+											style="margin-left: 170px; margin-bottom: 12px;">
+											<div class="col-mb-3">
+												<label>상품명</label>
+											</div>
+											<div class="col-md-8 mb-3">
+												<input type="text" class="form-control" name="pName"
+													id="name" placeholder="" value="" required />
+											</div>
+										</div>
+										<div class="row"
+											style="margin-left: 184px; margin-bottom: 12px;">
+											<div class="col-mb-3">
+												<label>원가: </label>
+											</div>
+											<div class="col-md-2 mb-3">
+												<input type="text" class="form-control" name="price1"
+													id="price1" placeholder="" value="" required
+													onKeyUp='NumFormat(this)' />
+											</div>
+											<div class="col-mb-3" style="margin-left: 0px;">
+												<label>판매가: </label>
+											</div>
+											<div class="col-md-2 mb-3">
+												<input type="text" class="form-control" name="price2"
+													id="price2" placeholder="" value="" required
+													onBlur="go_ab()" onKeyUp='NumFormat(this)' />
+											</div>
+											<div class="col-mb-3">
+												<label>순수익: </label>
+											</div>
+											<div class="col-md-2 mb-3">
+												<input type="text" class="form-control" name="price3"
+													id="price3" readonly placeholder="" value="" required
+													onKeyUp='NumFormat(this)' />
+											</div>
+										</div>
+										<div class="row"
+											style="margin-left: 155px; margin-bottom: 12px;">
+											<div class="col-mb-3">
+												<label>상세설명</label>
+											</div>
+											<div class="col-md-6 mb-3">
+												<textarea rows="5" cols="50" id="pContent" name="pContent"
+													aria-placeholder="" aria-valuetext="" required></textarea>
+											</div>
+										</div>
+
+										<div class="row"
+											style="margin-left: 155px; margin-bottom: 12px;">
+											<div class="col-mb-3">
+												<label>첨부파일</label>
+											</div>
+											<div class="col-md-8 mb-3">
+												<input type="file" class="form-control" name="file"
+													id="file" placeholder="" required />
+											</div>
+										</div>
+										<div style="margin-bottom: 0px; text-align: center;">
+											<button style="margin-right: 20px;" type="submit"
+												class="btn btn-success" onClick="go_save()">등록</button>
+											<button style="margin-left: 20px;" type="button"
+												class="btn btn-danger" onClick="go_mov()">취소</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 상품 등록 -->
+
+				<div class="col-md-3"></div>
+			</div>
+		</div>
+	</section>
+
+
+
+      	 <!-- footer section -->
+		<footer th:replace="/include/footer :: footer"></footer>
+        <!-- footer section -->
+
+		<!-- script section -->
+		<div th:replace="/include/script :: script"></div>
+		<!-- end script section -->
+        
+</body>
+
+</html>

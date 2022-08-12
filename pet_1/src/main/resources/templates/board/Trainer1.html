@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/include/head :: head"></head>
+
+<body class="sub_page">
+	<div class="hero_area">
+		<div class="bg-box">
+			<img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
+		</div>
+		<!-- header section strats -->
+		<header th:replace="/include/header :: header"></header>
+		<!-- end header section -->
+	</div>
+
+	<section class="food_section layout_padding">
+		<div class="container">
+			<div class="heading_container heading_center">
+				<h2 class="mb-1">훈련과정</h2>
+				<div class="notice" style="text-align: left; padding-top: 50px;">
+					<h4>원활한 훈련을 위해 반려동물의 특이사항을 자세히 말씀해 주시면 더욱 도움이 됩니다.</h4>
+					<h5 style="text-align: center;">* 훈련 상세내용은 훈련사와 면담해 주세요</h5>
+					<br>
+				</div>
+				<div class="round1" style="width: 1140px;">
+					<div class="round1_text"
+						style="width: 600px; margin-top: 50px; text-align: left; float: left;">
+						<h3>1회차</h3>
+						<br>
+						<h4>스트레스 해소를 위한 놀이법</h4>
+						<br>
+						<p>
+							훈련사와 반려동물의 첫만남인 만큼 가벼운 놀이법으로<br> 반려동물에게 접근합니다.
+						</p>
+					</div>
+					<div class="round1_picture" style="float: right;">
+						<img th:src="@{bootstrap/images/training2.jpg}"
+							style="width: 500px; border-radius: 10px;">
+					</div>
+				</div>
+
+				<div class="round2" style="width: 1140px;">
+					<div class="round2_text"
+						style="width: 600px; margin-top: 50px; text-align: left; float: right;">
+						<h3>2회차</h3>
+						<br>
+						<h4>산책 진행패턴 바꾸기</h4>
+						<br>
+						<p>
+							반려동물에게 부담이 가지않는 선에서 산책패턴을<br>바꿔봅니다.
+						</p>
+					</div>
+					<div class="round2_picture" style="float: left;">
+						<img th:src="@{bootstrap/images/petwalking.jpg}"
+							style="width: 500px; height: 332px;; border-radius: 10px;">
+					</div>
+				</div>
+
+
+				<div class="round3" style="width: 1140px;">
+					<div class="round3_text"
+						style="width: 600px; margin-top: 50px; text-align: left; float: left;">
+						<h3>3회차</h3>
+						<br>
+						<h4>보호자님과 신뢰 관계 쌓기</h4>
+						<br>
+						<p>
+							1회차와 2회차에서 얻은 반려동물의 정보를 바탕으로 <br>보호자님과 반려동물의 관계를 형성 및 개선합니다.
+						</p>
+					</div>
+					<div class="round3_picture" style="float: right;">
+						<img th:src="@{bootstrap/images/training3.jpg}"
+							style="width: 500px; border-radius: 10px;">
+					</div>
+				</div>
+				<hr>
+				<hr>
+				<h2 class="mb-1">교육 클래스</h2>
+				<br>
+				<h4>
+					보호자님 스스로 해결이 안되는 문제 행동은 전문가에게 맡겨보세요.<br> 공격성, 짖음, 분리불안 등 와요
+					훈련사가 직접 찾아가서 해결해 드립니다.
+				</h4>
+				<div class="2way"
+					style="margin-top: 50px; height: 800px; width: 1140px;">
+					<div class="way1"
+						style="width: 420px; height: 450px; border-radius: 10px; float: left;">
+						<img th:src="@{bootstrap/images/way1_picture.jpg}"
+							style="width: 420px; height: 250px; border-radius: 10px;">
+						<h3 style="padding-top: 50px;">문제행동교육</h3>
+						<h5>분리불안, 짖음 문제 등 반려견의 문제행동을 바로잡을 수 있도록 정확한 원인과 성향 분석을 통한 맞춤
+							솔루션을 제공해 드립니다.</h5>
+					</div>
+					<div class="way2"
+						style="width: 420px; height: 450px; border-radius: 10px; float: right; margin-right: 80px;">
+						<img th:src="@{bootstrap/images/puppytraining.jpg}"
+							style="width: 420px; height: 250px; border-radius: 10px">
+						<h3 style="padding-top: 50px;">퍼피트레이닝</h3>
+						<h5>예의 바르고, 사회성 좋은 어른 반려견으로 성장할 수 있도록 1살 미만 퍼피를 위해 준비된 필수 교육
+							코스입니다.</h5>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	<!-- footer section -->
+	<footer th:replace="/include/footer :: footer"></footer>
+	<!-- footer section -->
+
+	<div th:replace="/include/script :: script"></div>
+
+</body>
+
+</html>

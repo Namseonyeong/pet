@@ -6,73 +6,73 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BoardController {
 	
-	@RequestMapping(value = "/center_detail")
-	public String center_detail() {
-		return "board/center_detail.html";
+	@RequestMapping(value = "/Center_detail")
+	public String Center_detail() {
+		return "board/Center_detail.html";
 	}
 	
-	@RequestMapping(value = "/center")
-	public String center() {
-		return "board/center.html";
+	@RequestMapping(value = "/Center")
+	public String Center() {
+		return "board/Center.html";
 	}
 	
 	@RequestMapping(value = "/center_write")
-	public String center_write() {
-		return "board/center_write.html";
+	public String Center_write() {
+		return "board/Center_write.html";
 	}
 	
-	@RequestMapping(value = "/menu")
-	public String menu() {
-		return "board/menu.html";
+	@RequestMapping(value = "/Menu")
+	public String Menu() {
+		return "board/Menu.html";
 	}
 	
-	@RequestMapping(value = "/petShop_Details")
-	public String petShop_DetailsPage() {
-		return "board/petShop_Details.html";
+	@RequestMapping(value = "/PetShop_Details")
+	public String PetShop_Details() {
+		return "board/PetShop_Details.html";
 	}
 	
-	@RequestMapping(value = "/sitter")
-	public String sitter() {
-		return "board/sitter.html";
+	@RequestMapping(value = "/Sitters")
+	public String Sitter() {
+		return "board/Sitter";
 	}
 	
-	@RequestMapping(value = "/sitter1")
-	public String sitter1() {
-		return "board/sitter1.html";
+	@RequestMapping(value = "/Sitter1")
+	public String Sitter1() {
+		return "board/Sitter1.html";
 	}
 	
-	@RequestMapping(value = "/sitter2")
-	public String sitter2() {
-		return "board/sitter2.html";
+	@RequestMapping(value = "/Sitter2")
+	public String Sitter2() {
+		return "board/Sitter2.html";
 	}
 	
-	@RequestMapping(value = "/sitterBooking")
-	public String sitterBooking() {
-		return "board/sitterBooking.html";
+	@RequestMapping(value = "/SitterBooking")
+	public String SitterBooking() {
+		return "board/SitterBooking.html";
 	}
 	
-	@RequestMapping(value = "/sitterProfile")
-	public String sitterProfile() {
-		return "board/sitterProfile.html";
+	@RequestMapping(value = "/SitterProfile")
+	public String SitterProfile() {
+		return "board/SitterProfile.html";
 	}
 	
-	@RequestMapping(value = "/trainer")
-	public String trainer() {
-		return "board/trainer.html";
+	@RequestMapping(value = "/Trainer")
+	public String Trainer() {
+		return "board/Trainer.html";
 	}
 	
-	@RequestMapping(value = "/trainer1")
-	public String trainer1() {
-		return "board/trainer1.html";
+	@RequestMapping(value = "/Trainer1")
+	public String Trainer1() {
+		return "board/Trainer1.html";
 	}
 	
-	@RequestMapping(value = "/trainerBooking")
-	public String trainerBooking() {
-		return "board/trainerBooking.html";
+	@RequestMapping(value = "/TrainerBooking")
+	public String TrainerBooking() {
+		return "board/TrainerBooking.html";
 	}
 	
-	@RequestMapping(value = "/trainerProfile")
-	public String trainerProfile() {
-		return "board/trainerProfile.html";
+	@RequestMapping(value = "/TrainerProfile")
+	public String TrainerProfile() {
+		return "board/TrainerProfile.html";
 	}
 }

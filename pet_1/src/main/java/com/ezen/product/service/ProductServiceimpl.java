@@ -4,12 +4,15 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
+import javax.sound.midi.Sequence;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.Repository.ProductRepository;
@@ -38,15 +41,25 @@ public class ProductServiceimpl implements ProductService {
 		file.transferTo(saveFile);
 		
 		// DB에 이미지값 저장
-		product.setP_image(fileName);
-		product.setP_path("/img_file/" + fileName);
-		
+		product.setPImage(fileName);
+		product.setPPath("/img_file/" + fileName);
+
 		productRepository.save(product);
 		
 	}
 
+	
+	// 상품 목록
+		@Override
+		public Page<Product> productList(Pageable pageable) {
+		
+    	return productRepository.findAll(pageable);
+    }
+		
+	
+	
 //	   public Product getProduct(Product product) {
-//		   return productRepository.findById(product.getP_seq()).get();
+//		   return productRepository.findById(product.getpSeq()).get();
 //	   }
 	
 	// 상품 목록 test
@@ -55,12 +68,7 @@ public class ProductServiceimpl implements ProductService {
 //		return productRepository.findAll(pageable);
 //	}
 	
-	// 상품 목록
-	@Override
-	public List<Product> productList() {
-	
-	return productRepository.findAll();
-}
+
 	
 //	@Override
 //	public Page<Product> productPage() {
@@ -88,19 +96,23 @@ public class ProductServiceimpl implements ProductService {
 //	
 	// 특정 게시글 불러오기
 	@Override
-	public Product productView(Integer p_seq) {
+	public Product productView(Integer pSeq) {
 		
-		return productRepository.findById(p_seq).get();
+		return productRepository.findById(pSeq).get();
 	}
 	
 	// 특정 상품목록 삭제
 	@Override
-	public void productDelete(Integer p_seq) {
+	public void productDelete(Integer pSeq) {
 		
-		productRepository.deleteById(p_seq);
+		productRepository.deleteById(pSeq);
 		
 	}
-	
+
+
+
+
+
 
 
 	

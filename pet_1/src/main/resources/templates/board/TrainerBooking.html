@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/include/head :: head"></head>
+
+<!-- book section -->
+<section class="book_section layout_padding">
+	<div class="container">
+		<div class="heading_container heading_center">
+			<h3 class="mb-1">예약내용 작성</h3>
+		</div>
+
+		<!-- 예약하기 -->
+
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="form_container">
+
+					<form action="">
+						예약 날짜
+						<div>
+							<input type="date" class="form-control" />
+						</div>
+						방문 가능 시간
+						<p>
+							<input type="time" /> &nbsp; ~ &nbsp;<input type="time" />
+						</p>
+						교육 선택<br> <input type="radio" name="inlineRadioOptions"
+							id="inlineRadio1" value="option1" checked>
+						방문교육&nbsp;&nbsp; <input type="radio" name="inlineRadioOptions"
+							id="inlineRadio2" value="option2"> 영상교육 <br>
+						<br> 견종
+						<div>
+							<input type="text" class="form-control" />
+						</div>
+						지역
+						<div>
+							<select class="form-control nice-select wide">
+								<option value="" disabled selected>서울</option>
+								<option value="">경기</option>
+								<option value="">인천</option>
+								<option value="">강원</option>
+								<option value="">충남/충북</option>
+								<option value="">전북/전남</option>
+								<option value="">경남/경북</option>
+								<option value="">부산/울산</option>
+								<option value="">그 외</option>
+							</select>
+
+							<div class="btn_box ">
+								<button style="padding: 10px 160px; margin-top: 0px">예약완료</button>
+							</div>
+					</form>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+</html>
+
+<!-- <div style="margin-top: 15px">
+                                    <a href="" onclick="window.open(this.href, '_blank', 'width=600, height=400');"  style="margin-left: 10px; color: #ffbe33">아이디/비밀번호 찾기</a>
+                                    <a href="UserJoin_Page.html"   style="margin-left: 110px; color: #ffbe33">회원가입</a>
+                                    </a> -->
+<!-- target="_blank" 새창 띄울때  UserJoin_Page.html-->
