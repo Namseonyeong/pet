@@ -21,15 +21,13 @@ public interface ProductService {
 	// 상품목록 삭제
 	void productDelete(Integer pSeq);
 	
-	// 상품목록 리스트
-//	public List<Product> productList();
+	// 상품 리스트 및 페이징
+	Page<Product> productList(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-
-
-//	public List<Product> productList();
-
-//	public Page<Product> getproductList(Pageable pageable);
-
-	Page<Product> productList(Pageable pageable);
+	// 상품 조회
+	Page<Product> productSerchList(String searchKeyword, Pageable pageable);
 	
 }

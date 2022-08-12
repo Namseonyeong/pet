@@ -99,33 +99,74 @@
                         </div>
 
 						
-                        <nav aria-label="Page navigation example" th:each="page : ${#numbers.sequence(startPage, endPage)}">
-                            <ul class="pagination justify-content-center"  >
-                                <li class="page-item" >
-                                    <a class="page-link" th:href="@{#}" aria-label="Previous"
-                                    th:if=${page != nowPage}" th:href="@{/Productlist(page = ${page - 1})}" th:text="${page}">
-<!--                                       <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}"> -->
-<!--                                  <a th:if=${page != nowPage}" th:href="@{/Productlist(page = ${page - 1})}" th:text="${page}"></a> -->
-<!--                                  <strong th:if=${page == nowPage}" th:text="${page}" style="color : rde"></strong> -->
-<!--                                   </th:block> -->
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                              
-                                <li class="page-item"><a class="page-link" th:href="@{#}">1</a></li>
-                                <li class="page-item"><a class="page-link" th:href="@{#}">2</a></li>
-                                <li class="page-item"><a class="page-link" th:href="@{#}">3</a></li>
-                                <li class="page-item"><a class="page-link" th:href="@{#}">4</a></li>
-                                <li class="page-item"><a class="page-link" th:href="@{#}">5</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" th:href="@{#}" aria-label="Next">
+<!--                         <nav aria-label="Page navigation example "> -->
+<!--                             <ul class="pagination justify-content-center"> -->
+<!--                                 <li class="page-item"> -->
+<!--                                     <a class="page-link" th:href="@{#}" aria-label="Previous"> -->
+<!--                                         <span aria-hidden="true">&laquo;</span> -->
+<!--                                     </a> -->
+<!--                                 </li> -->
+<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">1</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">2</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">3</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">4</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">5</a></li> -->
+<!--                                 <li class="page-item"> -->
+<!--                                     <a class="page-link" th:href="@{#}" aria-label="Next"> -->
+<!--                                         <span aria-hidden="true">&raquo;</span> -->
+<!--                                     </a> -->
+<!--                                 </li> -->
+<!--                             </ul> -->
+<!--                         </nav> -->
+
+					<!--굳이 태그로 감쌀 필요 없는 부분을 타임리프 문법으로 사용할 때 사용-->
+					<ul class="pagination justify-content-center">
+						<li class="page-item" >
+							<a class="page-link" aria-label="Previous" > 
+							<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li class="page-item"  th:each="page:${#numbers.sequence(startPage, endPage)}">
+						<a class="page-link" th:if="${page != nowPage}" th:href="@{/Productlist(page=${page -1})}" th:text="${page}"></a>
+						<a class="page-link" th:if="${page == nowPage}" th:text="${page}"></a>
+						</li>
+						<li class="page-item">
+						<a class="page-link" th:href="@{#}" aria-label="Next" > 
+                                         <span aria-hidden="true">&raquo;</span>
+                                     </a> 
+					
+					</ul>
+
+
+
+					<!--                         <nav aria-label="Page navigation example "> -->
+<!--                             <ul class="pagination justify-content-center"> -->
+<!--                                 <li class="page-item"> -->
+<!--                                     <a class="page-link" th:href="@{#}" aria-label="Previous"> -->
+<!--                                         <span aria-hidden="true">&laquo;</span> -->
+<!--                                     </a> -->
+<!--                                 </li> -->
+<!--                                 1,2,3,4 페이지 -->
+<!--                                 <li th:each="page : ${#numbers.sequence(startPage, endPage)}"> -->
+<!--                                 <a th:if="${page != nowPage" th:href="@{/Productlist(page = ${page -1})}" th:text="${page}"></a> -->
+<!--                                 <strong th:if="${page == nowPage" th:text="${page}"></strong>  -->
+<!--                                 </li> -->
+								
+								
+<!--                                 <li th:class="${list.end} ? 'disabled'"> -->
+<!--                                     <a th:href="${list.last} ? '#' : ${nextAddr}" aria-label="Next"> -->
+<!--                                         <span aria-hidden="true">&raquo;</span> -->
+<!--                                     </a> -->
+<!--                                     </th:block> -->
                                     
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                  
-                                </li>
-                            </ul>
-                        </nav>
+<!--                                     <th:block th:each="page : ${numbers.sequence(startPage, endPage)}"> -->
+<!--                                     	<a th:if="${page != nowPage" th:href="@{/Productlist(page = ${page -1})}" th:text="${page}"></a> -->
+<!--                                     	<strong th:if="${page == nowPage" th:text="${page}"></strong> -->
+<!--                                     </th:block> -->
+<!--                                 </li> -->
+<!--                             </ul> -->
+<!--                         </nav> -->
+                        
                         
                     </div>
                     <div class="col-md-3"></div>

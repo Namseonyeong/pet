@@ -50,50 +50,22 @@ public class ProductServiceimpl implements ProductService {
 
 	
 	// 상품 목록
-		@Override
-		public Page<Product> productList(Pageable pageable) {
-		
-    	return productRepository.findAll(pageable);
+	@Override
+	public Page<Product> productList(Pageable pageable) {
+	
+		return productRepository.findAll(pageable);
     }
 		
+	// 상품 조회 
+	@Override
+	public Page<Product> productSerchList(String searchKeyword, Pageable pageable) {
+		
+		return productRepository.findByPKind(searchKeyword, pageable);
+	}
 	
 	
-//	   public Product getProduct(Product product) {
-//		   return productRepository.findById(product.getpSeq()).get();
-//	   }
-	
-	// 상품 목록 test
-//	public Page<Product> productList(Pageable pageable) {
-//		System.out.println("서비스==>" + pageable);
-//		return productRepository.findAll(pageable);
-//	}
 	
 
-	
-//	@Override
-//	public Page<Product> productPage() {
-//	
-//	return productRepository.findAll();
-//	}
-	
-	
-	
-	
-	// 페이징 테스트 
-//	@Override
-//	@Transactional (readOnly = true)
-//	public Page<Product> getproductList(Pageable pageable) {
-//	
-//		return productRepository.findAll(pageable);
-//}
-	
-	
-	// 상품 조회 
-//	public Page<Product> productSearchList(String searchKeyword. Pageable pageable) {
-//		
-//		return productRepository.findByTitleContaining(searchKeyword, Pageable);
-//	}
-//	
 	// 특정 게시글 불러오기
 	@Override
 	public Product productView(Integer pSeq) {
@@ -109,12 +81,5 @@ public class ProductServiceimpl implements ProductService {
 		
 	}
 
-
-
-
-
-
-
-	
 	
 }

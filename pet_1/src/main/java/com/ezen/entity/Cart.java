@@ -20,7 +20,7 @@ public class Cart {
 	   @Id
 	   @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	   @Column(name = "cart_seq")
-	   private int cartSeq;
+	   private Integer cartSeq;
 		    
 	   //수량
 	   @Column(name="cart_strock", nullable = false)
