@@ -7,7 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.ezen.security.test.Role;
+import com.ezen.security.Role;
 
 import lombok.Data;
 
@@ -62,6 +62,16 @@ public class Member {
 	@Column(columnDefinition = "varchar(20) default 'ROLE_MEMBER'")
 	private Role role; // ROLE_USER, ROLE_ADMIN
 
+	
+	// 비밀번호, 핸드폰번호, 주소, 프로필제목, 자기소개 변경
+//	public void modify(String memberPw, String memberPhone, String memberTitle, String memberIy) {
+//		this.memberPw = memberPw;
+//		this.memberPhone = memberPhone;
+//		this.memberTitle = memberTitle;
+//		this.memberIy = memberIy;
+//	}
+	
+	
 	// @Builder
 	// public Member(String memberId, String memberPw, String memberName, String
 	// memberEmail, String memberPhone, String memberAddress, String memberTitle,

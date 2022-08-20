@@ -69,8 +69,6 @@ public class AdminController {
 		return "admin/UserManagement.html";
 	}
 
-	
-	
 	// 테스트 (상품 등록)
 	@PostMapping("/Productwrite")
 	public String Productwrite(Product product, Model model, MultipartFile file) throws Exception  {

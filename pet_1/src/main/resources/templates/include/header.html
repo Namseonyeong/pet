@@ -55,7 +55,7 @@
                         <i class="fa-solid fa-m" aria-hidden="true"></i>
                     </a>
                     <!-- 매니저 -->
-                    <a class="cart_link" th:href="@{/Dashboards}" sec:authorize="hasRole('ROLE_ADMIN')" >
+                    <a class="cart_link" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')" >
                         <i class="fa-solid fa-clipboard-user" aria-hidden="true" ></i>
                     </a>
                     <a class="cart_link" th:href="@{/logout}" sec:authorize="isAuthenticated()" >

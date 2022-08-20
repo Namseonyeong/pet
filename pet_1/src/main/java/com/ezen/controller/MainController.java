@@ -13,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.entity.Member;
 import com.ezen.member.service.MemberService;
-import com.ezen.security.test.Role;
-import com.ezen.security.test.SecurityUserService;
+import com.ezen.security.Role;
+import com.ezen.security.SecurityUserService;
 
 @Controller
 public class MainController {

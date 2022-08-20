@@ -38,6 +38,11 @@ function deleteValue(url, returnUrl, name) {
 			data : {
 				valueArr : valueArr // 보내고자 하는 data 변수 설정
 			},
+			beforeSend: function (jqXHR, settings) {
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+                jqXHR.setRequestHeader(header, token);
+            },
 			success: function(data) {
 				if(data = 1) {
 			    	alert("삭제 완료"); 

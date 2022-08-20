@@ -1,10 +1,8 @@
-package com.ezen.product.service;
 
-import java.util.List;
+package com.ezen.product.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.entity.Product;

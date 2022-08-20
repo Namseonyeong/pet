@@ -1,4 +1,4 @@
-package com.ezen.security.test;
+package com.ezen.security;
 
 import java.util.Optional;
 
@@ -40,7 +40,7 @@ public class SecurityUserService implements UserDetailsService {
 		Optional<Member> findMember = memberRepository.findByMemberId(userMemberId);
 		if (!findMember.isPresent()) {
 			throw new UsernameNotFoundException("존재하지 않는 아이디 입니다.");
-		}
+		} 
 
 		Member member = findMember.get();
 		return new User(member.getMemberId(), member.getMemberPw(),

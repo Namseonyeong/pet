@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <!-- head section strats -->
     <head th:replace="/include/head :: head"> </head>
     <!-- head header section -->
@@ -33,15 +33,13 @@
                     <div class="col-md-6">
                         <div style="margin-bottom: 10px; text-align: right; float: right">
                             <div class="btn-group">
-                                <form>
-                                    <select class="form-control nice-select wide" name="selectBox" id="selectBox" th:onchange="handleOnChange(this)">
-                                        <option th:selected="${pKind}==''">전체</option>
-                                        <option th:selected="${pKind}=='사료'">사료</option>
-                                        <option th:selected="${pKind}=='간식'">간식</option>
-                                        <option th:selected="${pKind}=='용품'">용품</option>
-                                        <option th:selected="${pKind}=='의상'">의상</option>
-                                    </select>
-                                </form>
+                                 <select class="form-control nice-select wide" name="selectBox" id="selectBox" th:onchange="handleOnChange(this)">
+                                     <option th:selected="${pKind}==''">전체</option>
+                                     <option th:selected="${pKind}=='사료'">사료</option>
+                                     <option th:selected="${pKind}=='간식'">간식</option>
+                                     <option th:selected="${pKind}=='용품'">용품</option>
+                                     <option th:selected="${pKind}=='의상'">의상</option>
+                                 </select>
                             </div>
 
                             <!-- <button class="btn btn-warning">조회</button> -->

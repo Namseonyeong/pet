@@ -1,5 +1,5 @@
 
-package com.ezen.security.test;
+package com.ezen.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

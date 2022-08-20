@@ -1,22 +1,29 @@
 package com.ezen.member.service;
 
 import java.io.File;
+import java.security.Principal;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
-
+import com.ezen.Repository.MemberRepository;
 import com.ezen.entity.Member;
-import com.ezen.security.test.SecurityUserService;
+import com.ezen.entity.Product;
+import com.ezen.security.SecurityUserService;
 
 @Service
 @Transactional
 public class MemberServiceimpl implements MemberService {
 
-	// @Autowired
-	// private MemberRepository memberRepository;
+	@Autowired
+	private MemberRepository memberRepository;
+
 	@Autowired
 	private SecurityUserService securityUserService;
 
@@ -44,6 +51,14 @@ public class MemberServiceimpl implements MemberService {
 		// memberRepository.save(member);
 
 	}
+	
+	// 회원정보 조회
+	@Override
+	public Member Memberupdate(String memberId) {
+		
+		return memberRepository.findByMemberId(memberId).get();
+	}
+
 
 }
 
