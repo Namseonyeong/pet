@@ -135,26 +135,27 @@ public class AdminController {
 	
 	// 상품 수정 (저장)
 	@PostMapping("/product/update/{pSeq}")
-	public String productUpdate(@PathVariable("pSeq") Integer pSeq, Product product, Model model, MultipartFile file) throws Exception{
-		
+	public String productUpdate(@PathVariable("pSeq") Integer pSeq, Product product, Model model, MultipartFile file)
+			throws Exception {
+
 		// 기존의 글에서 데이터값 가져오기
 		Product productTemp = productService.productView(pSeq);
-		//productTemp.setpSeq(product.getpSeq());
+		// productTemp.setpSeq(product.getpSeq());
 		productTemp.setPKind(product.getPKind());
 		productTemp.setPName(product.getPName());
 		productTemp.setPrice1(product.getPrice1());
 		productTemp.setPrice2(product.getPrice2());
 		productTemp.setPContent(product.getPContent());
-		productTemp.setPImage(product.getPImage());
-		productTemp.setPPath(product.getPPath());
-		
+		productTemp.setPImage(productTemp.getPImage());
+		productTemp.setPPath(productTemp.getPPath());
+
 		productService.insertwrite(productTemp, file);
-		
+
 		model.addAttribute("message", "상품 수정이 완료되었습니다.");
-		model.addAttribute("searchUrl", "/ProductList"); 
-		
+		model.addAttribute("searchUrl", "/Productlist");
+
 		return "admin/message";
-	
+
 	}
 	
 	// 상품 삭제 (Productlist 참고)
