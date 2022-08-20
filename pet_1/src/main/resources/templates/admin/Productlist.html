@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
-<!-- head section strats -->
-<head th:replace="/include/head :: head">
-
-</head>
-<!-- head header section -->
+    <!-- head section strats -->
+    <head th:replace="/include/head :: head"> </head>
+    <!-- head header section -->
 
     <body class="sub_page">
         <div class="hero_area">
@@ -13,7 +10,7 @@
                 <img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
             </div>
 
-			<!-- header section strats -->
+            <!-- header section strats -->
             <header th:replace="/include/header :: header"></header>
             <!-- end header section -->
         </div>
@@ -24,166 +21,101 @@
                     <h2 class="mb-1">상품관리</h2>
                 </div>
             </div>
-            
+
             <!--사이드 바 -->
             <div class="position-relative">
                 <div class="position-absolute top-0 start-50 translate-middle-x"></div>
                 <div class="row">
-                   
                     <!-- manager sidebar section start -->
                     <div th:replace="/include/manager_sidebar :: manager_sidebar"></div>
                     <!-- end manager sidebar section -->
-                    
-                    <div class="col-md-6">
-                        <div class="table-responsive container">
-                            <div style="margin-bottom: 10px; text-align: right; float: right">
-                                <div class="btn-group">
-                                    <select class="form-control nice-select wide">
-                                        <!-- disabled selected : 버튼 위에 처음에 보여지고 비활성화 됨 -->
-                                        <option value="사료">사료</option>
-                                        <option value="간식">간식</option>
-                                        <option value="용품">용품</option>
-                                        <option value="의상">의상</option>
-                                    </select>
-                                </div>
 
-                                <button class="btn btn-warning" onclick="alert('조회할거야?')">조회</button>
-                                <button class="btn btn-success" th:onclick="location.href='ProductRegistration'">등록</button>
-                                <button class="btn btn-danger" th:onclick="deleteValue('/productDelete','/Productlist', 'pSeq');">삭제</button>
+                    <div class="col-md-6">
+                        <div style="margin-bottom: 10px; text-align: right; float: right">
+                            <div class="btn-group">
+                                <form>
+                                    <select class="form-control nice-select wide" name="selectBox" id="selectBox" th:onchange="handleOnChange(this)">
+                                        <option th:selected="${pKind}==''">전체</option>
+                                        <option th:selected="${pKind}=='사료'">사료</option>
+                                        <option th:selected="${pKind}=='간식'">간식</option>
+                                        <option th:selected="${pKind}=='용품'">용품</option>
+                                        <option th:selected="${pKind}=='의상'">의상</option>
+                                    </select>
+                                </form>
                             </div>
-                            <!-- <table class="table table-striped w-auto"> -->
+
+                            <!-- <button class="btn btn-warning">조회</button> -->
+                            <button class="btn btn-success" th:onclick="location.href='ProductRegistration'">등록</button>
+                            <button class="btn btn-danger" th:onclick="deleteValue('/productDelete','/Productlist', 'pSeq');">삭제</button>
+                        </div>
+                        <div class="table-responsive">
                             <table class="table table-striped table-md" style="text-align: center">
                                 <thead>
                                     <tr>
                                         <!-- 게시판 행 크기 조절-->
-                                        <th scope="col" style="width: 3%"><input type="checkbox" id="allCheck" name="allCheck" th:onclick="setCheckAll('pSeq')"/></th>
+                                        <th scope="col" style="width: 3%"><input type="checkbox" id="allCheck" name="allCheck" th:onclick="setCheckAll('pSeq')" /></th>
                                         <th scope="col" style="width: 10%">NO</th>
-<!--                                         <th scope="col" style="width: 10%">상품분류</th> -->
+                                        <th scope="col" style="width: 10%">상품분류</th>
                                         <th scope="col" style="width: 40%">상품명</th>
                                         <th scope="col" style="width: 15%">원가</th>
                                         <th scope="col" style="width: 20%">판매가</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="product : ${list}"  >
-                                    	<td><input type="checkbox"  name="pSeq" id="pSeq" th:value="${product.pSeq}"/></td>
-                                   		<td th:text="${product.pSeq}" th:onclick="|location.href='@{ProductModify/{pSeq} (pSeq = ${product.pSeq})}'|"></td>
-                                   		
-<!--                                         <td th:text="${product.pName">상품분류</td> -->
+                                    <tr th:each="product : ${list}">
+                                        <td><input type="checkbox" name="pSeq" id="pSeq" th:value="${product.pSeq}" /></td>
+                                        <td th:text="${product.pSeq}" th:onclick="|location.href='@{ProductModify/{pSeq} (pSeq = ${product.pSeq})}'|"></td>
+                                        <td th:text="${product.pKind}" th:onclick="|location.href='@{ProductModify/{pSeq} (pSeq = ${product.pSeq})}'|"></td>
                                         <td th:text="${product.pName}" th:onclick="|location.href='@{ProductModify/{pSeq} (pSeq = ${product.pSeq})}'|"></td>
                                         <td th:text="${product.price1}" th:onclick="|location.href='@{ProductModify/{pSeq} (pSeq = ${product.pSeq})}'|"></td>
                                         <td th:text="${product.price2}" th:onclick="|location.href='@{ProductModify/{pSeq} (pSeq = ${product.pSeq})}'|"></td>
                                     </tr>
-<!--                                     <tr th:each="product : ${list}"> -->
-<!--                                    		<td class="form-check form-check-inline"> -->
-                                   		
-<!--                                         <td class="form-check form-check-inline"> -->
-<!--                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" /> -->
-<!--                                             <label class="form-check-input" for="inlineCheckbox1">1</label> -->
-<!--                                         </td> -->
-<!--                                         <td >게시판1</td> -->
-<!--                                         <td th:text="${product.pName">조회수1</td> -->
-<!--                                         <td th:text="${product.price1">월요일</td> -->
-<!--                                         <td th:text="${product.price2">월요일</td> -->
-<!--                                     </tr> -->
-<!--                                     <tr> -->
-<!--                                         <td><input name="RowCheck" type="checkbox" value="1"/>&nbsp;1</td> -->
-<!--                                         <td>게시판2</td> -->
-<!--                                         <td>2번</td> -->
-<!--                                         <td>조회수2</td> -->
-<!--                                         <td>화요일</td> -->
-<!--                                     </tr> -->
-                                    
                                 </tbody>
                             </table>
                         </div>
 
-						
-<!--                         <nav aria-label="Page navigation example "> -->
-<!--                             <ul class="pagination justify-content-center"> -->
-<!--                                 <li class="page-item"> -->
-<!--                                     <a class="page-link" th:href="@{#}" aria-label="Previous"> -->
-<!--                                         <span aria-hidden="true">&laquo;</span> -->
-<!--                                     </a> -->
-<!--                                 </li> -->
-<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">1</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">2</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">3</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">4</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" th:href="@{#}">5</a></li> -->
-<!--                                 <li class="page-item"> -->
-<!--                                     <a class="page-link" th:href="@{#}" aria-label="Next"> -->
-<!--                                         <span aria-hidden="true">&raquo;</span> -->
-<!--                                     </a> -->
-<!--                                 </li> -->
-<!--                             </ul> -->
-<!--                         </nav> -->
-
-					<!--굳이 태그로 감쌀 필요 없는 부분을 타임리프 문법으로 사용할 때 사용-->
-					<ul class="pagination justify-content-center">
-						<li class="page-item" >
-							<a class="page-link" aria-label="Previous" > 
-							<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="page-item"  th:each="page:${#numbers.sequence(startPage, endPage)}">
-						<a class="page-link" th:if="${page != nowPage}" th:href="@{/Productlist(page=${page -1})}" th:text="${page}"></a>
-						<a class="page-link" th:if="${page == nowPage}" th:text="${page}"></a>
-						</li>
-						<li class="page-item">
-						<a class="page-link" th:href="@{#}" aria-label="Next" > 
-                                         <span aria-hidden="true">&raquo;</span>
-                                     </a> 
-					
-					</ul>
-
-
-
-					<!--                         <nav aria-label="Page navigation example "> -->
-<!--                             <ul class="pagination justify-content-center"> -->
-<!--                                 <li class="page-item"> -->
-<!--                                     <a class="page-link" th:href="@{#}" aria-label="Previous"> -->
-<!--                                         <span aria-hidden="true">&laquo;</span> -->
-<!--                                     </a> -->
-<!--                                 </li> -->
-<!--                                 1,2,3,4 페이지 -->
-<!--                                 <li th:each="page : ${#numbers.sequence(startPage, endPage)}"> -->
-<!--                                 <a th:if="${page != nowPage" th:href="@{/Productlist(page = ${page -1})}" th:text="${page}"></a> -->
-<!--                                 <strong th:if="${page == nowPage" th:text="${page}"></strong>  -->
-<!--                                 </li> -->
-								
-								
-<!--                                 <li th:class="${list.end} ? 'disabled'"> -->
-<!--                                     <a th:href="${list.last} ? '#' : ${nextAddr}" aria-label="Next"> -->
-<!--                                         <span aria-hidden="true">&raquo;</span> -->
-<!--                                     </a> -->
-<!--                                     </th:block> -->
-                                    
-<!--                                     <th:block th:each="page : ${numbers.sequence(startPage, endPage)}"> -->
-<!--                                     	<a th:if="${page != nowPage" th:href="@{/Productlist(page = ${page -1})}" th:text="${page}"></a> -->
-<!--                                     	<strong th:if="${page == nowPage" th:text="${page}"></strong> -->
-<!--                                     </th:block> -->
-<!--                                 </li> -->
-<!--                             </ul> -->
-<!--                         </nav> -->
-                        
-                        
+                        <!-- 페이징처리 시작 -->
+                        <div th:if="${!list.isEmpty()}">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item" th:classappend="${!list.hasPrevious} ? 'disabled'">
+                                    <a class="page-link" th:href="@{/Productlist(page = ${list.number-1}, searchKeyword = ${param.searchKeyword})}">
+                                        <span>이전</span>
+                                    </a>
+                                </li>
+                                <li th:each="page: ${#numbers.sequence(0, list.totalPages-1)}" th:if="${page >= list.number-1 and page <= list.number+1}" th:classappend="${page == list.number} ? 'active'" class="page-item">
+                                    <a th:text="${page}" class="page-link" th:href="@{/Productlist(page = ${page}, searchKeyword = ${param.searchKeyword})}"></a>
+                                </li>
+                                <li class="page-item" th:classappend="${!list.hasNext} ? 'disabled'">
+                                    <a class="page-link" th:href="@{/Productlist(page = ${list.number+1}, searchKeyword = ${param.searchKeyword})}">
+                                        <span>다음</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 페이징처리 끝 -->
                     </div>
                     <div class="col-md-3"></div>
                 </div>
             </div>
         </section>
 
-      	<!-- footer section -->
-		<footer th:replace="/include/footer :: footer"></footer>
+        <!-- footer section -->
+        <footer th:replace="/include/footer :: footer"></footer>
         <!-- footer section -->
 
-		<!-- script section -->
-		<div th:replace="/include/script :: script"></div>
-		<!-- end script section -->
-		
-		 
-	
+        <!-- script section -->
+        <div th:replace="/include/script :: script"></div>
+        <!-- end script section -->
+    </body>
 
- </body>
+    <script type="text/javascript">
+        function handleOnChange(e) {
+            const text = e.options[e.selectedIndex].text;
+            const queryParams = {
+                searchKeyword: text === "전체" ? "" : text,
+            };
+
+            location.replace(location.pathname + "?" + new URLSearchParams(queryParams).toString());
+        }
+    </script>
 </html>

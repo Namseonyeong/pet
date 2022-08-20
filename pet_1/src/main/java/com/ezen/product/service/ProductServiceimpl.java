@@ -1,18 +1,13 @@
 package com.ezen.product.service;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 
-import javax.sound.midi.Sequence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.Repository.ProductRepository;
@@ -24,7 +19,7 @@ public class ProductServiceimpl implements ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	// 상품 등록 처리
+	// 상품 등록 처리(이미지)
 	@Override
 	public void insertwrite(Product product, MultipartFile file) throws Exception {
 		
@@ -47,7 +42,6 @@ public class ProductServiceimpl implements ProductService {
 		productRepository.save(product);
 		
 	}
-
 	
 	// 상품 목록
 	@Override
@@ -56,16 +50,13 @@ public class ProductServiceimpl implements ProductService {
 		return productRepository.findAll(pageable);
     }
 		
-	// 상품 조회 
+	// 상품 조회 (목록)
 	@Override
 	public Page<Product> productSerchList(String searchKeyword, Pageable pageable) {
 		
-		return productRepository.findByPKind(searchKeyword, pageable);
+		return productRepository.findBypKind(searchKeyword, pageable);
 	}
 	
-	
-	
-
 	// 특정 게시글 불러오기
 	@Override
 	public Product productView(Integer pSeq) {

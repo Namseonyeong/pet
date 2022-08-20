@@ -1,11 +1,11 @@
 <!-- header section strats -->
-<html lane="ko" xmlns:th="http://www.thymeleaf.org">
+<html lane="ko" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <header class="header_section" th:fragment="header">
 <!-- <head th:fragment="fragment-header"> -->
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand"  th:href="@{/index.html}">
+            <a class="navbar-brand" th:href="@{/}">
                 <span style="color: #c9b4eb"> 날케어하시개 </span>
             </a>
 
@@ -19,42 +19,48 @@
                         <a class="nav-link" th:href="@{#}">돌봐주시개<span class="sr-only">(current)</span></a>
                         <!-- 메뉴 드롭다운 -->
                         <ul class="dropdown-menu bg-light m-0">
-                            <li><a th:href="@{board/Sitter_Page.html}" class="dropdown-item">펫시터 프로필</a></li>
-                            <li><a th:href="@{board/Sitter1_page.html}" class="dropdown-item">방문 돌봄</a></li>
-                            <li><a th:href="@{board/Sitter2_page.html}" class="dropdown-item">방문 산책</a></li>
+                            <li><a th:href="@{/Sitter}" class="dropdown-item">펫시터 프로필</a></li>
+                            <li><a th:href="@{/Sitter1}" class="dropdown-item">방문 돌봄</a></li>
+                            <li><a th:href="@{/Sitter2}" class="dropdown-item">방문 산책</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{#}">알려주시개</a>
                         <ul class="dropdown-menu bg-light m-0">
-                            <li><a th:href="@{board/Trainer_Page.html}" class="dropdown-item">훈련사 프로필</a></li>
-                            <li><a th:href="@{board/Trainer1_page.html}" class="dropdown-item">훈련 과정</a></li>
+                            <li><a th:href="@{/Trainer}" class="dropdown-item">훈련사 프로필</a></li>
+                            <li><a th:href="@{/Trainer1}" class="dropdown-item">훈련 과정</a></li>
                         </ul>
                         
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/board/menu.html}">사주시개</a>
+                        <a class="nav-link" th:href="@{/Menu}">사주시개</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/Center_Page.html}">공지사항/고객센터</a>
+                        <a class="nav-link" th:href="@{/Center}">공지사항/고객센터</a>
                     </li>
                 </ul>
+                
+                
+                
+                
                 <div class="user_option">
-                    <a th:href="@{/layout/login.html}" class="user_link">
+                    <a class="user_link" th:href="@{/Login}" sec:authorize="isAnonymous()">
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
-                    <a class="cart_link" th:href="@{#}">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <!-- 장바구니 -->
+                    <a class="cart_link" th:href="@{/member/MyPage_order}" sec:authorize="hasRole('ROLE_MEMBER')" >
+                        <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
                     </a>
-                    <a class="cart_link" th:href="@{/member/MyPage_getboardlist.html}">
+                    <a class="cart_link" th:href="@{/member/MyPage}" sec:authorize="hasRole('ROLE_MEMBER')" >
                         <i class="fa-solid fa-m" aria-hidden="true"></i>
                     </a>
-                    <!-- <form class="form-inline">
-                        <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
-                    </form> -->
-                    <!-- <a href="" class="order_online"> Order Online </a> -->
+                    <!-- 매니저 -->
+                    <a class="cart_link" th:href="@{/Dashboards}" sec:authorize="hasRole('ROLE_ADMIN')" >
+                        <i class="fa-solid fa-clipboard-user" aria-hidden="true" ></i>
+                    </a>
+                    <a class="cart_link" th:href="@{/logout}" sec:authorize="isAuthenticated()" >
+                        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </nav>

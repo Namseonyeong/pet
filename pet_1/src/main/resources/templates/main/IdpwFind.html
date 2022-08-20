@@ -16,9 +16,9 @@
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <div class="form_container">
-                            <form action="">
-                                <div><input th:type="${memberId}" class="form-control" placeholder="아이디" /></div>
-                                <div><input th:type="${memberPw}" class="form-control" placeholder="비밀번호" /></div>
+                            <form>
+                                <div><input id=memberId class="form-control" placeholder="아이디" /></div>
+                                <div><input id=memberPw class="form-control" placeholder="비밀번호" /></div>
                                 <div class="btn_box">
                                     <button style="padding: 10px 150px; margin-bottom:30px">조회</button>
 
@@ -43,10 +43,10 @@
                     
                     <div class="col-md-4">
                         <div class="form_container">
-                            <form action="">
-                                <div><input th:type="${memberName}" class="form-control" placeholder="이름" /></div>
-                                <div><input th:type="${memberId}" class="form-control" placeholder="아이디" /></div>
-                                <div><input th:type="${memberPw}" class="form-control" placeholder="비밀번호" /></div>
+                            <form th:action="@{#}">
+                                <div><input id=memberName name=memberName class="form-control" placeholder="이름" /></div>
+                                <div><input id=memberId name=memberId class="form-control" placeholder="아이디" /></div>
+                                <div><input id=memberPw name=memberPw class="form-control" placeholder="비밀번호" /></div>
                                 <div class="btn_box">
                                     <button style="padding: 10px 150px; margin-bottom:30px">조회</button>
                                 </div>

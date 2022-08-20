@@ -1,6 +1,5 @@
 package com.ezen.Repository;
 
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +14,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 
 	// 상품 조회
-	Page<Product> findByPKind(String searchKeyword, Pageable pageable);
+	Page<Product> findBypKind(String searchKeyword, Pageable pageable);
 
 
 }

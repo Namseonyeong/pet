@@ -3,9 +3,8 @@ package com.ezen.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort; 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.entity.Product;
 import com.ezen.product.service.ProductService;
-import com.ezen.product.service.ProductServiceimpl;
 
 //admin 컨트롤러 (DB)
 
@@ -30,20 +28,14 @@ public class AdminController {
 	// 대시보드로 이동
 	@RequestMapping(value = "/Dashboards")
 	public String Dashboards() {
-		return "admin/Dashboards.html";
+		return "/admin/Dashboards";
 	}
 	
 	// 매니저 메인화면
-	@RequestMapping(value = "/Manager")
+	@RequestMapping("/admin")
 	public String Manager() {
-		return "admin/Manager.html";
+		return "/admin/admin";
 	}
-	
-	// 매니저 상품 등록
-//	@RequestMapping(value = "/ProductCrystal")
-//	public String ProductCrystal() {
-//		return "admin/ProductCrystal.html";
-//	}
 	
 //	// 상품관리 (카테고리별 매출현황)
 //	@RequestMapping(value = "/ProductManagement")
@@ -51,11 +43,13 @@ public class AdminController {
 //		return "admin/ProductManagement.html";
 //	}
 	
+	
+	
 //	// 상품등록 (등록)
-//	@RequestMapping(value = "/ProductRegistration")
-//	public String ProductRegistration() {
-//		return "admin/ProductRegistration.html";
-//	}
+	@RequestMapping(value = "/ProductRegistration")
+	public String ProductRegistration() {
+		return "admin/ProductRegistration.html";
+	}
 	
 	// 매출현황 (카테고리별 매출현황)
 	@RequestMapping(value = "/SalesManagement")
@@ -99,9 +93,10 @@ public class AdminController {
 		
 	}
 	
+	
 	// 상품 목록 리스트
 //	@GetMapping("/Productlist")
-//	public String ProductList(Model model) {
+//	public String Productlist(Model model) {
 //		
 //		model.addAttribute("list", productService.productList());
 //		
@@ -109,36 +104,24 @@ public class AdminController {
 //	}
 	
 	
-	// 상품 목록 리스트 (페이징처리)
-	@GetMapping("/Productlist")
-	public String productlist(Model model ,
-							  @PageableDefault(page = 0, size = 10, sort = "pSeq", direction = Sort.Direction.DESC) Pageable pageable,
-							  String searchKeyword){
-		
-		Page<Product> list = null;
-		
-		if (searchKeyword == null) {
-			list = productService.productList(pageable);  // 기존에 보여주는 리스트 
-		} else {
-			list = productService.productSerchList(searchKeyword, pageable); // 검색 기능이 포함된 리스트
-		}
-		
-		//Page<Product> list = productService.productList(pageable);  // 페이지 데이터
-		
-		int nowPage = list.getPageable().getPageNumber() + 1;   // 총 페이지 수
-		int prePage = list.getPageable().getPageNumber();
-		int startPage =Math.max(nowPage - 4, 1);
-		int endPage = Math.min(nowPage + 5, list.getTotalPages());
-		
-		// 페이징 처리 넘겨주기
-		model.addAttribute("list", list);  
-		model.addAttribute("nowPage", nowPage); 
-		model.addAttribute("prePage", prePage); // 이전
-		model.addAttribute("startPage", startPage); 
-		model.addAttribute("endPage", endPage);
-		
-		return "admin/Productlist";
-	}
+	  // 상품 목록 리스트 (페이징처리)
+	   @GetMapping("/Productlist")
+	   public String productList(String searchKeyword, Model model,
+	         @PageableDefault(page = 0, size = 10, sort = "pSeq", direction = Sort.Direction.DESC) Pageable pageable) {
+	      Page<Product> list = null;
+
+	      if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
+	         list = productService.productList(pageable); // 기존에 보여주는 리스트
+	      } else {
+	         list = productService.productSerchList(searchKeyword, pageable); // 검색 기능이 포함된 리스트
+	      }
+
+	      // 페이징 처리 넘겨주기
+	      model.addAttribute("list", list);
+	      model.addAttribute("pKind", searchKeyword);
+
+	      return "admin/Productlist";
+	   }
 	
 	
 	// 상품 수정 페이지 이동
@@ -157,6 +140,7 @@ public class AdminController {
 		// 기존의 글에서 데이터값 가져오기
 		Product productTemp = productService.productView(pSeq);
 		//productTemp.setpSeq(product.getpSeq());
+		productTemp.setPKind(product.getPKind());
 		productTemp.setPName(product.getPName());
 		productTemp.setPrice1(product.getPrice1());
 		productTemp.setPrice2(product.getPrice2());
@@ -167,7 +151,7 @@ public class AdminController {
 		productService.insertwrite(productTemp, file);
 		
 		model.addAttribute("message", "상품 수정이 완료되었습니다.");
-		model.addAttribute("searchUrl", "/Productlist"); 
+		model.addAttribute("searchUrl", "/ProductList"); 
 		
 		return "admin/message";
 	

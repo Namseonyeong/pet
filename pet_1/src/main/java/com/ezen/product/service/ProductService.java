@@ -22,10 +22,7 @@ public interface ProductService {
 	void productDelete(Integer pSeq);
 	
 	// 상품 리스트 및 페이징
-	Page<Product> productList(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	Page<Product> productList(Pageable pageable);
 	
 	// 상품 조회
 	Page<Product> productSerchList(String searchKeyword, Pageable pageable);

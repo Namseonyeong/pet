@@ -48,11 +48,11 @@
 												<label for="name">상품분류</label>
 											</div>
 											<div class="col-md-2 mb-3">
-												<select name="kind" id="kind">
-													<c:forEach items="${kindList}" var="kind"
-														varStatus="status">
-														<option value="${status.count}">${kind}</option>
-													</c:forEach>
+												<select name="pKind" id="pKind">
+														<option th:selected="${pKind}=='사료'">사료</option>
+														<option th:selected="${pKind}=='간식'">간식</option>
+                                       					<option th:selected="${pKind}=='용품'">용품</option>
+                                        				<option th:selected="${pKind}=='의상'">의상</option>
 												</select>
 											</div>
 										</div>
