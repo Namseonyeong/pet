@@ -58,7 +58,7 @@ public class AdminController {
 	}
 	
 	// 펫시터/훈련사 승인대기목록
-	@RequestMapping(value = "/UserApproval")
+	@RequestMapping(value = "/userApproval")
 	public String UserApproval() {
 		return "admin/UserApproval.html";
 	}

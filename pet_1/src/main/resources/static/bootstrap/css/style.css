@@ -1369,4 +1369,10 @@ a:focus {
     text-align: center;
 }
 
+/* SelectBox 위치조정 */
+.nice-select {
+    height: 40px;
+    line-height: 26px;
+}
+
 
