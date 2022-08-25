@@ -1,20 +1,19 @@
 package com.ezen.member.service;
 
+
 import java.io.File;
 import java.security.Principal;
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.ezen.Repository.MemberRepository;
 import com.ezen.entity.Member;
-import com.ezen.entity.Product;
 import com.ezen.security.SecurityUserService;
 
 @Service
@@ -27,7 +26,11 @@ public class MemberServiceimpl implements MemberService {
 	@Autowired
 	private SecurityUserService securityUserService;
 
-	// 상품 등록 처리(이미지)
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	
+	// 회원가입 (이미지)
 	@Override
 	public void insertjoin(Member member, MultipartFile file) throws Exception {
 		
@@ -46,6 +49,8 @@ public class MemberServiceimpl implements MemberService {
 		// DB에 이미지값 저장
 		member.setMemberImage(fileName);
 		member.setMemberPath("/join_img_file/" + fileName);
+		member.setMemberProImage(fileName);
+		member.setMemberProPath("/join_img_file/" + fileName);
 
 		securityUserService.joinUser(member);
 		// memberRepository.save(member);
@@ -54,17 +59,61 @@ public class MemberServiceimpl implements MemberService {
 	
 	// 회원정보 조회
 	@Override
-	public Member Memberupdate(String memberId) {
+	public Member getMember(String memberId) {
 		
 		return memberRepository.findByMemberId(memberId).get();
 	}
+	
+	// 이름, 메일로 아이디 찾기
+	@Override
+	public Member searchMember(String memberEmail, Member member) {
+		
+		System.out.println( " memberEmail============>" + memberEmail);
+		return memberRepository.findByMemberEmail(memberEmail).get();
+	}
+	
 
+	// 회원정보 수정
+	@Override
+	public void updateMember(Member member, MultipartFile file, Principal principal) throws Exception {
 
+		System.out.println("들어오니?");
+		
+		Member memberTemp = getMember(principal.getName());
+		System.out.println("memberTemp ==> " + memberTemp);
+//		memberTemp.setMemberPw(passwordEncoder.encode(member.getMemberPw()));
+//		memberTemp.setMemberPw(member.getMemberPw());
+		memberTemp.setMemberPhone(member.getMemberPhone());
+		memberTemp.setMemberTitle(member.getMemberTitle());
+		memberTemp.setMemberIy(member.getMemberIy());
+		memberTemp.setMemberImage(memberTemp.getMemberImage());
+		memberTemp.setMemberPath(memberTemp.getMemberPath());
+		
+		insertjoin(memberTemp, file);
+		return;
+
+    
+	}
+
+	// 비밀번호 변경
+	@Override
+	public void updatePassword(Member member, String newPassword) {
+		member.setMemberPw(passwordEncoder.encode(newPassword));
+		memberRepository.save(member);
+	}
+
+	// 탈퇴
+	@Override
+	public void memberDelete(String memberId) {
+		memberRepository.deleteById(memberId);
+	}
+
+	
 }
 
-// @Transactional
-// public String createMember(MemberForm form) {
-// Member member = form.toEntity();
-// memberRepository.save(member);
-// return member.getMemberId();
-// }
+	
+	
+
+	
+	
+
