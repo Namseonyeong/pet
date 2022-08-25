@@ -1,8 +1,5 @@
 package com.ezen.controller;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +18,6 @@ import com.ezen.entity.Member;
 import com.ezen.entity.Product;
 import com.ezen.member.service.MemberService;
 import com.ezen.product.service.ProductService;
-import com.ezen.security.Role;
 
 //admin 컨트롤러 (DB)
 
@@ -61,7 +57,7 @@ public class AdminController {
 	// 매출현황 (카테고리별 매출현황)
 	@RequestMapping(value = "/SalesManagement")
 	public String SalesManagement() {
-		return "admin/SalesManagement.html";
+		return "admin/SalesManagement";
 	}
 
 	
@@ -237,7 +233,7 @@ public class AdminController {
 //		}
 
 		
-//		// 승인목록 test (커피)
+//		// 승인목록 test
 //	    @GetMapping("/userApproval")
 //	    public String userApprovallist(@RequestParam("memberType") char memberType, Model model) {
 //	      

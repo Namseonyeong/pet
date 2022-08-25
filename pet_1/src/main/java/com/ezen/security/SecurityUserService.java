@@ -2,6 +2,8 @@ package com.ezen.security;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.Repository.MemberRepository;
 import com.ezen.entity.Member;
@@ -46,6 +49,9 @@ public class SecurityUserService implements UserDetailsService {
 		return new User(member.getMemberId(), member.getMemberPw(),
 				AuthorityUtils.createAuthorityList(member.getRole().toString()));
 	}
+
+
+	
 
 	// public UserDetails loadUserByUsername(String userMemberId) throws
 	// UsernameNotFoundException {
