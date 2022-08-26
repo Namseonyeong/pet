@@ -27,7 +27,7 @@ public class Product {
 	private Integer pSeq; 
 
 	// 상품 분류
-	@Column(name = "p_kind", columnDefinition = "char(10)")
+	@Column(name = "p_kind")
 	private String pKind;  
 	
 	// 상품명
