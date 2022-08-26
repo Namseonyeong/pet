@@ -73,5 +73,12 @@ public class ProductServiceimpl implements ProductService {
 		productRepository.deleteById(pSeq);
 
 	}
+	
+	//상품종류별 조회(지병)
+	@Override
+	public Page<Product> productfindByPKind(String Kind, Pageable pageable){
+		
+		return productRepository.productfindByPKind(Kind, pageable);
+	}
 
 }

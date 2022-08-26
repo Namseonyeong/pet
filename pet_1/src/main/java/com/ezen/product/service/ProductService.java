@@ -25,4 +25,7 @@ public interface ProductService {
 	// 상품 조회
 	Page<Product> productSerchList(String searchKeyword, Pageable pageable);
 	
+	//상품종류별 조회
+	Page<Product> productfindByPKind(String Kind, Pageable pageable);
+	
 }

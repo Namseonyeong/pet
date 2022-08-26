@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/include/head :: head"></head>
 
@@ -12,207 +12,73 @@
 		<header th:replace="/include/header :: header"></header>
 		<!-- end header section -->
 	</div>
-
 	<!-- food section -->
-
 	<section class="food_section layout_padding">
 		<div class="container">
 			<div class="heading_container heading_center">
 				<h2 class="mb-1">사주시개</h2>
 			</div>
-
+			<!--  
 			<ul class="filters_menu">
 				<li class="active" data-filter="*">All</li>
 				<li data-filter=".burger">사료</li>
 				<li data-filter=".pizza">간식</li>
 				<li data-filter=".pasta">용품</li>
 				<li data-filter=".fries">의상</li>
-			</ul>
+			</ul> 
+	-->
 
-			<div class="filters-content">
-				<div class="row grid">
-					<div class="col-sm-6 col-lg-4 all pasta">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/bath_supplies.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>Delicious Pizza</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$20</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
+
+			<ul class="filters_menu">
+				<li class="active" data-filter="*">All</li>
+				<li data-filter=".burger"><a th:href="@{/category(pKind='1')}">사료</a></li>
+				<li data-filter=".pizza"><a th:href="@{/category(pKind='2')}">간식</a></li>
+				<li data-filter=".pasta"><a th:href="@{/category(pKind='3')}">용품</a></li>
+				<li data-filter=".fries"><a th:href="@{/category(pKind='4')}">의상</a></li>
+			</ul>
+			<!--  
+			<tr th:each="product, state : ${productList}">
+				<td th:text="${product.pSeq}"></td>
+				<td th:text="${product.pKind}"></td>
+				<td th:text="${product.pName}"></td>
+				<td th:text="${product.price2}"></td>
+				<td th:text="${product.pImage}"></td>
+				<div class="options">
+				<a th:href="@{/MyPage_cart(seq=${product.pSeq})}">
+				</div>
+			</tr>
+			-->
+				<div class="filters-content">
+					<div class="row grid">
+						<div th:each="product : ${productList}">
+							<div class="col-sm-6 col-lg-4 all .">
+								<div class="box">
+									<div class="img-box">
+										<!-- <img th:src="${/productimage/food.jpg} + ${product.Pimage}" alt="" />-->
+										<img th:src="@{/productimage/}+${product.pImage}" alt="" />
+										<!--<img th:src="${static/productimage/food.jpg}" alt="" /> -->
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-4 all burger">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/Dog_clothes_1.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>강아지용 비타민</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$15</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-4 all pizza">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/Dog_clothes_2.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>Delicious Pizza</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$17</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-4 all pasta">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/historical_records.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>Delicious Pasta</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$18</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-4 all fries">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/Leash_1.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>French Fries</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$10</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-4 all pizza">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/Toy_1.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>Delicious Pizza</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$15</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-4 all burger">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/Toy_2.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>Tasty Burger</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$12</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-4 all burger">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/vitamins.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>Tasty Burger</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$14</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-4 all pasta">
-						<div class="box">
-							<div>
-								<div class="img-box">
-									<img th:src="@{bootstrap/images/f9.png}" alt="" />
-								</div>
-								<div class="detail-box">
-									<h5>Delicious Pasta</h5>
-									<p>Veniam debitis quaerat officiis quasi cupiditate quo,
-										quisquam velit, magnam voluptatem repellendus sed eaque</p>
-									<div class="options">
-										<h6>$10</h6>
-										<a th:href="@{#}">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										</a>
+									<div class="detail-box">
+										<h5 th:text="${product.pName}"></h5>
+										<p th:text="${product.pContent}"></p>
+										<form id="theForm" th:action="@{/insertCart}">
+											<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+											<input type="hidden" th:name="pSeq" th:value="${product.pSeq}" />
+											<div class="options">
+												<h6 th:text="${product.price2}"></h6>
+												<input type="number" name="cartStrock" id="cartStrock" min="1" size="1">
+												<i class="fa fa-shopping-cart" th:onclick="go_insertCart(this,[[${product.pSeq}]])" id ="insert" aria-hidden="true"></i>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			
 			<div class="btn-box">
 				<a th:href="@{#}"> View More </a>
 			</div>

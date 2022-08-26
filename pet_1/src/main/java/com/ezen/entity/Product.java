@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -58,5 +60,9 @@ public class Product {
 	@Column(name = "p_path")
 	private String pPath; 
 	
+	//cart 와 1:1조인
+	@OneToOne
+	@JoinColumn(name = "product_id")
+	private Product product;
 }
 
