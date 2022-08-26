@@ -8,9 +8,11 @@ public interface CartService {
 	
 	void insertCart(Cart cart);
 	
-	List<Cart> getCartList(Cart cart);
+	List<Cart> findCartByMemberId(String MemberId);
 
-	void deleteCart(Cart cart);
+	void deleteCart(Integer cartSeq);
+
 	
+
 	
 }

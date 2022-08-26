@@ -26,7 +26,10 @@ public interface ProductService {
 	// 상품 조회
 	Page<Product> productSerchList(String searchKeyword, Pageable pageable);
 	
+	//상품종류별 조회 (병선)
+	Page<Product> productfindByPKind(String Kind, Pageable pageable);
 
+	//선영테스트
 	// 회원 전체목록 조회
 	Page<Member> userManagementList(Pageable pageable);
 	// 회원 목록 조회(조건) 페이징
@@ -52,6 +55,5 @@ public interface ProductService {
 //	
 //	// 승인목록 test
 //	List<Member> findBymemberType(char memberType);
-	
 	
 }

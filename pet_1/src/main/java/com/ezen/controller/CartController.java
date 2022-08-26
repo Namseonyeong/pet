@@ -1,5 +1,6 @@
 package com.ezen.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,54 +10,86 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.CartService.CartService;
+import com.ezen.Repository.CartRepository;
+import com.ezen.Repository.ProductRepository;
 import com.ezen.entity.Cart;
 import com.ezen.entity.Member;
+import com.ezen.entity.Product;
+import com.ezen.product.service.ProductService;
 
-@SessionAttributes("member")
 @Controller
 public class CartController {
 	
 	@Autowired
-	private CartService cartservice;
+	private CartRepository cartRepo;
 	
+	@Autowired
+	private CartService cartService;
+	
+	@Autowired
+	private ProductRepository productRepo;
+
+	@Autowired
+	private ProductService productService;
+
 	@ModelAttribute("member")
 	public Member setMember() {
 		return new Member();
 	}
 	
+	//MyPage_cart페이지 이동
+	@RequestMapping(value = "/MyPage_cart.html")
+	public String MyPage_cart() {
+		
+		return "member/MyPage_cart.html";
+	}
+	
+	//카트에 상품담기
 	@GetMapping("/insertCart")
-	public String insertCartView(@ModelAttribute("member") Member member) {
+	public String insertCart(@RequestParam("pseq") Integer pseq, Member member, Principal principal, Integer cartStrock)  {
 		
-		return "insertCart";
+		Cart cart = new Cart();
+		
+		Product product = new Product();
+		product.setPSeq(pseq);
+		
+		System.out.println("pseq = " + pseq);
+		cart.setProduct(product);
+		cart.setCartStrock(cart.getCartStrock());
+		
+		
+		member.setMemberId(principal.getName());
+		cart.setMember(member);
+
+		
+		cartService.insertCart(cart);
+		
+		return "redirect:/getCartList";
 	}
-	
-	@PostMapping("/insertCart")
-	public String insertCart(@ModelAttribute("member") Member member, Cart cart) {
-		
-		cartservice.insertCart(cart);
-		
-		return "redirect:getCartList";
-	}
-	
-	
+
 	@RequestMapping("/getCartList")
-	public String getCartList(@ModelAttribute("member") Member member,
-							   Model model, Cart cart) {
+	public String getCartList(Principal principal, Model model, Cart cart) {
 		
-		List<Cart> cartList = cartservice.getCartList(cart);
+		System.out.println("MemberId = " + principal.getName());
 		
+		List<Cart> cartList = cartService.findCartByMemberId(principal.getName());
+		
+		for(Cart item : cartList) {
+			System.out.println("cart.getProduct = " + cart.getProduct());
+		}
+
 		model.addAttribute("cartList", cartList);
 		
-		return "getCartList";
+		return "member/MyPage_cart";
 	}
-	
+
 	@GetMapping("/deleteCart")
-	public String deleteCart(@ModelAttribute("member") Member member, Cart cart) {
+	public String deleteCart(@ModelAttribute("member") Member member, Integer cartSeq) {
 		
-		cartservice.deleteCart(cart);
+		cartService.deleteCart(cartSeq);
 		
 		return "redirect:getCartList";
 	}

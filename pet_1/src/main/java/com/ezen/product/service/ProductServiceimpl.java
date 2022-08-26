@@ -79,7 +79,7 @@ public class ProductServiceimpl implements ProductService {
 		productRepository.deleteById(pSeq);
 
 	}
-	
+
 	// 회원목록 
 	@Override
 	public Page<Member> userManagementList(Pageable pageable) {
@@ -108,8 +108,16 @@ public class ProductServiceimpl implements ProductService {
 		return memberRepository.findBymemberId(searchKeyword, pageable);
 	}
 
-	
-	// 타입별로 리스트 불러오기 (펫시터, 트레이너)
+		//상품종류별 조회(지병)
+		@Override
+		public Page<Product> productfindByPKind(String Kind, Pageable pageable){
+			
+			return productRepository.productfindByPKind(Kind, pageable);
+		}
+
+
+		// 테스트
+			// 타입별로 리스트 불러오기 (펫시터, 트레이너)
 //	@Override
 //	public List<Member> findBymemberType(char memberType, Pageable pageable){
 //		return memberRepository.findBymemberType(memberType);
@@ -144,5 +152,4 @@ public class ProductServiceimpl implements ProductService {
 //	      return memberRepository.findByType(memberType);
 //	   }
 //	
-
 }
