@@ -6,10 +6,13 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ezen.Repository.MemberRepository;
 import com.ezen.Repository.ProductRepository;
+import com.ezen.entity.Member;
 import com.ezen.entity.Product;
 
 @Service
@@ -17,6 +20,9 @@ public class ProductServiceimpl implements ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private MemberRepository memberRepository;
 
 	// 상품 등록 처리(이미지)
 	@Override
@@ -73,5 +79,70 @@ public class ProductServiceimpl implements ProductService {
 		productRepository.deleteById(pSeq);
 
 	}
+	
+	// 회원목록 
+	@Override
+	public Page<Member> userManagementList(Pageable pageable) {
+
+		return memberRepository.findAll(pageable);
+	}
+
+	// 회원목록
+	@Override
+	public Page<Member> userManagemenSerchList(String searchKeyword, Pageable pageable) {
+
+		return memberRepository.findBymemberId(searchKeyword, pageable);
+	}
+	
+
+	// 회원승인 여부 (펫시터, 트레이너)
+	@Override
+	public Page<Member> userApprovaList(Pageable pageable) {
+
+		return memberRepository.findAll(pageable);
+	}
+	
+	// 회원승인 여부 (펫시터, 트레이너) - 페이징
+	@Override
+	public Page<Member> userApprovaSerchList(String searchKeyword, Pageable pageable){
+		return memberRepository.findBymemberId(searchKeyword, pageable);
+	}
+
+	
+	// 타입별로 리스트 불러오기 (펫시터, 트레이너)
+//	@Override
+//	public List<Member> findBymemberType(char memberType, Pageable pageable){
+//		return memberRepository.findBymemberType(memberType);
+//	}	
+	
+	// 승인여부 타입별 목록
+//	@Override
+//	public Page<Member> userApprovaList(char memberType, Pageable pageable) {
+//
+//		return memberRepository.findAll(pageable);
+//	}
+	
+//	// 승인여부 타입별로 (페이징)
+//	@Override
+//	public Page<Member> userApprovaSerchList(@Param("member_type")char memberType, String searchKeyword, Pageable pageable){
+//		
+//		return memberRepository.findByType(memberType, searchKeyword, pageable);
+//	}
+	
+	//test
+//	@Override
+//	public List<Member> findBymemberType(String memberType) {
+//		return memberRepository.findByMemberType(memberType);
+//	}
+	
+	
+//	// 승인목록 test
+//	   @Override
+//	   public List<Member> findBymemberType(char memberType) {
+//	      
+//	      
+//	      return memberRepository.findByType(memberType);
+//	   }
+//	
 
 }
