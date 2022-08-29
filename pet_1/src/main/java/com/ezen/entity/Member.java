@@ -58,12 +58,6 @@ public class Member {
 	@Column(name = "member_status", nullable = true, columnDefinition = "char(1) default 'N'")
 	private String memberStatus; // 펫시터, 훈련사 승인 여부
 
-	   @Column(name = "member_proimage", length = 2000)
-	   private String memberProImage; // 프로필 이미지
-	   
-	   @Column(name = "member_propath")
-	   private String memberProPath; // 프로필 이미지 이름
-	   
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "varchar(20) default 'ROLE_MEMBER'")
 	private Role role; // ROLE_USER, ROLE_ADMIN

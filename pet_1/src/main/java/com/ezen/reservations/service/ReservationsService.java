@@ -1,21 +1,18 @@
-// 채완
 package com.ezen.reservations.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+
 import com.ezen.entity.Reservations;
 
 public interface ReservationsService {
 
+	List<Reservations> getReservationsList(Reservations rs);
 	
-	// ----- 예약 처리 -----
-	void insertReservations(Reservations reservations);
-
-	// ----- 예약 취소 -----
-	void deleteReservations(Integer rsSeq);
+	Reservations getReservations(Reservations rs);
 	
-	// ----- 예약 현황 조회 -----
-	Page<Reservations> findReservationsByMemberId(String MemberId, Pageable pageable);
-
+	void insertReservations(Reservations rs);
+	
+	void updateReservations(Reservations rs);
+	
+	void deleteReservations(Reservations rs);
 }
-	

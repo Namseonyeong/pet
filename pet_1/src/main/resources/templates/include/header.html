@@ -19,7 +19,7 @@
                         <a class="nav-link" th:href="@{#}">돌봐주시개<span class="sr-only">(current)</span></a>
                         <!-- 메뉴 드롭다운 -->
                         <ul class="dropdown-menu bg-light m-0">
-                            <li><a th:href="@{member/AllSitters(memberType='B')}" class="dropdown-item">펫시터 프로필</a></li>
+                            <li><a th:href="@{/Sitter}" class="dropdown-item">펫시터 프로필</a></li>
                             <li><a th:href="@{/Sitter1}" class="dropdown-item">방문 돌봄</a></li>
                             <li><a th:href="@{/Sitter2}" class="dropdown-item">방문 산책</a></li>
                         </ul>
@@ -27,7 +27,7 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{#}">알려주시개</a>
                         <ul class="dropdown-menu bg-light m-0">
-                            <li><a th:href="@{member/AllTrainers(memberType='C')}" class="dropdown-item">훈련사 프로필</a></li>
+                            <li><a th:href="@{/Trainer}" class="dropdown-item">훈련사 프로필</a></li>
                             <li><a th:href="@{/Trainer1}" class="dropdown-item">훈련 과정</a></li>
                         </ul>
                         

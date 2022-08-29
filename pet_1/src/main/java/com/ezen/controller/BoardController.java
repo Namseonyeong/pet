@@ -41,11 +41,11 @@ public class BoardController {
 		return "board/PetShop_Details.html";
 	}
 
-/*	@RequestMapping(value = "/Sitters")
+	@RequestMapping(value = "/Sitters")
 	public String Sitter() {
 		return "board/Sitter";
 	}
-*/
+
 	@RequestMapping(value = "/Sitter1")
 	public String Sitter1() {
 		return "board/Sitter1.html";
@@ -55,7 +55,7 @@ public class BoardController {
 	public String Sitter2() {
 		return "board/Sitter2.html";
 	}
-/*
+
 	@RequestMapping(value = "/SitterBooking")
 	public String SitterBooking() {
 		return "board/SitterBooking.html";
@@ -70,12 +70,12 @@ public class BoardController {
 	public String Trainer() {
 		return "board/Trainer.html";
 	}
-*/
+
 	@RequestMapping(value = "/Trainer1")
 	public String Trainer1() {
 		return "board/Trainer1.html";
 	}
-/*
+
 	@RequestMapping(value = "/TrainerBooking")
 	public String TrainerBooking() {
 		return "board/TrainerBooking.html";
@@ -85,7 +85,7 @@ public class BoardController {
 	public String TrainerProfile() {
 		return "board/TrainerProfile.html";
 	}
-*/
+	
 	
 	
 	
