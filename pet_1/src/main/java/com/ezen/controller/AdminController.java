@@ -1,5 +1,8 @@
 package com.ezen.controller;
 
+import java.security.Principal;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ezen.Repository.OrdersDetailRepository;
+import com.ezen.Repository.OrdersRepository;
 import com.ezen.entity.Member;
+import com.ezen.entity.Orders;
+import com.ezen.entity.OrdersDetailSy;
 import com.ezen.entity.Product;
 import com.ezen.member.service.MemberService;
+import com.ezen.ordersdetail.service.OrdersDetailService;
 import com.ezen.product.service.ProductService;
-
-//admin 컨트롤러 (DB)
 
 @Controller
 public class AdminController {
@@ -29,70 +35,128 @@ public class AdminController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	//데이터 강제 입력
+	@Autowired
+	private OrdersRepository ordersRepository;
 
+	@Autowired
+	private OrdersDetailRepository ordersDetailRepository;
+	
+	@Autowired
+	private OrdersDetailService ordersDetailService;
+	
+	// 매니저 메인화면
+	@RequestMapping("/admin")
+	public String Manager() {
+		return "/admin/admin";
+	}
+	
+	
+	// 매출현황 (카테고리별 매출현황) / 목록 보여주기 test
+	@GetMapping("/SalesManagement")
+	public String salesManagementList(String searchKeyword, Model model, OrdersDetailSy ordersDetailSy, LocalDateTime localdatetime,
+			@PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
+		if (searchKeyword == null) {
+		}
+		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
+		
+//		List<OrdersDetailSy> asd = null;
+//		Product product = new Product();
+//		product.setPKind(searchKeyword);
+//		asd = ordersDetailRepository.findAllByProduct(product);
+//		System.out.println("===============>" + asd);
+		
+		
+//		List<Product> list2 = productService.productByPKind(searchKeyword);
+////		System.out.println("=========pKind" + searchKeyword);
+		Page<OrdersDetailSy> list = null;
+		list = ordersDetailService.ordersDetailList(pageable);
+//		if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
+//			list = ordersDetailService.ordersDetailList(pageable); // 기존에 보여주는 리스트
+//		} else {
+//			list =  ordersDetailService.ordersDetailSerchList(searchKeyword, pageable); // 검색 기능이 포함된 리스트
+//		}
+		
+//		System.out.println("salesManagementList===============" + list.hasContent());
+//		System.out.println("salesManagementList222===============" + list.getTotalElements());
+		System.out.println("psalesManagementList333=============" + list.getContent());
+//		System.out.println("=========pKind" + searchKeyword);
+
+		// 페이징 처리 넘겨주기
+		model.addAttribute("list", list);
+		model.addAttribute("pKind", searchKeyword);
+		
+
+		return "admin/SalesManagement";
+		
+	}
+	
+	
 	// 대시보드로 이동
 	@RequestMapping(value = "/Dashboards")
 	public String Dashboards() {
 		return "/admin/Dashboards";
 	}
 
-	// 매니저 메인화면
-	@RequestMapping("/admin")
-	public String Manager() {
-		return "/admin/admin";
-	}
-
-//	// 상품관리 (카테고리별 매출현황)
-//	@RequestMapping(value = "/ProductManagement")
-//	public String ProductManagement() {
-//		return "admin/ProductManagement.html";
-//	}
-
-//	// 상품등록 (등록)
+	// 상품등록 (등록 페이지 이동)
 	@RequestMapping(value = "/ProductRegistration")
-	public String ProductRegistration() {
+	public String ProductRegistration(Integer pSeq, Pageable pageable) {
 		return "admin/ProductRegistration.html";
 	}
-
-	// 매출현황 (카테고리별 매출현황)
-	@RequestMapping(value = "/SalesManagement")
-	public String SalesManagement() {
-		return "admin/SalesManagement";
-	}
-
 	
-	// 테스트 (상품 등록)
+	// 상품관리 (상품 등록)
+//	@PostMapping("/Productwrite")
+//	public String Productwrite(Product product, Model model, MultipartFile file) throws Exception {
+//
+//		productService.insertwrite(product, file);
+//		System.out.println("번호 : " + product.getPSeq());
+//
+////		System.out.println("분류 : " + product.getPKind());
+////		System.out.println("이름 : " + product.getpName()); 
+////		System.out.println("원가 : " + product.getPrice1());
+////		System.out.println("판매가 : " + product.getPrice2());
+////		System.out.println("순수익 : " + product.getPrice3());
+////		System.out.println("상세정보 : " + product.getPContent());
+////		System.out.println("이미지 : " + product.getPImage());
+////		
+//		model.addAttribute("message", "상품 등록이 완료되었습니다.");
+//		model.addAttribute("searchUrl", "/Productlist");
+//
+//		return "admin/message";
+//
+//	}
+	
+	// 상품등록 시 주문테이블에 강제 insert 하기 위해 임시로 사용 
 	@PostMapping("/Productwrite")
-	public String Productwrite(Product product, Model model, MultipartFile file) throws Exception {
-
+	public String Productwrite(Product product, Model model, MultipartFile file, Principal principal) throws Exception {
+		
 		productService.insertwrite(product, file);
 		System.out.println("번호 : " + product.getPSeq());
 
-//		System.out.println("분류 : " + product.getPKind());
-//		System.out.println("이름 : " + product.getpName()); 
-//		System.out.println("원가 : " + product.getPrice1());
-//		System.out.println("판매가 : " + product.getPrice2());
-//		System.out.println("순수익 : " + product.getPrice3());
-//		System.out.println("상세정보 : " + product.getPContent());
-//		System.out.println("이미지 : " + product.getPImage());
-//		
 		model.addAttribute("message", "상품 등록이 완료되었습니다.");
 		model.addAttribute("searchUrl", "/Productlist");
+		
+		Orders orders = new Orders();
+		Member member = memberService.getMember(principal.getName());
+		// productTemp.setpSeq(product.getpSeq());
+		orders.setMember(member);
+		orders.setOrderRce("컴포즈");
+		orders.setOrderTel("01011111112");
+		orders.setOrderAddr1("서울시 금천구");
+		ordersRepository.save(orders);
+		
+		OrdersDetailSy od = new OrdersDetailSy();
+		od.setQuantity(10);
+		od.setOrders(orders);
+		od.setProduct(product);
+		ordersDetailRepository.save(od);
 
 		return "admin/message";
 
 	}
-
-	// 상품 목록 리스트
-//	@GetMapping("/Productlist")
-//	public String Productlist(Model model) {
-//		
-//		model.addAttribute("list", productService.productList());
-//		
-//		return "admin/Productlist";
-//	}
-
-	// 상품 목록 리스트 (페이징처리)
+	
+	// 상품관리 리스트 (페이징처리)
 	@GetMapping("/Productlist")
 	public String productList(String searchKeyword, Model model,
 			@PageableDefault(page = 0, size = 10, sort = "pSeq", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -103,15 +167,16 @@ public class AdminController {
 		} else {
 			list = productService.productSerchList(searchKeyword, pageable); // 검색 기능이 포함된 리스트
 		}
-		System.out.println("==============================" + list );
 		// 페이징 처리 넘겨주기
 		model.addAttribute("list", list);
 		model.addAttribute("pKind", searchKeyword);
 
+	
+
 		return "admin/Productlist";
 	}
 
-	// 상품 수정 페이지 이동
+	// 상품관리 (수정페이지 이동)
 	@GetMapping("/ProductModify/{pSeq}")
 	public String ProductModify(@PathVariable("pSeq") Integer pSeq, Model model) {
 
@@ -120,7 +185,7 @@ public class AdminController {
 		return "admin/ProductModify";
 	}
 
-	// 상품 수정 (저장)
+	// 상품관리 (상품 수정 저장)
 	@PostMapping("/product/update/{pSeq}")
 	public String productUpdate(@PathVariable("pSeq") Integer pSeq, Product product, Model model, MultipartFile file)
 			throws Exception {
@@ -145,7 +210,7 @@ public class AdminController {
 
 	}
 
-	// 상품 삭제 (Productlist 참고)
+	// 상품관리 상품 삭제 (Productlist 참고)
 
 	@PostMapping("/productDelete")
 	public String productDelete(@RequestParam Integer[] valueArr) {
@@ -195,30 +260,30 @@ public class AdminController {
 		
 
 		// 펫시터/훈련사 승인대기목록
-//		@RequestMapping(value = "/userApproval")
+//		@GetMapping(value = "/userApproval")
 //		public String UserApproval() {
-//			return "admin/UserApproval.html";
+//			return "admin/UserApproval";
 //		}
 		
 //		// 펫시터,훈련사 승인 대기 Member createdDate = 회원가입 순
-//		@GetMapping("/userApproval")
-//		public String userApprovallist(String searchKeyword, Model model, @RequestParam("memberType") char memberType,
-//				@PageableDefault(page = 0, size = 10, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
-//			
+		@GetMapping("/userApproval")
+		public String userApprovallist(String searchKeyword, Model model, Member member,
+				@PageableDefault(page = 0, size = 10, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+			
 //			System.out.println("=======================================>" + memberType);
-//			Page<Member> list = null;
-//			if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
-//				list = productService.userApprovaList((char) 0, pageable); // 기존에 보여주는 리스트
-//			} else {
-//				list = productService.userApprovaSerchList((char) 0, searchKeyword, pageable); // 검색 기능이 포함된 리스트
-//			}
-//
-//			// 페이징 처리 넘겨주기
-//			model.addAttribute("list", list);
-//			model.addAttribute("memberType", searchKeyword);
-//
-//			return "admin/UserApproval";
-//		}
+			Page<Member> list = null;
+			if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
+				list = productService.userApprovaList(pageable); // 기존에 보여주는 리스트
+			} else {
+				list = productService.userApprovaSerchList(searchKeyword, pageable); // 검색 기능이 포함된 리스트
+			}
+
+			// 페이징 처리 넘겨주기
+			model.addAttribute("list", list);
+			model.addAttribute("memberType", searchKeyword);
+
+			return "admin/UserApproval";
+		}
 		
 //		@GetMapping("/userApproval")
 //		public String userApprovallist(@RequestParam("memberType") String memberType, Model model) {
@@ -242,10 +307,6 @@ public class AdminController {
 //	       
 //	       return "admin/UserApproval";
 //	    }
-
-		
-	
-
 
 
 }
