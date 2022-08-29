@@ -1,7 +1,9 @@
 package com.ezen.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,33 +57,39 @@ public class AdminController {
 	
 	// 매출현황 (카테고리별 매출현황) / 목록 보여주기 test
 	@GetMapping("/SalesManagement")
-	public String salesManagementList(String searchKeyword, Model model, OrdersDetailSy ordersDetailSy, LocalDateTime localdatetime,
+	public String salesManagementList(String searchKeyword, Model model, OrdersDetailSy ordersDetailSy, LocalDateTime localdate,
 			@PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
 		if (searchKeyword == null) {
 		}
 		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
+	
+//		 LocalDateTime startDatetime = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
+//		 LocalDateTime endDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
+//		 ordersRepository.findAllByOrderDateBetween(startDatetime, endDatetime);
 		
-//		List<OrdersDetailSy> asd = null;
-//		Product product = new Product();
-//		product.setPKind(searchKeyword);
-//		asd = ordersDetailRepository.findAllByProduct(product);
-//		System.out.println("===============>" + asd);
+//		if (!Strings.isNullOrEmpty(param.getRegisterdTime())) {
+//            LocalDateParser localDateParser = new LocalDateParser(param.getRegisterdTime());
+//            builder.and(qTest.registerdTime.between(localDateParser.startDate(), localDateParser.endDate()));
+//        } else {
+//            // default : toDay >=
+//            LocalDate currentDate = LocalDate.now();
+//            builder.and(qTest.registerdTime.gt(currentDate.atStartOfDay()));
+//        }
 		
+	
 		
-//		List<Product> list2 = productService.productByPKind(searchKeyword);
-////		System.out.println("=========pKind" + searchKeyword);
 		Page<OrdersDetailSy> list = null;
 		list = ordersDetailService.ordersDetailList(pageable);
-//		if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
-//			list = ordersDetailService.ordersDetailList(pageable); // 기존에 보여주는 리스트
-//		} else {
-//			list =  ordersDetailService.ordersDetailSerchList(searchKeyword, pageable); // 검색 기능이 포함된 리스트
-//		}
+		if (localdate == null) {
+			list = ordersDetailService.ordersDetailList(pageable);
+		} else {
+			list =  ordersDetailService.ordersDetailSerchList(searchKeyword, pageable);
+		}
 		
 //		System.out.println("salesManagementList===============" + list.hasContent());
 //		System.out.println("salesManagementList222===============" + list.getTotalElements());
 		System.out.println("psalesManagementList333=============" + list.getContent());
-//		System.out.println("=========pKind" + searchKeyword);
+//		System.out.println("order_date=============" + list.getorderDate());
 
 		// 페이징 처리 넘겨주기
 		model.addAttribute("list", list);
@@ -93,6 +101,7 @@ public class AdminController {
 	}
 	
 	
+
 	// 대시보드로 이동
 	@RequestMapping(value = "/Dashboards")
 	public String Dashboards() {
@@ -250,6 +259,7 @@ public class AdminController {
 				list = productService.userManagemenSerchList(searchKeyword, pageable); // 검색 기능이 포함된 리스트
 			}
 
+			
 			// 페이징 처리 넘겨주기
 			model.addAttribute("list", list);
 			model.addAttribute("memberType", searchKeyword);
