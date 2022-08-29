@@ -19,4 +19,5 @@ public interface ReservationsRepository extends JpaRepository<Reservations, Inte
 	Page<Reservations> findReservationsByMemberId(String memberId, Pageable pageable);
 	
 	
+
 }
