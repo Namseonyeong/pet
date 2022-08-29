@@ -44,4 +44,3 @@ public class OrdersDetail {
 	// private int orderSeq;
 	*/
 }
-

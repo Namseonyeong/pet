@@ -1,9 +1,11 @@
 package com.ezen.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,12 +13,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import lombok.Data;
 
 @Table(name = "Orders")
 @Entity  // 클래스의 테이블
 @Data
-public class Orders {
+@EntityListeners(AuditingEntityListener.class)
+public class Orders  {
 
 	// 주문
 	@Id
@@ -38,6 +44,7 @@ public class Orders {
    
     // 구매 날짜
     @Column(name = "order_date")
+    @CreatedDate
     private LocalDateTime orderDate;
     
     // 멤버 seq
