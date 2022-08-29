@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,23 +40,18 @@ public class Cart {
 	   private Product product;
 	   
 	   
-	   
 //	   // 멤버 seq
 //	   @OneToOne(fetch = FetchType.LAZY)
 //	   @JoinColumn(name = "member_id")
 //	   private Member member;
-//	
-//	   
-//	   
-//	   
-//	   
+	
 //	   
 //	   public static Cart createCart(Member member) {
 //		   Cart cart = new Cart();
 //		   cart.setMember(member);
 //		   return cart;
 //	   }
-//	   
+	   
 //	   //product 와 1:1 조인
 //	   @OneToOne
 //	   @JoinColumn(name="product_id")

@@ -26,7 +26,7 @@ function deleteValue(url, returnUrl, name) {
 	}
 	
 	if (valueArr.length == 0){
-		 alert("선택된 게시글이 없습니다.");
+		 alert("선택된 게시글이 없습니다.");ㄴ
 		 return false;
 	}
 	

@@ -41,8 +41,6 @@
                                      <option th:selected="${pKind}=='의상'">의상</option>
                                  </select>
                             </div>
-
-                            <!-- <button class="btn btn-warning">조회</button> -->
                             <button class="btn btn-success" th:onclick="location.href='ProductRegistration'">등록</button>
                             <button class="btn btn-danger" th:onclick="deleteValue('/productDelete','/Productlist', 'pSeq');">삭제</button>
                         </div>

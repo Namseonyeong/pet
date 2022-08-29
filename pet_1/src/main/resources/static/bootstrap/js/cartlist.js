@@ -80,16 +80,4 @@ function go_insertCart(id, pSeq){
 	
 	return cartList;
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
+	}

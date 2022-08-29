@@ -1,6 +1,7 @@
 package com.ezen.product.service;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,5 +152,13 @@ public class ProductServiceimpl implements ProductService {
 //	      
 //	      return memberRepository.findByType(memberType);
 //	   }
-//	
+		
+//		@Override
+//		public List<Product> productByPKind(String Kind){
+//			
+//			return productRepository.productByPKind(Kind);
+//		}
+	
+		
+		
 }

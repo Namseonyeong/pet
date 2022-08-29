@@ -10,52 +10,25 @@
         <section class="book_section layout_padding">
             <div class="container">
                 <div class="heading_container heading_center">
-                    <h3 class="mb-1">ID 찾기</h3>
+                    <h3 class="mb-1">ID 찾기 결과</h3>
                 </div>
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <div class="form_container">
-                            <form action="/findId/action" method="POST">
+                            <form action="/findId/action" method="POST" >
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                                <div><input id="memberName" name="memberName" class="form-control" placeholder="이름" /></div>
-                                <div><input id="memberEmail" name="memberEmail" class="form-control" placeholder="이메일" /></div>
+                                  User Id<input type=text name="memberId" th:value="${member?.memberId}">  
+                                  <h5>${message}</h5>
+                                <div><input id=memberEmail class="form-control" placeholder="이메일" /></div>
                                 <div class="btn_box">
                                     <button style="padding: 10px 150px; margin-bottom:30px">조회</button>
-
                                 </div>
                                 
                                 <div style="margin-top: 15px">
                                 <!-- target="_blank" 새창 띄울때  UserJoin_Page.html-->
                                 </div>
                                 
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-4"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="heading_container heading_center">
-                    <h3 class="mb-1">비밀번호 찾기</h3>
-                </div>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    
-                    <div class="col-md-4">
-                        <div class="form_container">
-                            <form th:action="@{#}">
-                                <div><input id=memberName name=memberName class="form-control" placeholder="이름" /></div>
-                                <div><input id=memberId name=memberId class="form-control" placeholder="아이디" /></div>
-                                <div><input id=memberEmail name=memberPw class="form-control" placeholder="이메일" /></div>
-                                <div class="btn_box">
-                                    <button style="padding: 10px 150px; margin-bottom:30px">조회</button>
-                                </div>
-                                
-                                <div style="margin-top: 15px">
-                                    
-<!-- target="_blank" 새창 띄울때  UserJoin_Page.html-->
-                                </div>
                             </form>
                         </div>
                     </div>

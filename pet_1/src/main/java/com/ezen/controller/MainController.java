@@ -57,6 +57,7 @@ public class MainController {
 			// admin 으로 회원가입하면 관리자권한을 준다
 			if (member.getMemberId().equals("admin")) {
 				member.setRole(Role.ROLE_ADMIN); 
+				member.setMemberType("관리자");
 			} else {
 				member.setRole(Role.ROLE_MEMBER);
 			}

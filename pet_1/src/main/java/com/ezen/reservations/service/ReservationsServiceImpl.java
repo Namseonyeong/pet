@@ -1,4 +1,4 @@
-/*package com.ezen.reservations.service;
+package com.ezen.reservations.service;
 
 import java.util.List;
 
@@ -53,4 +53,3 @@ public class ReservationsServiceImpl implements ReservationsService {
 	
 	
 }
-*/

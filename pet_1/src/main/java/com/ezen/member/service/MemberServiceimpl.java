@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.Repository.MemberRepository;
 import com.ezen.entity.Member;
+import com.ezen.entity.Reservations;
 import com.ezen.security.SecurityUserService;
 
 @Service
@@ -78,7 +79,7 @@ public class MemberServiceimpl implements MemberService {
 	public void updateMember(Member member, MultipartFile file, Principal principal) throws Exception {
 
 		System.out.println("들어오니?");
-		
+		System.out.println("--========>" + principal.getName().getClass().getName());
 		Member memberTemp = getMember(principal.getName());
 		System.out.println("memberTemp ==> " + memberTemp);
 //		memberTemp.setMemberPw(passwordEncoder.encode(member.getMemberPw()));
@@ -91,7 +92,6 @@ public class MemberServiceimpl implements MemberService {
 		
 		insertjoin(memberTemp, file);
 		return;
-
     
 	}
 
@@ -107,8 +107,6 @@ public class MemberServiceimpl implements MemberService {
 	public void memberDelete(String memberId) {
 		memberRepository.deleteById(memberId);
 	}
-
-	
 }
 
 	

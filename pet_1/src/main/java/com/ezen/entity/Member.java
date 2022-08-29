@@ -7,17 +7,20 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.ezen.BaseTimeEntity;
 import com.ezen.security.Role;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 //UserDetails는 시큐리티가 관리하는 객체이다.
 @Entity
 @Table(name = "Member")
 @Data
-// @NoArgsConstructor //디폴트생성자
-// @AllArgsConstructor //모든 필드가 있는 생성자
-public class Member {
+@NoArgsConstructor //디폴트생성자
+@AllArgsConstructor //모든 필드가 있는 생성자
+public class Member extends BaseTimeEntity {
 
 	// ID = PK 키
 	@Id
@@ -50,9 +53,16 @@ public class Member {
 	private String memberImage; // 자격증 이미지
 
 	@Column(name = "member_path")
-	private String memberPath; // 이미지 이름
+	private String memberPath; // 자격증 이미지 이름
+	
+	@Column(name = "member_proimage", length = 2000)
+	private String memberProImage; // 프로필 이미지
+	
+	@Column(name = "member_propath")
+	private String memberProPath; // 프로필 이미지 이름
 
-	@Column(name = "member_type", nullable = true, columnDefinition = "char(1) default 'D'")
+	//, columnDefinition = "char(1) default 'D'"
+	@Column(name = "member_type", nullable = true)
 	private String memberType; // 사용자 타입
 
 	@Column(name = "member_status", nullable = true, columnDefinition = "char(1) default 'N'")
@@ -62,7 +72,6 @@ public class Member {
 	@Column(columnDefinition = "varchar(20) default 'ROLE_MEMBER'")
 	private Role role; // ROLE_USER, ROLE_ADMIN
 
-	
 	// 비밀번호, 핸드폰번호, 주소, 프로필제목, 자기소개 변경
 //	public void modify(String memberPw, String memberPhone, String memberTitle, String memberIy) {
 //		this.memberPw = memberPw;
@@ -93,4 +102,8 @@ public class Member {
 
 	// }
 
-}
+	}
+	
+
+
+

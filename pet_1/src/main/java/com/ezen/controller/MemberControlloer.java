@@ -155,18 +155,6 @@ public class MemberControlloer {
 		   }
 		
 }
-			
-			
-//			@GetMapping("/MyPage_Withdrawal")
-//			public void daleteMember(Member member, Model model, Principal principal) {
-//				
-//				Member deleteMemberId = memberService.getMember(principal.getName());
-//				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//				if (!encoder.matches(member.getMemberPw(), deleteMemberId.getMemberPw())) {
-//					model.addAttribute("message", "기존 패스워드와 일치하지 않습니다."); 
-//				}
-//				MemberRepository.deleteBymemberId(deleteMemberId);
-//			}
 	   
 	   
 	

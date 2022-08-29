@@ -1,6 +1,8 @@
 
 package com.ezen.product.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +30,7 @@ public interface ProductService {
 	
 	//상품종류별 조회 (병선)
 	Page<Product> productfindByPKind(String Kind, Pageable pageable);
-
+	
 	//선영테스트
 	// 회원 전체목록 조회
 	Page<Member> userManagementList(Pageable pageable);
@@ -50,10 +52,10 @@ public interface ProductService {
 	
 //	public List<Member> findBymemberType(String memberType);
 	
-	
-	
-//	
 //	// 승인목록 test
 //	List<Member> findBymemberType(char memberType);
+	
+	// 매출현황 (test)
+//	public List<Product> productByPKind(String Kind);
 	
 }

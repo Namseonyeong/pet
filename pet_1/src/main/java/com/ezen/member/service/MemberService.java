@@ -21,7 +21,7 @@ public interface MemberService {
 	void updateMember(Member member, MultipartFile file, Principal memberDelete) throws Exception;
 	// principal.getName()
 
-	// 이름, 이메일로 아이디 찾기
+	// 이름, 이메일로 아이디 찾기 (다시 할것 안됨)
 	Member searchMember(String memberEmail, Member member);
 	
 	// 비밀번호 변경
@@ -31,17 +31,11 @@ public interface MemberService {
 	public void memberDelete(String memberId);
 	
 	
-	
 //	// 이름과 이메일로 아이디 찾기
 //	public Member selectIdByNameEmail(Member member, String memberEmail);
 //	
 //	// 아이디, 이름, 이메일로 비밀번호 찾기
 //	public String selectPwdByIdNameEmail(Member member);
-//
-//	// 회원 ID를 조건으로 비밀번호 변경
-//	public void changePassword(Member member) ;
 
 
-	
-	
 }
