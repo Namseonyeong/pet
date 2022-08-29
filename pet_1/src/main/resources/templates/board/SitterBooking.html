@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!-- 채완 -->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/include/head :: head"></head>
 
 <!-- book section -->
-<section class="book_section layout_padding">
+<section class="book_section" style="padding-top: 15px;">
 	<div class="container">
 		<div class="heading_container heading_center">
 			<h3 class="mb-1">예약내용 작성</h3>
@@ -15,42 +16,52 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<div class="form_container">
+				<div class="form_container" style="margin-bottom: 15px;">
 
-					<form action="">
+					<form th:action="@{SitterBooking}" method="post">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 						예약 날짜
 						<div>
-							<input type="date" class="form-control" />
+							<input name="rsDate" type="date" class="form-control" />
 						</div>
 						예약시간
 						<p>
-							<input type="time" /> &nbsp; ~ &nbsp;<input type="time" />
+							<input name="rsTime" type="time" />
 						</p>
+						교육 선택
+						<br>
+						<input type="radio" name="rsEdu" id="inlineRadio1" value="방문 돌봄" checked>
+						방문 돌봄&nbsp;&nbsp;
+						<input type="radio" name="rsEdu" id="inlineRadio2" value="방문 산책">
+						방문 산책
+						<br>
+						<br>
 						<label for="time">총 이용 시간</label>
 						<h6>※ 24시간 초과시 펫시터와 협의하세요.</h6>
-						<input th:type="phone" class="form-control" id="phone"
-							placeholder="1" required min="1" max="24">
+						<input name="rsTime2" class="form-control" id="time"
+							placeholder="0" required min="1" max="24">
 						<div class="invalid-feedback">최소 1시간에서 최대 24시간을 입력해주세요.</div>
 						견종
 						<div>
-							<input type="text" class="form-control" />
+							<input name="rsKind" type="text" class="form-control" />
 						</div>
 						지역
 						<div>
-							<select class="form-control nice-select wide">
-								<option value="" disabled selected>서울</option>
-								<option value="">경기</option>
-								<option value="">인천</option>
-								<option value="">강원</option>
-								<option value="">충남/충북</option>
-								<option value="">전북/전남</option>
-								<option value="">경남/경북</option>
-								<option value="">부산/울산</option>
-								<option value="">그 외</option>
+							<select name="rsArea" class="form-control nice-select wide">
+								<option value="서울" selected>서울</option>
+								<option value="경기">경기</option>
+								<option value="인천">인천</option>
+								<option value="강원">강원</option>
+								<option value="충남/충북">충남/충북</option>
+								<option value="전북/전남">전북/전남</option>
+								<option value="경남/경북">경남/경북</option>
+								<option value="부산/울산">부산/울산</option>
+								<option value="그 외">그 외</option>
 							</select>
 						</div>
 						<div class="btn_box ">
-							<button style="padding: 10px 160px; margin-top: 0px">예약완료</button>
+							<button type="submit"
+								style="padding: 10px 160px; margin-top: 0px">예약하기</button>
 						</div>
 					</form>
 				</div>
