@@ -52,7 +52,7 @@
 							<tr th:each="cart : ${cartList}">
 								<td><input name="RowCheck" th:type="checkbox" value="${cart.cart_seq}"/></td>	
 								<td th:text="${cart.cartSeq}"></td>
-								<td><img th:src="@{/productimage/}+${cart.product.pImage}"></td>
+								<td><img th:src="@{${cart.product.pPath}}"></td>
 								<td th:text="${cart.product.pName}"></td>	
 								<td th:text="${cart.cartStrock}" >
 								
@@ -65,9 +65,6 @@
 										</select>
 										 -->
 								</td>	
-
-									
-
 												
 								<td th:text="${cart.product.price2}"></td>
 								<td th:text="${totalprice}"></td>

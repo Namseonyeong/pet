@@ -110,18 +110,20 @@
         <div th:replace="/include/script :: script"></div>
         <!-- end script section -->
        
-       <script type="text/javascript">
-        document.getElementById("startDate").value = new Date().toISOString().substring(0, 10);
-        document.getElementById("endDate").value = new Date().toISOString().substring(0, 10);
+<!--        <script type="text/javascript"> -->
+//         document.getElementById("startDate").value = new Date().toISOString().substring(0, 10);
+//         document.getElementById("endDate").value = new Date().toISOString().substring(0, 10);
         
-        function handleOnChange(e) {
-            const text = e.options[e.selectedIndex].text;
-            const queryParams = {
-                searchKeyword: text === "전체" ? "" : text,
-            };
+//         function handleOnChange(e) {
+//             const text = e.options[e.selectedIndex].text;
+//             const queryParams = {
+//                 searchKeyword: text === "전체" ? "" : text,
+//             	startDate: document.getElementById("startDate").value,
+//             	endDate: document.getElementById("endDate").value,
+//             };
 
-            location.replace(location.pathname + "?" + new URLSearchParams(queryParams).toString());
-        }
-    </script>
+//             location.replace(location.pathname + "?" + new URLSearchParams(queryParams).toString());
+//         }
+<!--     </script> -->
     </body>
 </html>

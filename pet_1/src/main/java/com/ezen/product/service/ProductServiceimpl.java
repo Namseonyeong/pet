@@ -1,13 +1,11 @@
 package com.ezen.product.service;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,7 +23,7 @@ public class ProductServiceimpl implements ProductService {
 	@Autowired
 	private MemberRepository memberRepository;
 
-	// 상품 등록 처리(이미지)
+	// 상품 등록 처리(이미지)_sy
 	@Override
 	public void insertwrite(Product product, MultipartFile file) throws Exception {
 
@@ -52,28 +50,28 @@ public class ProductServiceimpl implements ProductService {
 
 	}
 
-	// 상품 목록
+	// 상품 목록_sy
 	@Override
 	public Page<Product> productList(Pageable pageable) {
 
 		return productRepository.findAll(pageable);
 	}
 
-	// 상품 조회 (목록)
+	// 상품 조회 (목록)_sy
 	@Override
 	public Page<Product> productSerchList(String searchKeyword, Pageable pageable) {
 
 		return productRepository.findBypKind(searchKeyword, pageable);
 	}
 
-	// 특정 게시글 불러오기
+	// 특정 게시글 불러오기_sy
 	@Override
 	public Product productView(Integer pSeq) {
 
 		return productRepository.findById(pSeq).get();
 	}
 
-	// 특정 상품목록 삭제
+	// 특정 상품목록 삭제_sy
 	@Override
 	public void productDelete(Integer pSeq) {
 
@@ -81,14 +79,14 @@ public class ProductServiceimpl implements ProductService {
 
 	}
 
-	// 회원목록 
+	// 회원목록_sy
 	@Override
 	public Page<Member> userManagementList(Pageable pageable) {
 
 		return memberRepository.findAll(pageable);
 	}
 
-	// 회원목록
+	// 회원목록_sy
 	@Override
 	public Page<Member> userManagemenSerchList(String searchKeyword, Pageable pageable) {
 
@@ -96,27 +94,26 @@ public class ProductServiceimpl implements ProductService {
 	}
 	
 
-	// 회원승인 여부 (펫시터, 트레이너)
+	// 회원승인 여부 (펫시터, 트레이너)_sy
 	@Override
 	public Page<Member> userApprovaList(Pageable pageable) {
 
 		return memberRepository.findAll(pageable);
 	}
 	
-	// 회원승인 여부 (펫시터, 트레이너) - 페이징
+	// 회원승인 여부 (펫시터, 트레이너)페이징_sy
 	@Override
 	public Page<Member> userApprovaSerchList(String searchKeyword, Pageable pageable){
 		return memberRepository.findBymemberId(searchKeyword, pageable);
 	}
 
-		//상품종류별 조회(지병)
-		@Override
-		public Page<Product> productfindByPKind(String Kind, Pageable pageable){
-			
-			return productRepository.productfindByPKind(Kind, pageable);
-		}
-
-
+	//상품종류별 조회(지병)
+	@Override
+	public Page<Product> productfindByPKind(String Kind, Pageable pageable){
+		
+		return productRepository.productfindByPKind(Kind, pageable);
+	}
+	
 		// 테스트
 			// 타입별로 리스트 불러오기 (펫시터, 트레이너)
 //	@Override

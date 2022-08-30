@@ -22,6 +22,7 @@ import com.ezen.product.service.ProductService;
 
 @Controller
 public class CartController {
+
 	
 	@Autowired
 	private CartRepository cartRepo;
@@ -37,6 +38,7 @@ public class CartController {
 
 	@ModelAttribute("member")
 	public Member setMember() {
+		
 		return new Member();
 	}
 	
@@ -48,29 +50,35 @@ public class CartController {
 	}
 	
 	//카트에 상품담기
-	@GetMapping("/insertCart")
-	public String insertCart(@RequestParam("pseq") Integer pseq, Member member, Principal principal, Integer cartStrock)  {
-		
-		Cart cart = new Cart();
-		
-		Product product = new Product();
-		product.setPSeq(pseq);
-		
-		System.out.println("pseq = " + pseq);
-		cart.setProduct(product);
-		cart.setCartStrock(cart.getCartStrock());
-		
-		
-		member.setMemberId(principal.getName());
-		cart.setMember(member);
+		@GetMapping("/insertCart")
+		public String insertCart(@RequestParam("pSeq") Integer pSeq,
+								@RequestParam("price2") Integer price2,
+								@RequestParam("cartStrock") Integer cartStrock, Member member, Principal principal)  {
+			
+			Cart cart = new Cart();
+			
+			Product product = new Product();
+			product.setPSeq(pSeq);
+			
+			
+			System.out.println("=====================> " + pSeq);
+			
+			System.out.println("=====================> " + member);
+			
+			System.out.println("pseq = " + pSeq);
+			cart.setProduct(product);
+			cart.setCartStrock(cartStrock);
+			cart.setTotalprice(cart.getCartStrock() * price2);
+			
+			
+			member.setMemberId(principal.getName());
+			cart.setMember(member);
+			cartService.insertCart(cart);
+			
+			return "redirect:/getCartList";
+		}
 
-		
-		cartService.insertCart(cart);
-		
-		return "redirect:/getCartList";
-	}
-
-	@RequestMapping("/getCartList")
+	@GetMapping("/getCartList")
 	public String getCartList(Principal principal, Model model, Cart cart) {
 		
 		System.out.println("MemberId = " + principal.getName());
@@ -78,19 +86,25 @@ public class CartController {
 		List<Cart> cartList = cartService.findCartByMemberId(principal.getName());
 		
 		for(Cart item : cartList) {
-			System.out.println("cart.getProduct = " + cart.getProduct());
+			System.out.println("cart.getProduct = " + item.getProduct());
 		}
+		
 
 		model.addAttribute("cartList", cartList);
+		
 		
 		return "member/MyPage_cart";
 	}
 
-	@GetMapping("/deleteCart")
-	public String deleteCart(@ModelAttribute("member") Member member, Integer cartSeq) {
+
+
+	@PostMapping("/deleteCart")
+	public String deleteCart(@RequestParam Integer[] valueArr) {
+		for(Integer i = 0; i < valueArr.length; i++) {
+			
+		cartService.deleteCart(valueArr[i]);
 		
-		cartService.deleteCart(cartSeq);
-		
-		return "redirect:getCartList";
+		}
+		return "redirect:/getCartList";
 	}
 }

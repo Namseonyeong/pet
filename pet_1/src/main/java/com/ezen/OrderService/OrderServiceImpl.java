@@ -5,33 +5,34 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ezen.CartService.CartService;
 import com.ezen.Repository.OrdersRepository;
-import com.ezen.entity.Cart;
 import com.ezen.entity.Orders;
 
-@Service(OrdersService)
-public class OrderServiceImpl {
+@Service
+public class OrderServiceImpl implements OrderService{
+	
+	@Autowired
+	private OrdersRepository orderRepo;
 
 	
-	@Autowired
-	private Cart cart;
 	
-	@Autowired
-	private Orders order;
-	
-	@Autowired
-	private OrdersRepository ordersRepository;
-	
-	@Autowired
-	private CartService cartservice;
-	
-	public void inserOrder(Orders order) {
+	//주문테이블에 담기
+	@Override
+	public int insertOrder(Orders orders) {
 		
-		ordersRepository.save(order);
+		Orders result = orderRepo.save(orders);
 		
-		List<Cart> listCart = cartservice.getCartList(order.getmember_id());
+		return result.getOrderSeq();
 	}
+	
+	//주문목록 불러오기(카트리스트와 동일)
+	@Override
+	public List<Orders> findOrderByMemberId(String MemberId){
+	
+		return (List<Orders>)orderRepo.findOrderByMemberId(MemberId);
+	}
+	
+	
 	
 	
 }

@@ -4,12 +4,14 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,50 +57,92 @@ public class AdminController {
 	}
 	
 	
-	// 매출현황 (카테고리별 매출현황) / 목록 보여주기 test
-	@GetMapping("/SalesManagement")
-	public String salesManagementList(String searchKeyword, Model model, OrdersDetailSy ordersDetailSy, LocalDateTime localdate,
-			@PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
-		if (searchKeyword == null) {
-		}
-		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
+//	// 매출현황 (카테고리별 매출현황) / 목록 보여주기 test
+//	@GetMapping("/SalesManagement")
+//	public String salesManagementList(String searchKeyword, String startDate, String endDate, Model model, OrdersDetailSy ordersDetailSy, LocalDateTime localdate,
+//			@PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
+//		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
+//		startDate = (startDate == null) ? "" : startDate;
+//		endDate = (endDate == null) ? "" : endDate;
+//	
+//		
+////		 LocalDateTime startDatetime = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
+////		 LocalDateTime endDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
+////		 ordersRepository.findAllByOrderDateBetween(startDatetime, endDatetime);
+//		
+////		if (!Strings.isNullOrEmpty(param.getRegisterdTime())) {
+////            LocalDateParser localDateParser = new LocalDateParser(param.getRegisterdTime());
+////            builder.and(qTest.registerdTime.between(localDateParser.startDate(), localDateParser.endDate()));
+////        } else {
+////            // default : toDay >=
+////            LocalDate currentDate = LocalDate.now();
+////            builder.and(qTest.registerdTime.gt(currentDate.atStartOfDay()));
+////        }
+//		
+//	
+//		
+//		Page<OrdersDetailSy> list = null;
+////		list = ordersDetailService.ordersDetailList(pageable);
+//		if (localdate == null) {
+//			list = ordersDetailService.ordersDetailList(pageable);
+//		} else {
+//			list =  ordersDetailService.ordersDetailSerchList(searchKeyword, pageable);
+//		}
+//		
+////		System.out.println("salesManagementList===============" + list.hasContent());
+////		System.out.println("salesManagementList222===============" + list.getTotalElements());
+//		System.out.println("psalesManagementList333=============" + list.getContent());
+////		System.out.println("order_date=============" + list.getorderDate());
+//		
+//		// 페이징 처리 넘겨주기
+//		model.addAttribute("list", list);
+//		model.addAttribute("pKind", searchKeyword);
+//		model.addAttribute("startDate", startDate);
+//		model.addAttribute("endDate", endDate);
+//		
+//
+//		return "admin/SalesManagement";
+//		
+//	}
 	
-//		 LocalDateTime startDatetime = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
-//		 LocalDateTime endDatetime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
-//		 ordersRepository.findAllByOrderDateBetween(startDatetime, endDatetime);
-		
-//		if (!Strings.isNullOrEmpty(param.getRegisterdTime())) {
-//            LocalDateParser localDateParser = new LocalDateParser(param.getRegisterdTime());
-//            builder.and(qTest.registerdTime.between(localDateParser.startDate(), localDateParser.endDate()));
-//        } else {
-//            // default : toDay >=
-//            LocalDate currentDate = LocalDate.now();
-//            builder.and(qTest.registerdTime.gt(currentDate.atStartOfDay()));
-//        }
-		
 	
+	// 매출현황 (날짜별 매출현황) 날짜 조회 넘겨주기
+//	@GetMapping("/SalesManagement")
+//	public String salesDatecheck(@RequestParam(value = "startDate", required = false) String startDate,
+//									  @RequestParam(value = "endDate", required = false) String endDate,
+//			String searchKeyword, Model model, OrdersDetailSy ordersDetailSy, 
+//			@PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
+////		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
+////		startDate = (startDate == null) ? "" : startDate;
+////		endDate = (endDate == null) ? "" : endDate;
+//		System.out.println(" ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●● 여기까지만이라도 들어와주세열 플리쥬 ");
+//		System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>startDate " + startDate);
+//		Page<OrdersDetailSy> list = null;
+////		list = ordersDetailService.ordersDetailList(pageable);
+//		
+//	    // 입력된 날짜가 빈값일 때
+//	    if (startDate == "") {
+//	    	startDate = "00010101";
+//	    }
+//	    if (endDate == "") {
+//	    	endDate = "99991231";
+//	    }
+//
+//	    // String으로 들어오는 날짜 데이터 변환
+//	    LocalDateTime startDateTime = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyyMMdd")).atTime(0, 0, 0);
+//	    LocalDateTime endDateTime = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyyMMdd")).atTime(23, 59, 59);
+//		
+//		System.out.println("psalesManagementList333=============" + list.getContent());
+//
+//		// 페이징 처리 넘겨주기
+//		model.addAttribute("list", list);
+//		model.addAttribute("pKind", searchKeyword);
+//		model.addAttribute("startDate", startDate);
+//		model.addAttribute("endDate", endDate);
+//
+//		return "admin/SalesManagement";
 		
-		Page<OrdersDetailSy> list = null;
-		list = ordersDetailService.ordersDetailList(pageable);
-		if (localdate == null) {
-			list = ordersDetailService.ordersDetailList(pageable);
-		} else {
-			list =  ordersDetailService.ordersDetailSerchList(searchKeyword, pageable);
-		}
-		
-//		System.out.println("salesManagementList===============" + list.hasContent());
-//		System.out.println("salesManagementList222===============" + list.getTotalElements());
-		System.out.println("psalesManagementList333=============" + list.getContent());
-//		System.out.println("order_date=============" + list.getorderDate());
-
-		// 페이징 처리 넘겨주기
-		model.addAttribute("list", list);
-		model.addAttribute("pKind", searchKeyword);
-		
-
-		return "admin/SalesManagement";
-		
-	}
+//	}
 	
 	
 

@@ -1,8 +1,5 @@
 package com.ezen.Repository;
 
-
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	// 상품종류 조회 WHERE 절로 조건을 줘서 원하는 상품번호 조회(지병)
 	@Query("SELECT p FROM Product p WHERE p.pKind=?1 ORDER BY p.pKind")
 	Page<Product> productfindByPKind(String Kind, Pageable pageable);
-	
+    
 }
 
 

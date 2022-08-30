@@ -14,27 +14,57 @@ public class CartServiceImpl implements CartService{
 	private ProductRepository productRepo;
 	
 	@Autowired
-	private CartRepository cartRepo;
+	private CartRepository cartRepository;
 	
 	//카트에물건 담기
 	@Override
 	public void insertCart(Cart cart) {
 		
-		cartRepo.save(cart);
+		cartRepository.save(cart);
 	}
 	
 	//카트목록 불러오기
 	@Override
 	public List<Cart> findCartByMemberId(String MemberId) {
 		
-		return (List<Cart>)cartRepo.findCartByMemberId(MemberId);
+		return (List<Cart>)cartRepository.findCartByMemberId(MemberId);
 	}
 	
 	//카트목록 삭제하기
 	@Override
 	public void deleteCart(Integer cartSeq) {
 		
-		cartRepo.deleteById(cartSeq);
+		cartRepository.deleteById(cartSeq);
+	}
+	
+	//카트시퀀스번호 하나씩 조회하기(OrderDetail에 사용)
+	@Override
+	public Cart findCartByCartSeq(int cartSeq) {
+		
+		
+		return cartRepository.findCartByCartSeq(cartSeq);
+		
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

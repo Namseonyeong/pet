@@ -13,33 +13,33 @@ import com.ezen.entity.Product;
 
 public interface ProductService {
 	
-	// 상품 등록
+	// 상품 등록_sy
 	void insertwrite(Product product, MultipartFile file) throws Exception;
 	
-	// 특정 게시글 불러오기
+	// 특정 게시글 불러오기_sy
 	Product productView(Integer pSeq);
 	
-	// 상품목록 삭제
+	// 상품목록 삭제_sy
 	void productDelete(Integer pSeq);
 	
-	// 상품 리스트 및 페이징
+	// 상품 리스트 및 페이징_sy
 	Page<Product> productList(Pageable pageable);
 	
-	// 상품 조회
+	// 상품 조회_sy
 	Page<Product> productSerchList(String searchKeyword, Pageable pageable);
 	
 	//상품종류별 조회 (병선)
 	Page<Product> productfindByPKind(String Kind, Pageable pageable);
 	
 	//선영테스트
-	// 회원 전체목록 조회
+	// 회원 전체목록 조회_sy
 	Page<Member> userManagementList(Pageable pageable);
-	// 회원 목록 조회(조건) 페이징
+	// 회원 목록 조회(조건) 페이징_sy
 	Page<Member> userManagemenSerchList(String searchKeyword, Pageable pageable);
 
-	// 승인여부 (펫시터, 트레이너)
+	// 승인여부 (펫시터, 트레이너)_sy
 	Page<Member> userApprovaList(Pageable pageable);
-	// 승인여부 (펫시터, 트레이너) 페이징
+	// 승인여부 (펫시터, 트레이너) 페이징_sy
 	Page<Member> userApprovaSerchList(String searchKeyword, Pageable pageable);
 
 	
