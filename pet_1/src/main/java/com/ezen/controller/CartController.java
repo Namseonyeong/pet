@@ -43,7 +43,7 @@ public class CartController {
 	}
 	
 	//MyPage_cart페이지 이동
-	@RequestMapping(value = "/MyPage_cart.html")
+	@RequestMapping(value = "/MyPage_cart")
 	public String MyPage_cart() {
 		
 		return "member/MyPage_cart.html";

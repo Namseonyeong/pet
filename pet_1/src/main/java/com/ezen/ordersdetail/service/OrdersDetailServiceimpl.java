@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.Repository.OrdersDetailRepository;
 import com.ezen.entity.OrdersDetail;
-import com.ezen.entity.OrdersDetailSy;
 
 @Service
 public class OrdersDetailServiceimpl implements OrdersDetailService {
@@ -17,20 +16,20 @@ public class OrdersDetailServiceimpl implements OrdersDetailService {
 	
 	// 매출 목록 조회1 (SY/현재 페이징 안됨.)
 	@Override
-	public Page<OrdersDetailSy> ordersDetailList(Pageable pageable) {
+	public Page<OrdersDetail> ordersDetailList(Pageable pageable) {
 
 		return ordersDetailRepository.findAll(pageable);
 	}
 	
 	// 매출 목록 조회2 (SY/현재 페이징 안됨.)
-	@Override
-	public Page<OrdersDetailSy> ordersDetailSerchList(String searchKeyword, Pageable pageable) {
-
-		return ordersDetailRepository.findByOdSeq(searchKeyword, pageable);
-		
-		ordersDetailRepository.save(orderDetail);
-	}
-	
+//	@Override
+//	public Page<OrdersDetail> ordersDetailSerchList(String searchKeyword, Pageable pageable) {
+//
+//		return ordersDetailRepository.findByOdSeq(searchKeyword, pageable);
+//		
+//		ordersDetailRepository.save(orderDetail);
+//	}
+//	
 	@Override
 	public void insertOrderDetail(OrdersDetail orderDetail) {
 		

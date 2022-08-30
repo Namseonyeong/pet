@@ -14,8 +14,6 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
 	private OrdersRepository orderRepo;
 
-	
-	
 	//주문테이블에 담기
 	@Override
 	public int insertOrder(Orders orders) {

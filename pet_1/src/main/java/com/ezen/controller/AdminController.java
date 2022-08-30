@@ -5,13 +5,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,7 @@ import com.ezen.Repository.OrdersDetailRepository;
 import com.ezen.Repository.OrdersRepository;
 import com.ezen.entity.Member;
 import com.ezen.entity.Orders;
-import com.ezen.entity.OrdersDetailSy;
+import com.ezen.entity.OrdersDetail;
 import com.ezen.entity.Product;
 import com.ezen.member.service.MemberService;
 import com.ezen.ordersdetail.service.OrdersDetailService;
@@ -144,6 +144,55 @@ public class AdminController {
 		
 //	}
 	
+	// 매출현황 (날짜별 매출현황) 날짜 조회 넘겨주기
+	@GetMapping("/SalesManagement")
+	public String salesDatecheck(@RequestParam(value = "startDate", required = false) String startDate,
+									  @RequestParam(value = "endDate", required = false) String endDate,
+			String searchKeyword, Model model, OrdersDetail ordersDetail, 
+			@PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
+//		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
+//		startDate = (startDate == null) ? "" : startDate;
+//		endDate = (endDate == null) ? "" : endDate;
+		System.out.println(" ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●● 여기까지만이라도 들어와주세열 플리쥬 ");
+		System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>startDate " + startDate);
+		Page<OrdersDetail> list = null;
+//		list = ordersDetailService.ordersDetailList(pageable);
+		
+		LocalDateTime startDateTime = null;
+		LocalDateTime endDateTime = null;
+		
+	    // 입력된 날짜가 빈값일 때
+	    if (startDate == "" || startDate == null) {
+	    	startDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0));
+	    } else {
+	    	startDateTime = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(0, 0, 0);
+	    }
+	    if (endDate == "" || endDate == null) {
+	    	endDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
+	    } else {
+		    endDateTime = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(23, 59, 59);
+	    }
+	    
+	    List<Orders> orders = ordersRepository.findAllByOrderDateBetween(startDateTime, endDateTime);
+	    System.out.println(orders.size());
+
+	    // String으로 들어오는 날짜 데이터 변환
+		
+		System.out.println("==========>" + startDateTime);
+		System.out.println(LocalDate.now());
+	    System.out.println("==========>" + endDateTime);
+//		System.out.println("psalesManagementList333=============" + list.getContent());
+	    
+
+		// 페이징 처리 넘겨주기
+		model.addAttribute("list", list);
+		model.addAttribute("pKind", searchKeyword);
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
+
+		return "admin/SalesManagement";
+	}
+	
 	
 
 	// 대시보드로 이동
@@ -159,56 +208,47 @@ public class AdminController {
 	}
 	
 	// 상품관리 (상품 등록)
-//	@PostMapping("/Productwrite")
-//	public String Productwrite(Product product, Model model, MultipartFile file) throws Exception {
-//
-//		productService.insertwrite(product, file);
-//		System.out.println("번호 : " + product.getPSeq());
-//
-////		System.out.println("분류 : " + product.getPKind());
-////		System.out.println("이름 : " + product.getpName()); 
-////		System.out.println("원가 : " + product.getPrice1());
-////		System.out.println("판매가 : " + product.getPrice2());
-////		System.out.println("순수익 : " + product.getPrice3());
-////		System.out.println("상세정보 : " + product.getPContent());
-////		System.out.println("이미지 : " + product.getPImage());
-////		
-//		model.addAttribute("message", "상품 등록이 완료되었습니다.");
-//		model.addAttribute("searchUrl", "/Productlist");
-//
-//		return "admin/message";
-//
-//	}
-	
-	// 상품등록 시 주문테이블에 강제 insert 하기 위해 임시로 사용 
 	@PostMapping("/Productwrite")
-	public String Productwrite(Product product, Model model, MultipartFile file, Principal principal) throws Exception {
-		
+	public String Productwrite(Product product, Model model, MultipartFile file) throws Exception {
+
 		productService.insertwrite(product, file);
-		System.out.println("번호 : " + product.getPSeq());
 
 		model.addAttribute("message", "상품 등록이 완료되었습니다.");
 		model.addAttribute("searchUrl", "/Productlist");
-		
-		Orders orders = new Orders();
-		Member member = memberService.getMember(principal.getName());
-		// productTemp.setpSeq(product.getpSeq());
-		orders.setMember(member);
-		orders.setOrderRce("컴포즈");
-		orders.setOrderTel("01011111112");
-		orders.setOrderAddr1("서울시 금천구");
-		ordersRepository.save(orders);
-		
-		OrdersDetailSy od = new OrdersDetailSy();
-		od.setQuantity(10);
-		od.setOrders(orders);
-		od.setProduct(product);
-		ordersDetailRepository.save(od);
 
 		return "admin/message";
 
 	}
 	
+	// 상품등록 시 주문테이블에 강제 insert 하기 위해 임시로 사용 
+//	@PostMapping("/Productwrite")
+//	public String Productwrite(Product product, Model model, MultipartFile file, Principal principal) throws Exception {
+//		
+//		productService.insertwrite(product, file);
+//		System.out.println("번호 : " + product.getPSeq());
+//
+//		model.addAttribute("message", "상품 등록이 완료되었습니다.");
+//		model.addAttribute("searchUrl", "/Productlist");
+//		
+//		Orders orders = new Orders();
+//		Member member = memberService.getMember(principal.getName());
+//		// productTemp.setpSeq(product.getpSeq());
+//		orders.setMember(member);
+//		orders.setOrderRce("컴포즈");
+//		orders.setOrderTel("01011111112");
+//		orders.setOrderAddr1("서울시 금천구");
+//		ordersRepository.save(orders);
+//		
+//		OrdersDetail od = new OrdersDetail();
+//		od.setQuantity(10);
+//		od.setOrder(orders);
+//		od.setProduct(product);
+//		ordersDetailRepository.save(od);
+//
+//		return "admin/message";
+//
+//	}
+//	
 	// 상품관리 리스트 (페이징처리)
 	@GetMapping("/Productlist")
 	public String productList(String searchKeyword, Model model,
