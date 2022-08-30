@@ -33,7 +33,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @AllArgsConstructor
 @RequiredArgsConstructor  //생성자 주입
-@RequestMapping("/member") 
 public class MemberControlloer {
 	
 		@Autowired
@@ -51,7 +50,7 @@ public class MemberControlloer {
 		}
 		
 		
-		// 내가 쓴 글 목록
+		// 작성 글 조회
 		@GetMapping("/MyPage_getboardlist")
 		public String MyPageboardlist() {
 		return "/member/MyPage_getboardlist";
@@ -173,7 +172,7 @@ public class MemberControlloer {
 
 	    	model.addAttribute("sitterList", sitterList);
 	    	
-	    	return "board/Sitter.html";
+	    	return "board/Sitter";
 	    }
 	    
 	    //  시터 상세정보 불러오기 -채완
@@ -184,7 +183,7 @@ public class MemberControlloer {
 	    	
 	    	model.addAttribute("sitter", sitter.get());
 	    	
-	    	return "board/SitterProfile.html";
+	    	return "board/SitterProfile";
 	    }
 	    
 	    // 전체 훈련사 불러오기 -채완

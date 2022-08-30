@@ -64,6 +64,7 @@
 						</div>
 						<div class="col-md-6 mb-3">
 							<input type="text" class="form-control"  id="memberId" name="memberId" placeholder="" value="" required>
+							<button type="button" class="btn btn-warning">중복검사</button>
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
 						</div>
 					</div>
@@ -94,6 +95,7 @@
 						</div>
 						<div class="col-md-6 mb-3">
 							<input type="email" class="form-control"  id="memberEmail" name="memberEmail" placeholder="you@example.com" required>
+							<button type="button" class="btn btn-warning">중복검사</button>
 							<div class="invalid-feedback">이메일을 입력해주세요.</div>
 						</div>
 					</div>
@@ -174,21 +176,21 @@
 		</div>
 	</div>
 	</form>
-<!--           <script> -->
-<!--              window.addEventListener('load', () => { -->
-<!--                const forms = document.getElementsByClassName('validation-form'); -->
+          <script>
+ 				window.addEventListener('load', () => { 
+ 				const forms = document.getElementsByClassName('validation-form');
         
-<!--                Array.prototype.filter.call(forms, (form) => { -->
-<!--                  form.addEventListener('submit', function (event) { -->
-<!--                    if (form.checkValidity() === false) { -->
-<!--                      event.preventDefault(); -->
-<!--                      event.stopPropagation(); -->
-<!--                    } -->
-<!--                    form.classList.add('was-validated'); -->
-<!--                  }, false); -->
-<!--                }); -->
-<!--              }, false); -->
-<!--           </script> -->
+           		Array.prototype.filter.call(forms, (form) => { 
+             	form.addEventListener('submit', function (event) { 
+            	if (form.checkValidity() === false) { 
+                event.preventDefault(); 
+                event.stopPropagation(); 
+                 } 
+                form.classList.add('was-validated'); 
+                  }, false); 
+                }); 
+              }, false); 
+          </script> 
 
 	<!-- end book section -->
 
@@ -199,5 +201,6 @@
 	<!-- script section -->
 	<div th:replace="/include/script :: script"></div>
 	<!-- end script section -->
+ 
 </body>
 </html>

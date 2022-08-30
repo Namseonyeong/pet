@@ -1,6 +1,6 @@
 <!-- member sidebar section -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <body>
         <div class="col-md-3" style="padding-left: 100px; padding-top: 39px" th:fragment="member_sidebar">
             <div style="margin-bottom: 10px; text-align: right"></div>
@@ -14,13 +14,19 @@
                 <!-- <div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div> -->
                 <ul class="nav nav-pills flex-column mb-auto,">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active" aria-current="page">
+                        <a th:href="@{MyPage}" class="nav-link active" aria-current="page">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home" /></svg>
                             개인정보 수정
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
+                        <a th:href="@{PwChange}" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2" /></svg>
+                            비밀번호 변경
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{MyPage_getboardlist}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2" /></svg>
                             작성 글 조회
                         </a>
@@ -44,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
+                        <a th:href="@{MyPage_Withdrawal}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle" /></svg>
                             회원탈퇴
                         </a>
