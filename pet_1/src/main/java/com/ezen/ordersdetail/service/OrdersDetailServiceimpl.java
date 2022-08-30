@@ -6,11 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ezen.Repository.OrdersDetailRepository;
+import com.ezen.entity.OrdersDetail;
 import com.ezen.entity.OrdersDetailSy;
 
 @Service
 public class OrdersDetailServiceimpl implements OrdersDetailService {
-
+	
 	@Autowired
 	private OrdersDetailRepository ordersDetailRepository;
 
@@ -27,6 +28,12 @@ public class OrdersDetailServiceimpl implements OrdersDetailService {
 
 		return ordersDetailRepository.findByOdSeq(searchKeyword, pageable);
 		
+	}
+		
+	@Override
+	public void insertOrderDetail(OrdersDetail orderDetail) {
+		
+		ordersDetailRepository.save(orderDetail);
 	}
 	
 

@@ -1,28 +1,25 @@
 package com.ezen.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 
 @Table(name = "Orders")
 @Entity  // 클래스의 테이블
 @Data
-@EntityListeners(AuditingEntityListener.class)
-public class Orders  {
+public class Orders {
 
 	// 주문
 	@Id
@@ -44,7 +41,6 @@ public class Orders  {
    
     // 구매 날짜
     @Column(name = "order_date")
-    @CreatedDate
     private LocalDateTime orderDate;
     
     // 멤버 seq
@@ -52,7 +48,17 @@ public class Orders  {
     @JoinColumn(name = "member_id")
     private Member member;
     // private String memberId;
+
+    public static Orders createOrders(Member member) {
+    	Orders order = new Orders();
+    	order.setMember(member);
+    	return order;
+    }
     
+    @OneToMany(mappedBy = "order")
+    List<OrdersDetail> orderDetailList = new ArrayList<>();
+
+	
    
 }
 

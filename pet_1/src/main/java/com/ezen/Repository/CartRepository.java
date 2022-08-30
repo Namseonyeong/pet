@@ -15,4 +15,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 	@Query("SELECT c FROM Cart c WHERE c.member.memberId=?1 ORDER BY c.cartSeq")
 	List<Cart> findCartByMemberId(String memberId);
 	
+	@Query("SELECT c FROM Cart c WHERE c.cartSeq =?1")
+	Cart findCartByCartSeq(int cartSeq);
+
 }
