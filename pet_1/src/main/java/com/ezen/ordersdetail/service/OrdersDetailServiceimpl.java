@@ -27,9 +27,10 @@ public class OrdersDetailServiceimpl implements OrdersDetailService {
 	public Page<OrdersDetailSy> ordersDetailSerchList(String searchKeyword, Pageable pageable) {
 
 		return ordersDetailRepository.findByOdSeq(searchKeyword, pageable);
+		
+		ordersDetailRepository.save(orderDetail);
 	}
-
-	// 병선
+	
 	@Override
 	public void insertOrderDetail(OrdersDetail orderDetail) {
 		
