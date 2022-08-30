@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,33 +28,39 @@ public class Cart {
 	   private Integer cartStrock;
 		    
 	   // 멤버 seq
-	   @ManyToOne
+	   @OneToOne(fetch = FetchType.LAZY)
 	   @JoinColumn(name = "member_id")
 	   private Member member;
-		   
-	   
-	   // 상품등록번호
-	   @ManyToOne
-	   @JoinColumn(name="p_seq")
-	   private Product product;
+	
+	   public static Cart createCart(Member member) {
+		   Cart cart = new Cart();
+		   cart.setMember(member);
+		   return cart;
+	   }
 	   
 	   
 //	   // 멤버 seq
 //	   @OneToOne(fetch = FetchType.LAZY)
 //	   @JoinColumn(name = "member_id")
 //	   private Member member;
-	
+//	
+//	   
+//	   
+//	   
+//	   
 //	   
 //	   public static Cart createCart(Member member) {
 //		   Cart cart = new Cart();
 //		   cart.setMember(member);
 //		   return cart;
 //	   }
+//	   
+	   //product 와 1:1 조인
+	   @OneToOne
+	   @JoinColumn(name="product_id")
+	   private Product product;
 	   
-//	   //product 와 1:1 조인
-//	   @OneToOne
-//	   @JoinColumn(name="product_id")
-//	   private Product product;
 	   
+	   private Integer totalprice;
 	   
 }

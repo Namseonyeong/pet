@@ -37,7 +37,7 @@
 									<tr>
 										<!-- 게시판 행 크기 조절-->
 										<!--https://won-percent.tistory.com/48 체크박스 전체 선택은 해당 링크의 사이트에서 알수있음-->
-										<th scope="col" style="width: 10%">NO</th>
+										<th scope="col" style="width: 10%">주문번호(히든처리하기)</th>
 										<th scope="col" style="width: 50%; text-align: center">제품이미지</th>
 										<th scope="col" style="width: 15%">상품명</th>
 										<th scope="col">수량</th>
@@ -45,49 +45,24 @@
 										<th scope="col">합계금액</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td><input name="RowCheck" type="checkbox" value="1" />&nbsp;1</td>
-										<!-- 게시판 제목 중앙정렬 -->
-										<td style="text-align: center">product.image</td>
-										<td>product.name</td>
-										<td>￦</td>
-										<td>price</td>
-										<td>totalprice</td>
-									</tr>
-									<tr>
-										<td><input name="RowCheck" type="checkbox" value="1" />&nbsp;2</td>
-										<td style="text-align: center">product.image</td>
-										<td>product.name</td>
-										<td>￦</td>
-										<td>price</td>
-										<td>totalprice</td>
-									</tr>
-									<tr>
-										<td><input name="RowCheck" type="checkbox" value="1" />&nbsp;3</td>
-										<td style="text-align: center">product.image</td>
-										<td>product.name</td>
-										<td>￦</td>
-										<td>price</td>
-										<td>totalprice</td>
-									</tr>
-									<tr>
-										<td><input name="RowCheck" type="checkbox" value="1" />&nbsp;4</td>
-										<td style="text-align: center">product.image</td>
-										<td>product.name</td>
-										<td>￦</td>
-										<td>price</td>
-										<td>totalprice</td>
-									</tr>
-									<tr>
-										<td><input name="RowCheck" type="checkbox" value="1" />&nbsp;5</td>
-										<td style="text-align: center">product.image</td>
-										<td>product.name</td>
-										<td>￦</td>
-										<td>price</td>
-										<td>totalprice</td>
-									</tr>
-								</tbody>
+								 
+							<tr th:each="order : ${orderList}">
+								<td th:text="${orders.orderSeq}></td>
+								<td><img th:src="@{/productimage/}+${order.product.pImage}"></td>
+								<td th:text="${order.product.pName}"></td>	
+								<td th:text="${order.cartStrock}" >
+								
+								<input th:type="hidden" name="cartStrock" value="${cart.cartStrock}">
+										<select name="amount">
+											<c:forEach begin="1" end="10" var="i">
+												<option value="${i}">${i}</option>
+											</c:forEach>
+										</select>
+										
+								<td th:text="${order.product.price2}"></td>
+								<td th:text="${order.cart.totalprice}"></td>
+							</tr>
+							  
 							</table>
 							<br />
 							<hr />

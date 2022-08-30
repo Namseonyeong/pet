@@ -1,15 +1,13 @@
 package com.ezen.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -42,5 +40,17 @@ public class OrdersDetail {
 	@JoinColumn(name = "order_seq")
 	private List<Orders> OrderList = new ArrayList<Orders>();
 	// private int orderSeq;
-	*/
+*/
+	
+	// 상품등록번호
+	@OneToOne
+	@JoinColumn(name = "p_seq")
+	private Product product;
+	// private int pSeq; 단방향
+		
+	// 주문번호
+	@ManyToOne
+	@JoinColumn(name = "order_seq")
+	private Orders order;
+	// private int orderSeq; 양방향
 }
