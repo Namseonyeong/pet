@@ -37,8 +37,7 @@ public class MemberControlloer {
 	
 		@Autowired
 		private MemberService memberService;
-		@Autowired
-		private ReservationsService reservService;
+
 		
 		// 마이페이지 (회원정보 조회)
 		@GetMapping("/MyPage")
@@ -164,72 +163,7 @@ public class MemberControlloer {
 		
 		
 		
-	    // 전체 시터 불러오기 -채완
-	    @GetMapping("/AllSitters")
-	    public String allSitter(@RequestParam("memberType") String memberType, Model model) {
-			
-	    	List<Member> sitterList = memberService.findByMemberType(memberType);
 
-	    	model.addAttribute("sitterList", sitterList);
-	    	
-	    	return "board/Sitter";
-	    }
-	    
-	    //  시터 상세정보 불러오기 -채완
-	    @GetMapping("/SitterProfile")
-	    public String getSitter(Member member, Model model) {
-	    	Optional<Member> sitter = memberService.getSitter(member);
-	    	//System.out.println("sitter = " + sitter);
-	    	
-	    	model.addAttribute("sitter", sitter.get());
-	    	
-	    	return "board/SitterProfile";
-	    }
-	    
-	    // 전체 훈련사 불러오기 -채완
-	    @GetMapping("/AllTrainers")
-	    public String allTrainer(@RequestParam("memberType") String memberType, Model model) {
-			
-	    	List<Member> trainerList = memberService.findByMemberType(memberType);
-	    	model.addAttribute("trainerList", trainerList);
-	    	
-	    	return "board/Trainer.html";
-	    }
-	    
-	    //  훈련사 상세정보 불러오기 -채완
-	    @GetMapping("/TrainerProfile")
-	    public String getTrainer(Member member, Model model) {
-	    	Optional<Member> trainer = memberService.getTrainer(member);
-	    	//System.out.println("sitter = " + sitter);
-	    	
-	    	model.addAttribute("trainer", trainer.get());
-	    	
-	    	return "board/TrainerProfile.html";
-	    }
-	    
-	    
-		// 마이페이지 (예약 현황 조회) -채완
-		@GetMapping("/ReservationList")
-		public String reservationList(Reservations reservations, Model model,Principal principal,
-		         @PageableDefault(page = 0, size = 10, sort = "rsSeq", direction = Sort.Direction.DESC) Pageable pageable) {
-			
-			Page<Reservations> reservationList = reservService.findReservationsByMemberId(principal.getName(), pageable);
-			
-			model.addAttribute("reservationList", reservationList);
-			
-			return "member/MyPage_Reservation.html";
-		}
-
-		// ----- 예약 취소 -----
-		/*@PostMapping("/DeleteReservation")
-		public String deleteReservations(@RequestParam Integer[] valueArr) {
-			System.out.println("============================------------=");
-			for(int i = 0; i < valueArr.length; i++) {
-				reservService.deleteReservations(valueArr[i]);	
-			}
-			
-			return "redirect:/MyPage_Reservation";
-		}*/
 		
 }
 	   

@@ -210,11 +210,17 @@
 						</div>
 					</div>
 					<div style="display: flex; width: 312px; height: 59px; background-color: #F1C1C9; border-radius: 5px; justify-content: center; align-items: center; margin-top: 32px; cursor: pointer">
-						<a th:href="@{/reservation/TrainerBooking}"
+						<!--  <a th:href="@{/reservation/TrainerBooking}"
 							th:onclick="window.open(this.href, '_blank', 'width=440, height=750'); return false;"
 							style="font-size: 18px; font-weight: 600; color: white; letter-spacing: 0.2px">
 							예약하기
+						</a>  -->
+						
+						<a th:onclick="trainerResevPopup()"
+							style="font-size: 18px; font-weight: 600; color: white; letter-spacing: 0.2px">
+							예약하기
 						</a>
+						
 					</div>
 				</div>
 			</div>
