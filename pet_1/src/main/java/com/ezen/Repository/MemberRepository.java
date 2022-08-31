@@ -48,6 +48,6 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 	// 타입별 조회 (사용자 목록 test중)
 	Page<Member> findBymemberType(String searchKeyword, Pageable pageable);
 
-	
+
 
 }

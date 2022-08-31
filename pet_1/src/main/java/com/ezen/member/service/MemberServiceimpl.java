@@ -108,7 +108,7 @@ public class MemberServiceimpl implements MemberService {
 		memberRepository.deleteById(memberId);
 	}
 
-	
+
 
 }
 
