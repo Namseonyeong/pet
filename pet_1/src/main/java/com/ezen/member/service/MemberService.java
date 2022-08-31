@@ -42,7 +42,6 @@ public interface MemberService {
 //	public void changePassword(Member member) ;
 
 
-	
 
 	
 }
