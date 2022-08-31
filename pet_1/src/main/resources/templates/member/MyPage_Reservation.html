@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!--선영-->
+<!-- 채완 -->
+
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
@@ -14,7 +15,6 @@
 		<header th:replace="/include/header :: header"></header>
 		<!-- end header section -->
 	</div>
-
 
 	<section class="book_section layout_padding">
 		<div class="container">
@@ -32,7 +32,7 @@
 
 				<div class="col-md-6" style="margin-top: 3rem">
 					<div class="table-responsive container">
-						<form th:action="@{/reservation/DeleteReservation}">
+						<form th:action="@{/DeleteReservation}">
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							<div style="margin-bottom: 10px; text-align: right">
 								<button class="btn btn-danger"
@@ -115,4 +115,5 @@
 	<!-- end script section -->
 
 </body>
+
 </html>

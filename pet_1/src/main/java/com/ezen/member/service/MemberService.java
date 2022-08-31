@@ -43,14 +43,4 @@ public interface MemberService {
 
 
 	
-	// 멤버타입별로 리스트불러오기 -채완
-	List<Member> findByMemberType(String memberType);
-	
-	// Id로 시터 상세정보 불러오기 -채완
-	Optional<Member> getSitter(Member member);
-	
-	// Id로 훈련사 상세정보 불러오기 -채완
-	Optional<Member> getTrainer(Member member);
-	
-	
-}
+} 
