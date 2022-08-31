@@ -25,4 +25,4 @@ public interface ReservationsRepository extends JpaRepository<Reservations, Inte
 	@Query("SELECT m FROM Member m WHERE m.memberType = ?1")
 	public List<Member> findByMemberType(String memberType);
 
-} 
+}
