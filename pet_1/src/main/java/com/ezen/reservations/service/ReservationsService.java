@@ -30,4 +30,4 @@ public interface ReservationsService {
 	Page<Reservations> findReservationsByMemberId(String MemberId, Pageable pageable);
 	
 }
-	
+

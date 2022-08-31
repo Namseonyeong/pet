@@ -52,6 +52,7 @@ function closeWithSubmit() {
 		f.submit();
 		self.close();
 	}
+	
 }
 
 

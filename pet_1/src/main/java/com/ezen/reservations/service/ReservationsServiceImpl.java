@@ -13,7 +13,6 @@ import com.ezen.Repository.ReservationsRepository;
 import com.ezen.entity.Member;
 import com.ezen.entity.Reservations;
 
-
 @Service
 public class ReservationsServiceImpl implements ReservationsService {
 
