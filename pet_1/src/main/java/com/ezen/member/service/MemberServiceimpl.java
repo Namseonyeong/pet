@@ -134,27 +134,8 @@ public class MemberServiceimpl implements MemberService {
 		memberRepository.deleteById(memberId);
 	}
 
-	
-	// 멤버타입별로 리스트불러오기 - 채완
-	@Override
-	public List<Member> findByMemberType(String memberType) {
-			
-		return memberRepository.findByMemberType(memberType);
-	}
-	
-	// Id로 시터 상세정보 불러오기 - 채완
-	@Override
-	public Optional<Member> getSitter(Member member) {
-		
-		return memberRepository.findByMemberId(member.getMemberId());
-	}
-	
-	// Id로 훈련사 상세정보 불러오기 - 채완
-	@Override
-	public Optional<Member> getTrainer(Member member) {
-		
-		return memberRepository.findByMemberId(member.getMemberId());
-	}
+
+
 }
 
 	
@@ -162,4 +143,3 @@ public class MemberServiceimpl implements MemberService {
 
 	
 	
-

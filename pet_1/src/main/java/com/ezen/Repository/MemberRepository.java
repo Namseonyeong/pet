@@ -53,12 +53,6 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 	// 타입별 조회 (사용자 목록 test중)
 	Page<Member> findBymemberType(String searchKeyword, Pageable pageable);
 
-	
-	// 멤버타입별로 리스트 불러오기 -채완
-	@Query("SELECT m FROM Member m WHERE m.memberType = ?1")
-	public List<Member> findByMemberType(String memberType);
-
-
 
 
 }
