@@ -56,34 +56,7 @@ public class MemberServiceimpl implements MemberService {
 		// memberRepository.save(member);
 
 	}
-	
-	// 회원가입시 중복 체크 test
-//	@Override
-//	public String checkmemberIdDuplicate(String memberId) {
-//		return memberRepository.existsBymemberId(memberId);
-//	}
-//	
-//	@Override
-//	public Boolean checkEmailDuplicate(String memberEmail) {
-//		return memberRepository.existsBymemberEmail(memberEmail);
-//	}
-
-	@Transactional(readOnly = true)
-	@Override
-	public boolean checkmemberIdDuplication(String memberId) {
-		boolean memberIdDuplicate = memberRepository.existsBymemberId(memberId);
-		return memberIdDuplicate;
 		
-	}
-
-	@Transactional(readOnly = true)
-	@Override
-	public boolean checkmemberEmailDuplication(String memberEmail) {
-		boolean memberEmailDuplicate = memberRepository.existsBymemberEmail(memberEmail);
-		return  memberEmailDuplicate;
-	}
-	
-	
 	// 회원정보 조회
 	@Override
 	public Member getMember(String memberId) {
@@ -134,7 +107,33 @@ public class MemberServiceimpl implements MemberService {
 		memberRepository.deleteById(memberId);
 	}
 
+	
+	// 회원가입시 중복 체크 test
+//	@Override
+//	public String checkmemberIdDuplicate(String memberId) {
+//		return memberRepository.existsBymemberId(memberId);
+//	}
+//	
+//	@Override
+//	public Boolean checkEmailDuplicate(String memberEmail) {
+//		return memberRepository.existsBymemberEmail(memberEmail);
+//	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public boolean checkmemberIdDuplication(String memberId) {
+		boolean memberIdDuplicate = memberRepository.existsBymemberId(memberId);
+		return memberIdDuplicate;
+		
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public boolean checkmemberEmailDuplication(String memberEmail) {
+		boolean memberEmailDuplicate = memberRepository.existsBymemberEmail(memberEmail);
+		return  memberEmailDuplicate;
+	}
+	
 
 }
 

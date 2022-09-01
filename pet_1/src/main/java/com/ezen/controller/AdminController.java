@@ -150,12 +150,11 @@ public class AdminController {
 									  @RequestParam(value = "endDate", required = false) String endDate,
 			String searchKeyword, Model model, OrdersDetail ordersDetail, 
 			@PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
-//		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
+		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
 //		startDate = (startDate == null) ? "" : startDate;
 //		endDate = (endDate == null) ? "" : endDate;
 		System.out.println(" ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●● 여기까지만이라도 들어와주세열 플리쥬 ");
 		System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>startDate " + startDate);
-		Page<OrdersDetail> list = null;
 //		list = ordersDetailService.ordersDetailList(pageable);
 		
 		LocalDateTime startDateTime = null;
@@ -165,6 +164,7 @@ public class AdminController {
 	    if (startDate == "" || startDate == null) {
 	    	startDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0));
 	    } else {
+		    // String으로 들어오는 날짜 데이터 변환
 	    	startDateTime = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(0, 0, 0);
 	    }
 	    if (endDate == "" || endDate == null) {
@@ -173,14 +173,16 @@ public class AdminController {
 		    endDateTime = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(23, 59, 59);
 	    }
 	    
-	    List<Orders> orders = ordersRepository.findAllByOrderDateBetween(startDateTime, endDateTime);
-	    System.out.println(orders.size());
-
-	    // String으로 들어오는 날짜 데이터 변환
+//	    Page<Orders> list = ordersRepository.findAllByOrderDateBetween(startDateTime, endDateTime, pageable);
+	    Page<OrdersDetail> list = ordersDetailRepository.findAllByOdDateBetween(startDateTime, endDateTime, pageable);
+	    
+	    System.out.println(list);
+	    System.out.println(list.getContent());
+	    System.out.println(list.getTotalElements());
 		
-		System.out.println("==========>" + startDateTime);
-		System.out.println(LocalDate.now());
-	    System.out.println("==========>" + endDateTime);
+//		System.out.println("==========>" + startDateTime);
+//		System.out.println(LocalDate.now());
+//	    System.out.println("==========>" + endDateTime);
 //		System.out.println("psalesManagementList333=============" + list.getContent());
 	    
 
@@ -208,47 +210,47 @@ public class AdminController {
 	}
 	
 	// 상품관리 (상품 등록)
+//	@PostMapping("/Productwrite")
+//	public String Productwrite(Product product, Model model, MultipartFile file) throws Exception {
+//
+//		productService.insertwrite(product, file);
+//
+//		model.addAttribute("message", "상품 등록이 완료되었습니다.");
+//		model.addAttribute("searchUrl", "/Productlist");
+//
+//		return "admin/message";
+//
+//	}
+	
+	// 상품등록 시 주문테이블에 강제 insert 하기 위해 임시로 사용 
 	@PostMapping("/Productwrite")
-	public String Productwrite(Product product, Model model, MultipartFile file) throws Exception {
-
+	public String Productwrite(Product product, Model model, MultipartFile file, Principal principal) throws Exception {
+		
 		productService.insertwrite(product, file);
+		System.out.println("번호 : " + product.getPSeq());
 
 		model.addAttribute("message", "상품 등록이 완료되었습니다.");
 		model.addAttribute("searchUrl", "/Productlist");
+		
+		Orders orders = new Orders();
+		Member member = memberService.getMember(principal.getName());
+		// productTemp.setpSeq(product.getpSeq());
+		orders.setMember(member);
+		orders.setOrderRce("컴포즈");
+		orders.setOrderTel("01011111112");
+		orders.setOrderAddr1("서울시 금천구");
+		ordersRepository.save(orders);
+		
+		OrdersDetail od = new OrdersDetail();
+		od.setQuantity(10);
+		od.setOrder(orders);
+		od.setProduct(product);
+		ordersDetailRepository.save(od);
 
 		return "admin/message";
 
 	}
 	
-	// 상품등록 시 주문테이블에 강제 insert 하기 위해 임시로 사용 
-//	@PostMapping("/Productwrite")
-//	public String Productwrite(Product product, Model model, MultipartFile file, Principal principal) throws Exception {
-//		
-//		productService.insertwrite(product, file);
-//		System.out.println("번호 : " + product.getPSeq());
-//
-//		model.addAttribute("message", "상품 등록이 완료되었습니다.");
-//		model.addAttribute("searchUrl", "/Productlist");
-//		
-//		Orders orders = new Orders();
-//		Member member = memberService.getMember(principal.getName());
-//		// productTemp.setpSeq(product.getpSeq());
-//		orders.setMember(member);
-//		orders.setOrderRce("컴포즈");
-//		orders.setOrderTel("01011111112");
-//		orders.setOrderAddr1("서울시 금천구");
-//		ordersRepository.save(orders);
-//		
-//		OrdersDetail od = new OrdersDetail();
-//		od.setQuantity(10);
-//		od.setOrder(orders);
-//		od.setProduct(product);
-//		ordersDetailRepository.save(od);
-//
-//		return "admin/message";
-//
-//	}
-//	
 	// 상품관리 리스트 (페이징처리)
 	@GetMapping("/Productlist")
 	public String productList(String searchKeyword, Model model,

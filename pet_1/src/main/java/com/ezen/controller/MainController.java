@@ -1,23 +1,15 @@
 package com.ezen.controller;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ezen.Repository.MemberRepository;
 import com.ezen.entity.Member;
 import com.ezen.member.service.MemberService;
 import com.ezen.security.Role;
@@ -72,6 +64,32 @@ public class MainController {
 			//memberService.insertjoin(member, file); // 회원가입시 이미지 저장 서비스 로직
 			return "redirect:/Login";
 		}
+		
+		// 회원가입시 중복 체크 test
+//		@GetMapping("/UserJoin/{memberId}/esists")
+//		public ResponseEntity<String> checkmemberIdDuplicate(@PathVariable String memberId) {
+//			System.out.println("======================> 멤버 아이디 " + memberId);
+//			return ResponseEntity.ok(memberService.checkmemberIdDuplicate(memberId));
+//		}
+//		
+//		@GetMapping("/UserJoin/{memberEmail}/esists")
+//		public ResponseEntity<Boolean> checkEmailDuplicate(@PathVariable String memberEmail) {
+//			return ResponseEntity.ok(memberService.checkEmailDuplicate(memberEmail));
+//		}
+		
+		@GetMapping("/auth/joinProc/{nickname}/exists")
+		public ResponseEntity<Boolean> checkmemberIdDuplicate(@PathVariable String memberId){
+			return ResponseEntity.ok(memberService.checkmemberIdDuplication(memberId));
+		}
+		@GetMapping("/auth/joinProc/{email}/exists")
+		public ResponseEntity<Boolean> checkmemberEmailDuplicate(@PathVariable String memberEmail){
+			return ResponseEntity.ok(memberService.checkmemberEmailDuplication(memberEmail));
+		}
+		
+		
+		
+		
+		
 		
 		// 로그인 결과 페이지
 		@GetMapping("/login/result")
