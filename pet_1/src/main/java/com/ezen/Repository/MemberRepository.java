@@ -25,6 +25,11 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 //	@Query(value = "select member_type, member_id, member_name, member_address, member_email from member  where member_type in ('펫시터', '훈련사', '일반')", nativeQuery = true)
 	Page<Member> findBymemberId(String searchKeyword, Pageable pageable);
 	
+	// 회원가입 중복체크 test
+//	String existsBymemberId(String memberId);
+	boolean existsBymemberId(String memberId);
+	boolean existsBymemberEmail(String memberEmail);
+	
 	// 멤버 타입별로 리스트 불러오기
 //	@Query("SELECT m FROM Member m WHERE m.memberType = ?1")
 //	List<Member> findByType(@Param("member_type") char memberType);

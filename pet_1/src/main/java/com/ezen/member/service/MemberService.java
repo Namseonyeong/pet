@@ -15,6 +15,16 @@ public interface MemberService {
 	// 회원가입시 이미지
 	void insertjoin(Member member, MultipartFile file) throws Exception;
 	
+	// 회원가입시 중복 체크 test
+//	public String checkmemberIdDuplicate(String memberId);
+//	
+//	public Boolean checkEmailDuplicate(String memberEmail);
+	
+	public boolean checkmemberEmailDuplication(String memberEmail);
+	public boolean checkmemberIdDuplication(String memberId);
+	
+	
+	
 	// 회원정보 불러오기
 	Member getMember(String memberId);
 	
@@ -51,6 +61,7 @@ public interface MemberService {
 	
 	// Id로 훈련사 상세정보 불러오기 -채완
 	Optional<Member> getTrainer(Member member);
+
 	
 	
 }

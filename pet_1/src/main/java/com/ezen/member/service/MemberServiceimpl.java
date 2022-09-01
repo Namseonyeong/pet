@@ -1,6 +1,5 @@
 package com.ezen.member.service;
 
-
 import java.io.File;
 import java.security.Principal;
 import java.util.List;
@@ -15,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.Repository.MemberRepository;
 import com.ezen.entity.Member;
-import com.ezen.entity.Reservations;
 import com.ezen.security.SecurityUserService;
 
 @Service
@@ -59,6 +57,33 @@ public class MemberServiceimpl implements MemberService {
 
 	}
 	
+	// 회원가입시 중복 체크 test
+//	@Override
+//	public String checkmemberIdDuplicate(String memberId) {
+//		return memberRepository.existsBymemberId(memberId);
+//	}
+//	
+//	@Override
+//	public Boolean checkEmailDuplicate(String memberEmail) {
+//		return memberRepository.existsBymemberEmail(memberEmail);
+//	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public boolean checkmemberIdDuplication(String memberId) {
+		boolean memberIdDuplicate = memberRepository.existsBymemberId(memberId);
+		return memberIdDuplicate;
+		
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public boolean checkmemberEmailDuplication(String memberEmail) {
+		boolean memberEmailDuplicate = memberRepository.existsBymemberEmail(memberEmail);
+		return  memberEmailDuplicate;
+	}
+	
+	
 	// 회원정보 조회
 	@Override
 	public Member getMember(String memberId) {
@@ -66,7 +91,7 @@ public class MemberServiceimpl implements MemberService {
 		return memberRepository.findByMemberId(memberId).get();
 	}
 	
-	// 이름, 메일로 아이디 찾기
+	// 이름, 메일로 아이디 찾기 (test) 
 	@Override
 	public Member searchMember(String memberEmail, Member member) {
 		
