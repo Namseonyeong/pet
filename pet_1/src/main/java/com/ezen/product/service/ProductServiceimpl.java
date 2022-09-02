@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.Repository.MemberRepository;
 import com.ezen.Repository.ProductRepository;
-import com.ezen.entity.Member;
 import com.ezen.entity.Product;
 
 @Service
@@ -79,34 +78,6 @@ public class ProductServiceimpl implements ProductService {
 
 	}
 
-	// 회원목록_sy
-	@Override
-	public Page<Member> userManagementList(Pageable pageable) {
-
-		return memberRepository.findAll(pageable);
-	}
-
-	// 회원목록_sy
-	@Override
-	public Page<Member> userManagemenSerchList(String searchKeyword, Pageable pageable) {
-
-		return memberRepository.findBymemberId(searchKeyword, pageable);
-	}
-	
-
-	// 회원승인 여부 (펫시터, 트레이너)_sy
-	@Override
-	public Page<Member> userApprovaList(Pageable pageable) {
-
-		return memberRepository.findAll(pageable);
-	}
-	
-	// 회원승인 여부 (펫시터, 트레이너)페이징_sy
-	@Override
-	public Page<Member> userApprovaSerchList(String searchKeyword, Pageable pageable){
-		return memberRepository.findBymemberId(searchKeyword, pageable);
-	}
-
 	//상품종류별 조회(지병)
 	@Override
 	public Page<Product> productfindByPKind(String Kind, Pageable pageable){
@@ -114,48 +85,7 @@ public class ProductServiceimpl implements ProductService {
 		return productRepository.productfindByPKind(Kind, pageable);
 	}
 	
-		// 테스트
-			// 타입별로 리스트 불러오기 (펫시터, 트레이너)
-//	@Override
-//	public List<Member> findBymemberType(char memberType, Pageable pageable){
-//		return memberRepository.findBymemberType(memberType);
-//	}	
-	
-	// 승인여부 타입별 목록
-//	@Override
-//	public Page<Member> userApprovaList(char memberType, Pageable pageable) {
-//
-//		return memberRepository.findAll(pageable);
-//	}
-	
-//	// 승인여부 타입별로 (페이징)
-//	@Override
-//	public Page<Member> userApprovaSerchList(@Param("member_type")char memberType, String searchKeyword, Pageable pageable){
-//		
-//		return memberRepository.findByType(memberType, searchKeyword, pageable);
-//	}
-	
-	//test
-//	@Override
-//	public List<Member> findBymemberType(String memberType) {
-//		return memberRepository.findByMemberType(memberType);
-//	}
-	
-	
-//	// 승인목록 test
-//	   @Override
-//	   public List<Member> findBymemberType(char memberType) {
-//	      
-//	      
-//	      return memberRepository.findByType(memberType);
-//	   }
 		
-//		@Override
-//		public List<Product> productByPKind(String Kind){
-//			
-//			return productRepository.productByPKind(Kind);
-//		}
-	
 		
 		
 }

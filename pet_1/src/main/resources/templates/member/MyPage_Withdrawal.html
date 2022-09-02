@@ -27,7 +27,7 @@
 				<!-- member sidebar section start -->
 				<div th:replace="/include/member_sidebar :: member_sidebar"></div>
 				<!-- end member sidebar section -->
-				<form class="validation-form" method="post" th:action="@{/member/Deletemember}" >
+				<form class="validation-form" method="post" th:action="@{/Deletemember}" >
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 				<div class="col-md-1"></div>
 				<div class="col-md-6" style="margin-top: 3rem">
@@ -52,10 +52,10 @@
 						<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-2">
-								<input type="submit" value="탈퇴" />
+								<input type="submit" th:value="탈퇴" />
 							</div>
 							<div class="col-md-2">	
-								<input type="button" th:onclick="location.href='MyPage'" value="취소" />
+								<input type="button" th:onclick="location.href='MyPage'" th:value="취소" />
 							</div>
 							<div class="col-md-6"></div>
 						</div>

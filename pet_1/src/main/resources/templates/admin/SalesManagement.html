@@ -33,7 +33,7 @@
                     <div class="col-md-6">
                         <div style="margin-bottom: 10px; text-align: right; float: right">
 							<!-- 날짜 -->
-                            <input type="date" id="startDate" name="startDate" /> ~ <input type="date" id="endDate" name="endDate"/>
+                            <input type="date" id="startDate" name="startDate" th:value="${startDate}" /> ~ <input type="date" id="endDate" name="endDate" th:value="${endDate}"/>
                             <div class="btn-group">
                                  <select class="form-control nice-select wide" name="selectBox" id="selectBox" th:onchange="handleOnChange(this)">
                                      <option th:selected="${pKind}==''">전체</option>
@@ -43,7 +43,7 @@
                                      <option th:selected="${pKind}=='의상'">의상</option>
                                  </select>
                             </div>
-                            <button type="button" class="btn btn-warning" th:type="submit">조회</button>
+                            <button type="button" class="btn btn-warning" th:onclick="getSalesManagement();">조회</button>
 <!--                             <a class="page-link" th:href="@{/SalesManagement(searchKeyword = ${param.searchKeyword})}"></a> -->
                         </div>
                         <div class="table-responsive">
@@ -63,7 +63,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="orderDetail : ${list}" th:if="${orderDetail.product.pKind == pKind || pKind == ''}">
+<!--                                     <tr th:each="orderDetail : ${list}" th:if="${orderDetail.product.pKind == pKind || pKind == ''}"> -->
+									<tr th:each="orderDetail : ${list}">
                                         <td th:text="${orderDetail.product.pSeq}"></td>
                                         <td th:text="${orderDetail.product.pKind}"></td>
                                         <td th:text="${orderDetail.product.pName}"></td>
@@ -110,10 +111,20 @@
         <div th:replace="/include/script :: script"></div>
         <!-- end script section -->
        
-<!--        <script type="text/javascript"> -->
+       <script type="text/javascript">
 //         document.getElementById("startDate").value = new Date().toISOString().substring(0, 10);
 //         document.getElementById("endDate").value = new Date().toISOString().substring(0, 10);
         
+        function getSalesManagement() {
+// 	        const text = document.getElementById("selectBox").value;
+	        const queryParams = {
+// 	        	searchKeyword: text === "전체" ? "" : text,
+				searchKeyword: "",
+	         	startDate: document.getElementById("startDate").value,
+	         	endDate: document.getElementById("endDate").value
+	        };
+	        location.replace(location.pathname + "?" + new URLSearchParams(queryParams).toString());
+        }
 //         function handleOnChange(e) {
 //             const text = e.options[e.selectedIndex].text;
 //             const queryParams = {
@@ -124,6 +135,6 @@
 
 //             location.replace(location.pathname + "?" + new URLSearchParams(queryParams).toString());
 //         }
-<!--     </script> -->
+    </script>
     </body>
 </html>
