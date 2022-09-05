@@ -41,8 +41,8 @@ function deleteCart(url, returnUrl, name) {
 
 
 /*
-*장바구니에 담기
-*/
+장바구니에 담기
+
 
 function go_insertCart(id, pSeq){
 	/*
@@ -60,7 +60,7 @@ function go_insertCart(id, pSeq){
 		document.getElementById("theForm").submit();
 	}
 }
-	*/
+	
 	
 	
 	var theForm = document.getElementById("theForm");
@@ -81,3 +81,82 @@ function go_insertCart(id, pSeq){
 	return cartList;
 	
 	}
+*/
+
+//장바구니에 담기
+function go_insertCart(button, pSeq){
+    var $theForm = $("#theForm");  
+    
+	var $parent = $(button).parent();
+	var $grand_parent = $parent.parent();
+	console.log("grand_parent=", $grand_parent);
+	$prodQty = $parent.find('input');
+	qty = $prodQty.val();
+	//console.log("Qty=", $prodQty.val());
+	
+	//$("#theForm").attr("action", "/insertCart?pSeq=" + pSeq + "&cartStrock=" + qty).submit();
+	
+	//$grand_parent.attr("method", "get");
+	//$grand_parent.attr("action", "/insertCart?pSeq=" + pSeq + "&cartStrock=" + qty);
+	$grand_parent.submit();
+	
+}
+
+// 체크박스 전체 클릭 및 해지 
+function setCheckAll(name){  
+	var chk_listArr = $("input[name='"+ name +"']"); 
+  	const checkbox = document.getElementById('allCheck'); // 체크박스 id 기입
+  	
+	for (var i=0; i<chk_listArr.length; i++) {
+		if (checkbox.checked) {
+			chk_listArr[i].checked = true;
+		} else {
+			chk_listArr[i].checked = false;
+		}
+	
+	}
+};
+/*
+function insertorder(){
+//	 var csTitle = document.getElementById("csTitle");
+ //    var csContent = document.getElementById("csContent");
+     var f = document.forms.theForm;
+     
+     f.submit();
+	}
+ /*    if (csTitle.value == "") {
+        alert("제목을 입력하세요.");
+        csTitle.focus();
+        return false;
+     } else if (csContent.value == "") {
+        alert("내용을 입력하세요.");
+        csContent.focus();
+        return false;
+     } else {
+      alert("글 등록 완료!")
+         f.submit();
+     }
+ }
+	//var $theForm = $("#theForm");
+	
+	//$theForm.attr("action", "/insertorder");	
+	//$theForm.submit();
+
+*/
+
+function insertorderview(){
+	
+	var $theForm = $("#theForm");
+
+	alert("구매페이지로 이동합니다.")
+	$theForm.attr("action", "/insertorderview");
+	$theForm.submit();
+}
+
+
+function payment(){
+	var $theForm = $("#theForm");
+	alert("배송신청이 완료되었습니다")
+	$theForm.attr("action", "/payment");
+	$theForm.submit();
+}

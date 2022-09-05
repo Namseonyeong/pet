@@ -45,6 +45,12 @@ public class CartServiceImpl implements CartService{
 		return cartRepository.findCartByCartSeq(cartSeq);
 		
 	}
+	//장바구니 업데이트
+	@Override
+	public void updateCartResult(int cartSeq) {
+		
+		cartRepository.updateCartResult(cartSeq);
+	}
 	
 }
 
