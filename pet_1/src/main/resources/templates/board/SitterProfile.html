@@ -215,7 +215,7 @@
 							style="font-size: 18px; font-weight: 600; color: white; letter-spacing: 0.2px">
 							예약하기
 						</a>  -->
-						<a th:onclick="sitterResevPopup()"
+						<a th:attr="onclick=|sitterResevPopup('${sitter.memberId}')|"
 							style="font-size: 18px; font-weight: 600; color: white; letter-spacing: 0.2px">
 							예약하기
 						</a>

@@ -58,6 +58,9 @@ public class Reservations {
 	// private String memberId;
 		
 
+	// 시터, 훈련사 예약정보 저장 컬럼
+	private String assistanceId;
+	
 /*	public void setReservationsStatus() {
 	    if() {
 	        this.rsStatus = 

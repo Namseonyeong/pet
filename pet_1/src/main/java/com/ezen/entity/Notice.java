@@ -3,16 +3,21 @@ package com.ezen.entity;
 import java.time.LocalDateTime;
 import javax.persistence.Column; 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-  
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import lombok.Data;
   
 @Entity
 @Table(name = "Notice")
 @Data 
+@EntityListeners(AuditingEntityListener.class)
 public class Notice {
   
 		// 공지사항
@@ -31,8 +36,12 @@ public class Notice {
 		private String noContent;
 		  
 		//작성일
-		@Column(name="noregDate") 
+		@Column(name="no_regDate") 
+		@CreatedDate
 		private LocalDateTime noRegDate;
 
+		// 조회수
+		@Column(name = "no_cnt")
+		private Long noCnt;
 }
  

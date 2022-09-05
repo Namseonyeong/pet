@@ -29,5 +29,7 @@ public interface ReservationsService {
 	// ----- 예약 현황 조회 -----
 	Page<Reservations> findReservationsByMemberId(String MemberId, Pageable pageable);
 	
+	// ----- 시터,트레이너 Id를 조건으로 예약현황 조회. -----
+	Page<Reservations> findReservationsByAssistanceId(String MemberId, Pageable pageable);
 }
  

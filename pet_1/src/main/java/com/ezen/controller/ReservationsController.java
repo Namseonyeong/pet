@@ -15,9 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.ezen.Repository.MemberRepository;
 import com.ezen.entity.Member;
 import com.ezen.entity.Reservations;
+import com.ezen.member.service.MemberService;
 import com.ezen.reservations.service.ReservationsService;
 
 @Controller
@@ -26,7 +26,7 @@ public class ReservationsController {
 	@Autowired
 	private ReservationsService reservService;
 	@Autowired
-	private MemberRepository memberRepo;
+	private MemberService memberService;
 
 	
     // ----- 전체 시터 불러오기 -----
@@ -74,7 +74,9 @@ public class ReservationsController {
     
 	// ----- 펫시터 예약화면 호출 -----
     @GetMapping("/SitterBooking")
-    public String sitterbookingForm() {
+    public String sitterbookingForm(@RequestParam("sitter") String sitterId, Model model) {
+    	
+    	model.addAttribute("sitterId", sitterId);
     	
         return "board/SitterBooking.html";
     }
@@ -82,7 +84,7 @@ public class ReservationsController {
     // ----- 펫시터 예약 처리 -----
 	@PostMapping("/SitterBooking")
 	public String sitterReservations(Reservations reservations, Principal principal) {
-		Member member = memberRepo.findByMemberId(principal.getName()).get();
+		Member member = memberService.getMember(principal.getName());
 	    reservations.setMember(member);
 	    reservService.insertReservations(reservations);
 	      
@@ -91,14 +93,17 @@ public class ReservationsController {
 
 	// ----- 훈련사 예약화면 호출 -----
     @GetMapping("/TrainerBooking")
-    public String trainerbookingForm() {
-        return "board/TrainerBooking.html";
+    public String trainerbookingForm(@RequestParam("trainer") String trainerId, Model model) {
+        
+    	model.addAttribute("trainerId", trainerId);
+    	
+    	return "board/TrainerBooking.html";
     }
 	
     // ----- 훈련사 예약 처리 -----
 	@PostMapping("/TrainerBooking")
 	public String trainerReservations(Reservations reservations, Principal principal) {
-		Member member = memberRepo.findByMemberId(principal.getName()).get();
+		Member member = memberService.getMember(principal.getName());
 	    reservations.setMember(member);
 	    reservService.insertReservations(reservations);
 	      
@@ -121,11 +126,23 @@ public class ReservationsController {
 	public String reservationList(Reservations reservations, Model model,Principal principal,
 	         @PageableDefault(page = 0, size = 10, sort = "rsSeq", direction = Sort.Direction.DESC) Pageable pageable) {
 		
-		Page<Reservations> reservationList = reservService.findReservationsByMemberId(principal.getName(), pageable);
+		Page<Reservations> reservationList = null;
+
+		Member member = memberService.getMember(principal.getName());
+
+		if(member.getMemberType().equals("일반")) {
+			reservationList = reservService.findReservationsByMemberId(principal.getName(), pageable);
+		} else {
+			reservationList = reservService.findReservationsByAssistanceId(principal.getName(), pageable);
+		}
+		System.out.println("예약 목록: " + member.getMemberType());
+		for(Reservations rs : reservationList) {
+			System.out.println(rs);
+		}
+
+		model.addAttribute("reservationList", reservationList.getContent());
 		
-		model.addAttribute("reservationList", reservationList);
-		
-		return "member/MyPage_Reservation.html";
+		return "member/MyPage_Reservation";
 	}
 
 }

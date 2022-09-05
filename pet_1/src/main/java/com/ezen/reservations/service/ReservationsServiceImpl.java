@@ -64,6 +64,12 @@ public class ReservationsServiceImpl implements ReservationsService {
 		return (Page<Reservations>)rsRepo.findReservationsByMemberId(MemberId, pageable);
 	}
 
+	// ----- 시터,트레이너 Id를 조건으로 예약현황 조회. -----
+	@Override
+	public Page<Reservations> findReservationsByAssistanceId(String MemberId, Pageable pageable) {
+		
+		return (Page<Reservations>)rsRepo.findReservationsByAssistanceId(MemberId, pageable);
+	}
 }
 
 

@@ -216,7 +216,7 @@
 							예약하기
 						</a>  -->
 						
-						<a th:onclick="trainerResevPopup()"
+						<a  th:attr="onclick=|trainerResevPopup('${trainer.memberId}')|"
 							style="font-size: 18px; font-weight: 600; color: white; letter-spacing: 0.2px">
 							예약하기
 						</a>
