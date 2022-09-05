@@ -34,7 +34,7 @@
                      <form style="text-align: center" enctype="multipart/form-data" th:action="@{/userApproval}">
                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                         <div style="margin-bottom: 10px; text-align: right; float: right">
-                            <button type="button" class="btn btn-warning" onClick="alert('조회할거야?')">승인</button>
+                            <button type="button" class="btn btn-warning" th:onclick="ApprovalValue('/userProApproval','/userApproval', 'memberId');">승인</button>
 <!--                             <button type="button" class="btn btn-danger" th:onclick="deleteValue('/userApprovalDelete','/userApproval', 'memberType');">반려</button> -->
                         </div>
                         <div class="table-responsive">
@@ -43,7 +43,7 @@
                               <thead>
                                     <tr>
                                         <!-- 게시판 행 크기 조절-->
-                                        <th scope="col" style="width: 3%"><input type="checkbox" id="allCheck" name="allCheck" th:onclick="setCheckAll('memberType')" /></th>
+                                        <th scope="col" style="width: 3%"><input type="checkbox" id="allCheck" name="allCheck" th:onclick="setCheckAllApproval('memberId')" /></th>
                                         <th scope="col" style="width: 10%">구분</th>
                                         <th scope="col" style="width: 10%">아이디</th>
                                         <th scope="col" style="width: 10%">이름</th>
@@ -55,7 +55,8 @@
                                  <tbody>
                                     <tr >
                                      <tr th:each="member : ${list}">
-                                        <td><input type="checkbox" name="memberType" id="memberType" th:value="${memberType}" /></td>
+                                        <td><input type="checkbox" name="memberId" id="memberId" th:value="${member.memberId}" /></td>
+<!--                                         <td><input type="hidden" th:name="${member.memberStatus}"/></td> -->
                                         <td th:text="${member.memberType}"></td>
                                         <td th:text="${member.memberId}" ></td>
                                         <td th:text="${member.memberName}" ></td>
@@ -100,5 +101,8 @@
         <!-- script section -->
         <div th:replace="/include/script :: script"></div>
         <!-- end script section -->
+        
+        <!-- script 승인 -->
+        <script th:src="@{/bootstrap/js/checkboxApproval.js}"></script>
     </body>
 </html>

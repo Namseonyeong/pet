@@ -75,6 +75,7 @@ public class MemberControlloer {
    public String passwordEdit(Model model, Member member, @RequestParam("newPw") String newPw,
          @RequestParam("newPwConfirm") String newPwConfirm, Principal principal) {
 
+	   
       // System.out.println("============= 로그인사용자아이디 >>>>>>" + principal.getName());
       // System.out.println("============= 현재비밀번호 >>>>>>"member.getMemberPw());
       // System.out.println("============= 새 비밀번호 >>>>>>" + newPw);

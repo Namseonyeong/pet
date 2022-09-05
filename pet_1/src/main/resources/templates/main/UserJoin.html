@@ -63,8 +63,8 @@
 							<label th:for="id">ID</label>
 						</div>
 						<div class="col-md-6 mb-3">
-							<input type="text" class="form-control"  id="memberId" name="memberId" required>
-							<button type="button" class="btn btn-warning" th:action="@{/user-id/{memberId}/esists}">중복검사</button>
+							<input type="text" class="form-control" id="memberId" name="memberId"required>
+							<button type="button" class="btn btn-warning" onclick="overlappingId();">중복검사</button>
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 						</div>
 						<div class="col-md-6 mb-3">
 							<input type="email" class="form-control"  id="memberEmail" name="memberEmail" placeholder="you@example.com" required>
-							<button type="button" class="btn btn-warning" th:action="@{/user-emails/{memberEmail}/esists}" >중복검사</button>
+							<button type="button" class="btn btn-warning" onclick="overlappingEmail();">중복검사</button>
 							<div class="invalid-feedback">이메일을 입력해주세요.</div>
 						</div>
 					</div>
@@ -176,19 +176,61 @@
 	</div>
 	</form>
           <script>
- 				window.addEventListener('load', () => { 
- 				const forms = document.getElementsByClassName('validation-form');
+//  				window.addEventListener('load', () => { 
+//  				const forms = document.getElementsByClassName('validation-form');
         
-           		Array.prototype.filter.call(forms, (form) => { 
-             	form.addEventListener('submit', function (event) { 
-            	if (form.checkValidity() === false) { 
-                event.preventDefault(); 
-                event.stopPropagation(); 
-                 } 
-                form.classList.add('was-validated'); 
-                  }, false); 
-                }); 
-              }, false); 
+//            		Array.prototype.filter.call(forms, (form) => { 
+//              	form.addEventListener('submit', function (event) { 
+//             	if (form.checkValidity() === false) { 
+//                 event.preventDefault(); 
+//                 event.stopPropagation(); 
+//                  } 
+//                 form.classList.add('was-validated'); 
+//                   }, false); 
+//                 }); 
+//               }, false); 
+ 				
+ 			function overlappingId() {
+ 				var memberId = document.getElementById('memberId');
+ 				$.ajax({
+ 					url : "/overlappingId/action",
+ 					type : 'POST', // POST 방식
+ 					dataType: "json",
+ 					traditional : true, 
+ 					data : {
+ 						memberId : memberId.value // 보내고자 하는 data 변수 설정
+ 					},
+ 					beforeSend: function (jqXHR, settings) {
+ 		                var header = $("meta[name='_csrf_header']").attr("content");
+ 		                var token = $("meta[name='_csrf']").attr("content");
+ 		                jqXHR.setRequestHeader(header, token);
+ 		            },
+ 					success: function(data) {
+ 						alert(data.msg)
+ 					 }
+ 				});	
+ 			}
+ 			
+ 			function overlappingEmail() {
+ 				var memberEmail = document.getElementByEmail('memberEmail');
+ 				$.ajax({
+ 					url : "/overlappingEmail/action",
+ 					type : 'POST', // POST 방식
+ 					dataType: "json",
+ 					traditional : true, 
+ 					data : {
+ 						memberEmail : memberEmail.value // 보내고자 하는 data 변수 설정
+ 					},
+ 					beforeSend: function (jqXHR, settings) {
+ 		                var header = $("meta[name='_csrf_header']").attr("content");
+ 		                var token = $("meta[name='_csrf']").attr("content");
+ 		                jqXHR.setRequestHeader(header, token);
+ 		            },
+ 					success: function(data) {
+ 						alert(data.msg)
+ 					 }
+ 				});	
+ 			}
           </script> 
 
 	<!-- end book section -->

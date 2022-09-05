@@ -2,6 +2,7 @@ package com.ezen.member.service;
 
 import java.io.File;
 import java.security.Principal;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.Repository.MemberRepository;
+import com.ezen.controller.MainController;
 import com.ezen.entity.Member;
 import com.ezen.security.SecurityUserService;
 
@@ -28,7 +31,6 @@ public class MemberServiceimpl implements MemberService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
 	
 	// 회원가입 (이미지)
 	@Override
@@ -55,24 +57,13 @@ public class MemberServiceimpl implements MemberService {
 		member.setMemberProImage(fileName1);
 		member.setMemberProPath("/join_img_file/" + fileName1);
 
-//		securityUserService.joinUser(member);
-		// memberRepository.save(member);
-
 	}
 		
-	// 회원정보 조회
+	// 회원정보 조회 (정보 수정)
 	@Override
 	public Member getMember(String memberId) {
 		
 		return memberRepository.findByMemberId(memberId).get();
-	}
-	
-	// 이름, 메일로 아이디 찾기 (test) 
-	@Override
-	public Member searchMember(String memberEmail, Member member) {
-		
-		System.out.println( " memberEmail============>" + memberEmail);
-		return memberRepository.findByMemberEmail(memberEmail).get();
 	}
 	
 	// 회원정보 수정
@@ -88,6 +79,8 @@ public class MemberServiceimpl implements MemberService {
 		memberTemp.setMemberIy(member.getMemberIy());
 		memberTemp.setMemberImage(memberTemp.getMemberImage());
 		memberTemp.setMemberPath(memberTemp.getMemberPath());
+		memberTemp.setMemberProImage(memberTemp.getMemberProImage());
+		memberTemp.setMemberProPath(memberTemp.getMemberProPath());
 		
 		saveImage(memberTemp, file, file1);
 		memberRepository.save(memberTemp);
@@ -108,32 +101,30 @@ public class MemberServiceimpl implements MemberService {
 		memberRepository.deleteById(memberId);
 	}
 	
-	// 회원가입시 중복 체크 test
-//	@Override
-//	public String checkmemberIdDuplicate(String memberId) {
-//		return memberRepository.existsBymemberId(memberId);
-//	}
-//	
-//	@Override
-//	public Boolean checkEmailDuplicate(String memberEmail) {
-//		return memberRepository.existsBymemberEmail(memberEmail);
-//	}
-
-//	@Transactional(readOnly = true)
-//	@Override
-//	public boolean checkmemberIdDuplication(String memberId) {
-//		boolean memberIdDuplicate = memberRepository.existsBymemberId(memberId);
-//		return memberIdDuplicate;
-//		
-//	}
-//
-//	@Transactional(readOnly = true)
-//	@Override
-//	public boolean checkmemberEmailDuplication(String memberEmail) {
-//		boolean memberEmailDuplicate = memberRepository.existsBymemberEmail(memberEmail);
-//		return  memberEmailDuplicate;
-//	}
+	// 이름, 메일로 아이디 찾기
+	@Override
+	public String memberIdFind(Member member) {
+		Optional<Member> memberList = memberRepository.findByMemberEmailAndMemberName(member.getMemberEmail(), member.getMemberName());
 		
+		return memberList.isEmpty() ? "" : memberList.get().getMemberId();
+	}
+	
+	// 이메일, 이름, 아이디로 Pw변경_sy
+	@Override
+	public String memberPwFind(Member member) {
+		Optional<Member> memberList = memberRepository.findByMemberEmailAndMemberNameAndMemberId(member.getMemberEmail(), member.getMemberName(), member.getMemberId());
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + memberList );
+		if (memberList.isEmpty()) {
+			return "false"; 
+		} else {
+			String memberId = member.getMemberId();
+			memberRepository.updateMemberPw(memberId);
+			return "true";
+		}
+//		return memberList.isEmpty() ? "" : memberList.get().getMemberPw();
+//		return memberList.get().getMemberPw();
+	}
+	
 	// 전체사용자 목록_sy
 	@Override
 	public Page<Member> userManagementList(Pageable pageable) {
@@ -154,7 +145,41 @@ public class MemberServiceimpl implements MemberService {
 		
 		return memberRepository.findByMemberType(pageable);
 	}
+	
+	// 회원 프로필 승인_sy
+	@Override
+	public void userProApproval(String[] valueArr) {
+
+		for (int i = 0; i < valueArr.length; i++) {
+			memberRepository.updateMemberStatus(valueArr[i]);
+		}
 		
+		return;
+	}
+	
+	// 회원가입시 id 중복체크 (test)
+//	@Override
+//	public String overlappingId(String memberId) {
+//		Optional<Member> memberList = memberRepository.findByMemberId(memberId);
+//		
+//		return memberList.get().getMemberId() != memberId ? "" : memberList.get().getMemberId();
+//	}
+	
+	// 회원가입시 id 중복체크
+	@Transactional
+	@Override
+	public boolean existsByMemberId(String memberId) {
+		
+		return memberRepository.existsByMemberId(memberId);
+	}
+	
+	@Transactional
+	@Override
+	public boolean existsByMemberEmail(String memberEmail) {
+		
+		return memberRepository.existsByMemberEmail(memberEmail);
+	}
+
 }
 
 	

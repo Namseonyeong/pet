@@ -72,36 +72,6 @@ public class Member extends BaseTimeEntity {
 	@Column(columnDefinition = "varchar(20) default 'ROLE_MEMBER'")
 	private Role role; // ROLE_USER, ROLE_ADMIN
 
-	// 비밀번호, 핸드폰번호, 주소, 프로필제목, 자기소개 변경
-//	public void modify(String memberPw, String memberPhone, String memberTitle, String memberIy) {
-//		this.memberPw = memberPw;
-//		this.memberPhone = memberPhone;
-//		this.memberTitle = memberTitle;
-//		this.memberIy = memberIy;
-//	}
-	
-	
-	// @Builder
-	// public Member(String memberId, String memberPw, String memberName, String
-	// memberEmail, String memberPhone, String memberAddress, String memberTitle,
-	// String memberIy, String memberImage, String memberPath, String memberType,
-	// String memberStatus, Role role) {
-	// this.memberId = memberId;
-	// this.memberPw = memberPw;
-	// this.memberName = memberName;
-	// this.memberEmail = memberEmail;
-	// this.memberPhone = memberPhone;
-	// this.memberAddress = memberAddress;
-	// this.memberTitle = memberTitle;
-	// this.memberIy = memberIy;
-	// this.memberImage = memberImage;
-	// this.memberPath = memberPath;
-	// this.memberType = memberType;
-	// this.memberStatus = memberStatus;
-	// this.role = role;
-
-	// }
-
 	}
 	
 

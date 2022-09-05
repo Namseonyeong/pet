@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ezen.Repository.MemberRepository;
 import com.ezen.Repository.ProductRepository;
 import com.ezen.entity.Product;
 
@@ -19,9 +18,6 @@ public class ProductServiceimpl implements ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@Autowired
-	private MemberRepository memberRepository;
-
 	// 상품 등록 처리(이미지)_sy
 	@Override
 	public void insertwrite(Product product, MultipartFile file) throws Exception {
@@ -84,8 +80,5 @@ public class ProductServiceimpl implements ProductService {
 		
 		return productRepository.productfindByPKind(Kind, pageable);
 	}
-	
-		
-		
 		
 }

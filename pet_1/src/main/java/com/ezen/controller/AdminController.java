@@ -1,5 +1,6 @@
 package com.ezen.controller;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -56,10 +57,10 @@ public class AdminController {
 	
 	// 매출현황 (날짜별 매출현황) 날짜 조회 넘겨주기
 	@GetMapping("/SalesManagement")
-	public String salesDatecheck(@RequestParam(value = "startDate", required = false) String startDate,
-									  @RequestParam(value = "endDate", required = false) String endDate,
-			String searchKeyword, Model model, OrdersDetail ordersDetail, 
-			@PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
+	public String salesDatecheck(@RequestParam(value = "startDate", required = false) String startDate, 
+								 @RequestParam(value = "endDate", required = false) String endDate,
+								 String searchKeyword, Model model, OrdersDetail ordersDetail, 
+								 @PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
 		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
 //		startDate = (startDate == null) ? "" : startDate;
 //		endDate = (endDate == null) ? "" : endDate;
@@ -148,6 +149,8 @@ public class AdminController {
 //		orders.setOrderTel("01011111112");
 //		orders.setOrderAddr1("서울시 금천구");
 //		ordersRepository.save(orders);
+	
+	
 //		
 //		OrdersDetail od = new OrdersDetail();
 //		od.setQuantity(10);
@@ -198,6 +201,7 @@ public class AdminController {
 		productTemp.setPName(product.getPName());
 		productTemp.setPrice1(product.getPrice1());
 		productTemp.setPrice2(product.getPrice2());
+		productTemp.setPrice3(product.getPrice3());
 		productTemp.setPContent(product.getPContent());
 		productTemp.setPImage(productTemp.getPImage());
 		productTemp.setPPath(productTemp.getPPath());
@@ -212,7 +216,6 @@ public class AdminController {
 	}
 
 	// 상품관리 상품 삭제 (Productlist 참고)
-
 	@PostMapping("/productDelete")
 	public String productDelete(@RequestParam Integer[] valueArr) {
 		for (int i = 0; i < valueArr.length; i++) {
@@ -240,9 +243,10 @@ public class AdminController {
     	return "admin/UserManagement";
     }
 	    
-    // 펫시터,훈련사 승인 대기 Member createdDate = 회원가입 순 test 
+    // 펫시터/훈련사 프로필 승인 대기_sy
     @GetMapping("/userApproval")
-    public String userApprovallist(Model model, @PageableDefault(page = 0, size = 1, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+    public String userApprovallist(Model model, @PageableDefault(page = 0, size = 5, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+    
     	
     	Page<Member> list = memberService.memberTypeList(pageable);
     	
@@ -250,5 +254,16 @@ public class AdminController {
     	
     	return "admin/UserApproval";
     }
+    
+    // 펫시터/훈련사 프로필 승인_sy
+    @PostMapping("/userProApproval")
+	public String userProApproval(@RequestParam String[] valueArr) {
+    	
+    	memberService.userProApproval(valueArr);
+
+		return "redirect:/userApproval";
+	}
+	
+    
 
 }

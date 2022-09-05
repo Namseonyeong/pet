@@ -1,5 +1,5 @@
 // 체크박스 전체 클릭 및 해지 
-function setCheckAll(name){  
+function setCheckAllApproval(name){  
 	var chk_listArr = $("input[name='"+ name +"']"); 
   	const checkbox = document.getElementById('allCheck'); // 체크박스 id 기입
   	
@@ -13,12 +13,11 @@ function setCheckAll(name){
 	}
 };
 		
-// 체크박스 선택 삭제
-function deleteValue(url, returnUrl, name) {
+// 체크박스 선택 프로필 승인(펫시터, 훈련사)
+function ApprovalValue(url, returnUrl, name) {
 	var url = url; // Controller로 보내고자 하는 URL
 	var valueArr = new Array();
 	var list = $("input[name='"+ name +"']"); 
-	
 	for(var i = 0; i < list.length; i++){ 
 		 if(list[i].checked){ // 선택되어 있으면 배열에 값을 저장함
 		    valueArr.push(list[i].value);
@@ -30,7 +29,7 @@ function deleteValue(url, returnUrl, name) {
 		 return false;
 	}
 	
-	if (confirm("정말 삭제하시겠습니까?")) {
+	if (confirm("승인하시겠습니까?")) {
 		$.ajax({
 			url : url,  // 전송 URL
 			type : 'POST', // POST 방식
@@ -45,10 +44,10 @@ function deleteValue(url, returnUrl, name) {
             },
 			success: function(data) {
 				if(data = 1) {
-			    	alert("삭제 완료"); 
+			    	alert("프로필 승인 완료"); 
 			        location.replace(returnUrl) //list로 페이지 새로 고침
 			    } else {
-			       alert("삭제 실패");
+			       alert("프로필 승인 실패");
 			    }
 			 }
 		});
