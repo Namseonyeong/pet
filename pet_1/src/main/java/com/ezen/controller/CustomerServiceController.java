@@ -100,13 +100,13 @@ public class CustomerServiceController {
 	
 	// 글 수정 처리
 	@PostMapping("/customerService/update/{csSeq}")
-	public String updateCustomers(@PathVariable("csSeq") Integer csSeq, CustomerService customers, Model model) {
+	public String updateCustomers(@PathVariable("csSeq") Integer csSeq, @RequestParam(value="csTitle") String csTitle, @RequestParam(value="csContent") String csContent, Model model) {
 		
 		CustomerService customerTemp = csService.customersView(csSeq);
-		
-		customerTemp.setCsTitle(customers.getCsTitle());
-		customerTemp.setCsContent(customers.getCsContent());
 
+		customerTemp.setCsTitle(csTitle);
+		customerTemp.setCsContent(csContent);
+		customerTemp.setCsRegDate(customerTemp.getCsRegDate());
 		
 		csService.insertCustomers(customerTemp);
 		
