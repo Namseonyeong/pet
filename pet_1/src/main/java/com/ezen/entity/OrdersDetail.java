@@ -16,11 +16,13 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
+import lombok.ToString;
 
 // 구매 이력
 @Table(name = "Orders_Detail")
 @Entity  // 클래스의 테이블
 @Data
+@ToString(exclude = "order")
 @EntityListeners(AuditingEntityListener.class)
 public class OrdersDetail {
 

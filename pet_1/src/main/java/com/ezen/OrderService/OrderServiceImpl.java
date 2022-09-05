@@ -28,10 +28,7 @@ public class OrderServiceImpl implements OrderService{
 	//주문목록 불러오기(카트리스트와 동일)
 	@Override
 	public List<Orders> findOrderByMemberId(String MemberId){
-		List<Orders> list = orderRepo.findOrderByMemberId(MemberId);
-		System.out.println("list == > " + list);
-				
-		return list;
+		return orderRepo.findOrderByMemberId(MemberId);
 	}
 	
 	/*

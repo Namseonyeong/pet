@@ -1,6 +1,6 @@
 <!-- member sidebar section -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <body>
         <div class="col-md-3" style="padding-left: 100px; padding-top: 39px" th:fragment="member_sidebar">
             <div style="margin-bottom: 10px; text-align: right"></div>
@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
+                        <a th:href="@{MyPage_OrderDetails}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid" /></svg>
                             구매이력
                         </a>

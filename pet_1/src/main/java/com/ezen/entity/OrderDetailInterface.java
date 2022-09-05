@@ -12,4 +12,6 @@ public interface OrderDetailInterface {
 	Integer getQuantity();
 
 	Integer getPrice2();
+
+	Integer getTotal_price();
 }

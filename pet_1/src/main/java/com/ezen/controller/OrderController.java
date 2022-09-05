@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,7 +49,6 @@ public class OrderController {
 	
 	@RequestMapping(value = "/insertorderview")
 	public String MyPage_order(@RequestParam(value="cartSeq") int[] cartSeqArr, Principal principal, Model model) {
-		
 		Orders order = new Orders();
 		
 		Member member = new Member();
@@ -70,7 +70,8 @@ public class OrderController {
 
 		List<OrderDetailInterface> orderList = odService.findOrderlist(orderSeq);
 		model.addAttribute("orderList", orderList);
-		System.out.println("orderList==>" + orderList);
+		model.addAttribute("totalPrice", orderList.get(0).getTotal_price());
+		model.addAttribute("odSeq", orderList.get(0).getOrder_seq());
 
 //		return "redirect:/getOrderList";
 		return "member/MyPage_order";
@@ -235,14 +236,20 @@ public class OrderController {
 	}
 	*/
 	// 결제시업데이트
-	@GetMapping("/payment")
-	public String payment(@RequestParam Integer[] valueArr, Integer odseq) {
-		for (Integer i = 0; i < valueArr.length; i++) {
+	@GetMapping("/payment/{odSeq}")
+	public String payment(@PathVariable("odSeq") Integer odSeq, Principal principal, Model model) {
+		odInRepo.updateOrderResult(odSeq);
 
-			odInRepo.updateOrderResult(odseq);
-		}
-		return "/member/index.html";
+		return "redirect:/MyPage_OrderDetails";
+	}
 
+	// 구매이력
+	@GetMapping("/MyPage_OrderDetails")
+	public String MyPageorderDetail(Principal principal, Model model) {
+		List<Orders> orderList = orderService.findOrderByMemberId(principal.getName());
+		model.addAttribute("orderList", orderList);
+
+		return "/member/MyPage_OrderDetails";
 	}
 	
 	//주문페이지에서 정보입력란에 입력한 정보
