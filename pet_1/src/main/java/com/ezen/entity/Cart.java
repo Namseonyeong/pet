@@ -39,6 +39,7 @@ public class Cart {
 	   }
 	   
 	   
+	   
 //	   // 멤버 seq
 //	   @OneToOne(fetch = FetchType.LAZY)
 //	   @JoinColumn(name = "member_id")
@@ -63,4 +64,7 @@ public class Cart {
 	   
 	   private Integer totalprice;
 	   
+	   //장바구니에서 주문완료시 '1' 로 업데이트
+	   @Column(columnDefinition ="number(1) default '0'")
+	   private char result;
 }

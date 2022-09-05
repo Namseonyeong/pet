@@ -11,8 +11,7 @@ public class OrderDetailVO {
 	
 	private String pImage;
 	private String pName;
-	private Integer cartStrock;
+	private Integer quantity;
 	private Integer price2;
-	private Integer totalprice;
 	
 }

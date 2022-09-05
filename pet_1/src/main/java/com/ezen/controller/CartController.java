@@ -53,7 +53,7 @@ public class CartController {
 		@GetMapping("/insertCart")
 		public String insertCart(@RequestParam("pSeq") Integer pSeq,
 								@RequestParam("price2") Integer price2,
-								@RequestParam("cartStrock") Integer cartStrock, Member member, Principal principal)  {
+								@RequestParam("cartStrock") Integer cartStrock, Member member,Principal principal)  {
 			
 			Cart cart = new Cart();
 			
@@ -69,6 +69,7 @@ public class CartController {
 			cart.setProduct(product);
 			cart.setCartStrock(cartStrock);
 			cart.setTotalprice(cart.getCartStrock() * price2);
+			cart.setResult('0');
 			
 			
 			member.setMemberId(principal.getName());
@@ -89,10 +90,8 @@ public class CartController {
 			System.out.println("cart.getProduct = " + item.getProduct());
 		}
 		
-
 		model.addAttribute("cartList", cartList);
-		
-		
+	
 		return "member/MyPage_cart";
 	}
 
