@@ -16,19 +16,19 @@ public class BoardController {
 	@Autowired
 	private ProductService productservice;
 	
-	@RequestMapping(value = "/Center_detail")
+/*	@RequestMapping(value = "/Center_detail")
 	public String Center_detail() {
 		return "board/Center_detail.html";
+	}*/
+
+	@RequestMapping(value = "/Notice")
+	public String Notice() {
+		return "board/Notice.html";
 	}
 
-	@RequestMapping(value = "/Center")
-	public String Center() {
-		return "board/Center.html";
-	}
-
-	@RequestMapping(value = "/center_write")
-	public String Center_write() {
-		return "board/Center_write.html";
+	@RequestMapping(value = "/CustomersService")
+	public String CustomersService() {
+		return "board/CustomersService.html";
 	}
 
 	@RequestMapping(value = "/PetShop_Details")

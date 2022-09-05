@@ -25,4 +25,7 @@ public interface ReservationsRepository extends JpaRepository<Reservations, Inte
 	@Query("SELECT m FROM Member m WHERE m.memberType = ?1")
 	public List<Member> findByMemberType(String memberType);
 
+	// ----- 시터,트레이너 Id를 조건으로 예약목록 조회. -----
+	@Query("SELECT r FROM Reservations r WHERE r.assistanceId=?1 ORDER BY r.rsSeq")
+	Page<Reservations> findReservationsByAssistanceId(String memberId, Pageable pageable);
 }

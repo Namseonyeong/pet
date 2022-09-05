@@ -1,10 +1,10 @@
 /**
  *	트레이너 예약 팝업창 호출.
  */
- function trainerResevPopup() {
+ function trainerResevPopup(trainerId) {
 	document.domain = "localhost";
-	
-	window.open("/TrainerBooking", "_blank", 'scrollbars=no, width=460, height=750');
+	var url = "/TrainerBooking?trainer="+ trainerId;
+	window.open(url, "_blank", 'scrollbars=no, width=460, height=750');
 }
 
 /**
@@ -12,8 +12,8 @@
  */
  function sitterResevPopup() {
 	document.domain = "localhost";
-	
-	window.open("/SitterBooking", "_blank", 'scrollbars=no, width=460, height=750');
+	var url = "/SitterBooking?sitter="+ sitterId;
+	window.open(url, "_blank", 'scrollbars=no, width=460, height=750');
 }
 
 /**

@@ -1,0 +1,76 @@
+<!-- 채완 -->
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/include/head :: head"></head>
+
+
+<body class="sub_page">
+
+    <div class="hero_area">
+        <div class="bg-box">
+            <img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
+        </div>
+        <!-- header section strats -->
+        <header th:replace="/include/header :: header"></header>
+        <!-- end header section -->
+    </div>
+
+    <section class="book_section layout_padding">
+            <div class="heading_container heading_center">
+                <h2 class="mb-1">공지사항 등록</h2>
+            </div>
+            <div style="margin-top: 100PX;">
+                <!-- ***** 글 등록 *****-->
+                <!-- <table class="table table-striped w-auto"> -->
+                <form style="text-align: center;" novalidate name="noticeform" id="noticeform" method="post" enctype="multipart/form-data" th:action="@{NoticeWrite}">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <div style="margin-right: 260px; display: inline-flex; margin-bottom: 12px;">
+                        <label>제목</label>
+                        <div style="margin-left: 15px; width: 300px;">
+                            <input type="text" class="form-control" name="noTitle" id="noTitle" placeholder="제목" required />
+                        </div>
+                    </div>
+                    <br>
+                    <div style=" margin-right: 260px; display: inline-flex; margin-bottom: 12px;">
+                        <label>내용</label>
+                        <div style="margin-left: 15px; width: 300px;">
+                            <textarea rows="10" cols="60" name="noContent" id="noContent" placeholder="글 내용" aria-valuetext="" required></textarea>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 0px; text-align: center;">
+                        <button style="margin-right: 20px;" type="button" class="btn btn-success" th:onclick="saveNotice()">글 등록</button>
+                   <!-- <button style="margin-left: 20px;" type="button" class="btn btn-danger" th:onclick="go_mov()">취소</button> -->
+                    </div>
+                </form>
+            </div>
+            <!-- ***** 글 등록 끝 ***** -->
+            <div class="col-md-3"></div>
+    </section>
+
+    <!--박스-->
+    <!-- <div class="row">
+            <div class="col-md-1 mb-2"></div>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-success">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item list-group-item-info">Cras sit amet nibh libero</a>
+                <a href="#" class="list-group-item list-group-item-warning">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>
+            </div>
+        </div> -->
+
+    <!-- <div style="margin-top: 15px">
+            <a href="IdpwFind_Page.html" onclick="window.open(this.href, '_blank', 'width=300, height=300'); return false;" style="margin-left: 10px; color: #ffbe33">아이디/비밀번호 찾기</a>
+            <a href="UserJoin_Page.html" style="margin-left: 110px; color: #ffbe33">회원가입</a>
+        </div> -->
+
+    <!-- footer section -->
+   	<footer th:replace="/include/footer :: footer"></footer>
+    <!-- footer section -->
+
+	<div th:replace="/include/script :: script"></div>
+</body>
+
+</html>
