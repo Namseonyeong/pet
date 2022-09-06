@@ -10,7 +10,7 @@
 /**
  *	펫시터 예약 팝업창 호출.
  */
- function sitterResevPopup() {
+ function sitterResevPopup(sitterId) {
 	document.domain = "localhost";
 	var url = "/SitterBooking?sitter="+ sitterId;
 	window.open(url, "_blank", 'scrollbars=no, width=460, height=750');

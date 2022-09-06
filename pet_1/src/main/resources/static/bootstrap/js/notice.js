@@ -38,7 +38,7 @@ function updateNotice() {
 		noContent.focus();
 		return false;
 	} else {
-		alert("수정완료!")
+
 		f.submit();
 	}
 }

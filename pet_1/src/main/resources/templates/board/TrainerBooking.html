@@ -18,6 +18,7 @@
 				<div class="form_container" style="margin-bottom: 15px;">
 					<form th:action="@{/TrainerBooking}" method="post" id="reservForm" name="reservForm">
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<input type="hidden" th:value="${trainerId}" th:name="assistanceId">
 						예약 날짜
 						<div>
 							<input name="rsDate" id="rsDate" type="date" class="form-control" />
