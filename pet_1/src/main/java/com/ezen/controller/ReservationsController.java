@@ -58,7 +58,7 @@ public class ReservationsController {
     	List<Member> trainerList = reservService.findByMemberType(memberType);
     	model.addAttribute("trainerList", trainerList);
     	
-    	return "board/Trainer.html";
+    	return "board/Trainer";
     }
     
     // ----- 훈련사 상세정보 불러오기 -----
@@ -69,7 +69,7 @@ public class ReservationsController {
     	
     	model.addAttribute("trainer", trainer.get());
     	
-    	return "board/TrainerProfile.html";
+    	return "board/TrainerProfile";
     }
     
 	// ----- 펫시터 예약화면 호출 -----
@@ -78,7 +78,7 @@ public class ReservationsController {
     	
     	model.addAttribute("sitterId", sitterId);
     	
-        return "board/SitterBooking.html";
+        return "board/SitterBooking";
     }
     
     // ----- 펫시터 예약 처리 -----
@@ -97,7 +97,7 @@ public class ReservationsController {
         
     	model.addAttribute("trainerId", trainerId);
     	
-    	return "board/TrainerBooking.html";
+    	return "board/TrainerBooking";
     }
 	
     // ----- 훈련사 예약 처리 -----
@@ -135,10 +135,10 @@ public class ReservationsController {
 		} else {
 			reservationList = reservService.findReservationsByAssistanceId(principal.getName(), pageable);
 		}
-		System.out.println("예약 목록: " + member.getMemberType());
+/*		System.out.println("예약 목록: " + member.getMemberType());
 		for(Reservations rs : reservationList) {
 			System.out.println(rs);
-		}
+		} */
 
 		model.addAttribute("reservationList", reservationList.getContent());
 		
