@@ -246,7 +246,7 @@ public class OrderController {
 	// 구매이력
 	@GetMapping("/MyPage_OrderDetails")
 	public String MyPageorderDetail(Principal principal, Model model) {
-		List<Orders> orderList = orderService.findOrderByMemberId(principal.getName());
+		List<OrderDetailInterface> orderList = odInRepo.findOrderDetailList(principal.getName());
 		model.addAttribute("orderList", orderList);
 
 		return "/member/MyPage_OrderDetails";

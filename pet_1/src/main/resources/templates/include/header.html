@@ -48,7 +48,7 @@
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
                     <!-- 장바구니 -->
-                    <a class="cart_link" th:href="@{/MyPage_order}" sec:authorize="hasRole('ROLE_MEMBER')" >
+                     <a class="cart_link" th:href="@{/getCartList}" sec:authorize="hasRole('ROLE_MEMBER')" >
                         <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
                     </a>
                     <a class="cart_link" th:href="@{/MyPage}" sec:authorize="hasRole('ROLE_MEMBER')" >

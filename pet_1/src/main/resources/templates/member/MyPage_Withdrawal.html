@@ -1,80 +1,91 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head th:replace="/include/head :: head"></head>
+    <body class="sub_page">
+        <div class="hero_area">
+            <div class="bg-box">
+                <img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
+            </div>
+            <!-- header section strats -->
+            <header th:replace="/include/header :: header"></header>
+            <!-- end header section -->
+        </div>
+        <section class="book_section layout_padding">
+            <div class="container">
+                <div class="heading_container heading_center">
+                    <h2 class="mb-1">회원탈퇴</h2>
+                </div>
+            </div>
+            <!--사이드 바 -->
+            <div class="position-relative">
+                <div class="position-absolute top-0 start-50 translate-middle-x"></div>
+                <div class="row">
+                    <!--member sidebar section start -->
+                    <div th:replace="/include/member_sidebar :: member_sidebar"></div>
+                    <!--end member sidebar section-->
+                    <div class="col-md-6">
+                        <div class="table-responsive container">
+                            <div class="info">
+                                <div class="input-form col-md-8 mx-auto">
+                                    <div class="withdrawal" style="width: 500px; height: 350px; border-radius: 20px; border-color: #ceafff; border-style: solid; border-width: 2px; margin: 50px 0px 0px 60px; padding: 50px 0px 0px 100px;">
+                                        <h4 class="noway">"정말.. 날 떠나 가시개....?"</h4>
+                                        <br />
+                                        <p>탈퇴를 원하시면 비밀번호를 입력해주세요</p>
+                                        <br />
+                                        <form class="validation-form" method="post" id="form" th:action="@{/Deletemember}">
+                                            <div class="row">
+                                                <div class="password">
+                                                    <label for="nickname">비밀번호</label>
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <div class="passwordinput">
+                                                    <input th:type="password" class="form-control" id="memberPw" name="memberPw" required />
+                                                    <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <br />
+                                        <div class="row" style="margin-right: 30px">
+                                            <div class="col-md-5">
+                                                <button type="button" class="btn btn-primary btn-md btn-block" th:onclick="validationFormCheck(event)">탈퇴</button>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button type="button" class="btn btn-success btn-md btn-block" th:onclick="location.href='MyPage'">취소</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+        </section>
 
-<head th:replace="/include/head :: head"></head>
+        <!-- footer section -->
+        <footer th:replace="/include/footer :: footer"></footer>
+        <!-- end footer section -->
 
-
-<body class="sub_page">
-	<div class="hero_area">
-		<div class="bg-box">
-			<img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
-		</div>
-		<!-- header section strats -->
-		<header th:replace="/include/header :: header"></header>
-		<!-- end header section -->
-	</div>
-
-	<section class="book_section layout_padding">
-		<div class="container">
-			<div class="heading_container heading_center">
-				<h2 class="mb-1">회원탈퇴</h2>
-			</div>
-		</div>
-		<!--사이드 바 -->
-		<div class="position-relative">
-			<div class="position-absolute top-0 start-50 translate-middle-x"></div>
-			<div class="row">
-				<!-- member sidebar section start -->
-				<div th:replace="/include/member_sidebar :: member_sidebar"></div>
-				<!-- end member sidebar section -->
-				<form class="validation-form" method="post" th:action="@{/Deletemember}" >
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-				<div class="col-md-1"></div>
-				<div class="col-md-6" style="margin-top: 3rem">
-					<div class="withdrawal"
-						style="width: 500px; height: 350px; border-radius: 20px; border-color: #ceafff; border-style: solid; border-width: 2px; margin: 50px 0px 0px 60px; padding: 50px 0px 0px 110px;">
-						<h4 class="noway">"정말.. 날 떠나 가시개....?"</h4>
-						<br />
-						<p>탈퇴를 원하시면 비밀번호를 입력해주세요</p>
-						<br />
-
-						<div class="row">
-							<div class="password">
-								<label for="nickname">비밀번호</label>
-							</div>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<div class="passwordinput">
-								<input th:type="password" class="form-control" id="memberPw" name="memberPw" required />
-								<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
-							</div>
-						</div>
-						<br />
-						<div class="row">
-							<div class="col-md-2"></div>
-							<div class="col-md-2">
-								<input type="submit" th:value="탈퇴" />
-							</div>
-							<div class="col-md-2">	
-								<input type="button" th:onclick="location.href='MyPage'" th:value="취소" />
-							</div>
-							<div class="col-md-6"></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-2"></div>
-				</form>
-			</div>
-		</div>
-	</section>
-
-
-	<!-- footer section -->
-	<footer th:replace="/include/footer :: footer"></footer>
-	<!-- end footer section -->
-
-	<!-- script section -->
-	<div th:replace="/include/script :: script"></div>
-	<!-- end script section -->
-</body>
-
+        <!-- script section -->
+        <div th:replace="/include/script :: script"></div>
+        <!-- end script section -->
+        <script>
+            /**
+             * @description 탈퇴하기 전 데이터 입력 체크 함수
+             * @author nsy
+             */
+            function validationFormCheck(event) {
+                var form = document.getElementById("form");
+                if (form.checkValidity() == false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    form.classList.add("was-validated");
+                } else {
+                    form.submit();
+                }
+            }
+        </script>
+    </body>
 </html>

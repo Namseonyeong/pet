@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <!-- head section strats -->
+    <head th:replace="/include/head :: head"></head>
+    <!-- head header section -->
 
-<!-- head section strats -->
-<head th:replace="/include/head :: head"></head>
-<!-- head header section -->
-    
     <body class="sub_page">
         <div class="hero_area">
             <div class="bg-box">
                 <img th:src="@{/bootstrap/images/pet_1.jpg}" alt="" />
             </div>
-           	<!-- header section strats -->
+            <!-- header section strats -->
             <header th:replace="/include/header :: header"></header>
             <!-- end header section -->
         </div>
@@ -20,12 +19,10 @@
             <div class="position-relative">
                 <div class="position-absolute top-0 start-50 translate-middle-x"></div>
                 <div class="row">
-                    
                     <!-- manager sidebar section start -->
                     <div th:replace="/include/manager_sidebar :: manager_sidebar"></div>
                     <!-- end manager sidebar section -->
-                   
-                   
+
                     <div class="col-md-8" style="margin-top: 3rem">
                         <div class="row">
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -33,7 +30,7 @@
                                     <div class="card-body" style="background-color: #ceafff">
                                         <h5 class="text-muted">주문접수</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">0 건</h1>
+                                            <h1 class="mb-1"><span th:text="${cartCount}"></span> 건</h1>
                                         </div>
                                     </div>
                                     <div id="sparkline-revenue"></div>
@@ -44,7 +41,7 @@
                                     <div class="card-body" style="background-color: #f1c1ce">
                                         <h5 class="text-muted">결제완료</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">10건</h1>
+                                            <h1 class="mb-1"><span th:text="${orderDetailCount}"></span> 건</h1>
                                         </div>
                                     </div>
                                     <div id="sparkline-revenue2"></div>
@@ -55,7 +52,7 @@
                                     <div class="card-body" style="background-color: #ffbe33">
                                         <h5 class="text-muted">예약접수</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">3건</h1>
+                                            <h1 class="mb-1"><span th:text="${resCount}"></span> 건</h1>
                                         </div>
                                     </div>
                                     <div id="sparkline-revenue3"></div>
@@ -66,7 +63,7 @@
                                     <div class="card-body" style="background-color: #f37d83">
                                         <h5 class="text-muted">문의글</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">5건</h1>
+                                            <h1 class="mb-1"><span th:text="${customerCount}"></span> 건</h1>
                                         </div>
                                     </div>
                                     <div id="sparkline-revenue4"></div>
@@ -79,16 +76,16 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
+                                        상품별 매출 순수익
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
+                                        상품별 매출 수량
                                     </div>
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
@@ -98,15 +95,15 @@
                 </div>
             </div>
         </section>
-            
-            
-       <!-- footer section -->
-		<footer th:replace="/include/footer :: footer"></footer>
+
+        <!-- footer section -->
+        <footer th:replace="/include/footer :: footer"></footer>
         <!-- footer section -->
 
-		<!-- script section -->
-		<div th:replace="/include/script :: script"></div>
-		<!-- end script section -->
+        <!-- script section -->
+        <div th:replace="/include/script :: script"></div>
+        <!-- end script section -->
+
+        <script th:src="@{/bootstrap/js/dashboardChart.js}"></script>
     </body>
 </html>
-

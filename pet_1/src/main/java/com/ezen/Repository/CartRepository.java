@@ -30,4 +30,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 	
 	@Query("SELECT c FROM Cart c WHERE c.cartSeq =?1")
 	Cart findCartByCartSeq(Integer cartSeq);
+	
+	// 주문완료된 데이터 조회
+	List<Cart> findByResult(char result);
 }

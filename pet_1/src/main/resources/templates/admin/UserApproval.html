@@ -58,8 +58,8 @@
                                         <td th:text="${member.memberName}"></td>
                                         <td th:text="${member.memberTitle}"></td>
                                         <!-- <td><img th:src="@{${member.memberPath}}" style="width:50px; height:50px;" th:if="${member.memberPath != null}" /></td> -->
-                                        <td><img th:src="${member.memberPath} == null ? '/img_file/no_image.png' : ${member.memberPath}" style="width:50px; height:50px;" /></td>
-                                        <td><img th:src="${member.memberProPath} == null ? '/img_file/no_image.png' : ${member.memberProPath}" style="width:50px; height:50px;" /></td>
+                                        <td><img th:src="${member.memberPath} == null ? '/img_file/no_image.png' : ${member.memberPath}" style="width:50%; height:50%;" /></td>
+                                        <td><img th:src="${member.memberProPath} == null ? '/img_file/no_image.png' : ${member.memberProPath}" style="width:50%; height:50%;" /></td>
                                         <div class="row">
                                     </tr>
                                 </tbody>

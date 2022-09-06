@@ -27,4 +27,7 @@ public interface OrdersDetailService {
 	//결제완료시업데이트
 	void updateOrderResult(Integer odSeq);
 	
+	// 매출 관련 차트 데이터 조회
+	String findOrderDetailChartData();
+	
 }

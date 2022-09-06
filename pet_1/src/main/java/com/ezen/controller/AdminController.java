@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Objects;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,13 +22,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ezen.Repository.CartRepository;
+import com.ezen.Repository.CustomerServiceRepository;
 import com.ezen.Repository.OrdersDetailRepository;
 import com.ezen.Repository.OrdersRepository;
+import com.ezen.Repository.ReservationsRepository;
+import com.ezen.entity.Cart;
+import com.ezen.entity.CustomerService;
 import com.ezen.entity.Member;
 import com.ezen.entity.OrdersDetail;
 import com.ezen.entity.Product;
+import com.ezen.entity.Reservations;
 import com.ezen.member.service.MemberService;
 import com.ezen.ordersdetail.service.OrdersDetailService;
 import com.ezen.product.service.ProductService;
@@ -48,6 +59,15 @@ public class AdminController {
 	@Autowired
 	private OrdersDetailService ordersDetailService;
 	
+	@Autowired
+	private CartRepository cartRepository;
+
+	@Autowired
+	private ReservationsRepository reservationsRepository;
+
+	@Autowired
+	private CustomerServiceRepository customerServiceRepository;
+	
 	
 	// 매니저 메인화면
 	@RequestMapping("/admin")
@@ -55,48 +75,89 @@ public class AdminController {
 		return "/admin/admin";
 	}
 	
+//	// 매출현황 (날짜별 매출현황) 날짜 조회 넘겨주기
+//	@GetMapping("/SalesManagement")
+//	public String salesDatecheck(@RequestParam(value = "startDate", required = false) String startDate, 
+//								 @RequestParam(value = "endDate", required = false) String endDate,
+//								 String searchKeyword, Model model, OrdersDetail ordersDetail, 
+//								 @PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
+//		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
+////		startDate = (startDate == null) ? "" : startDate;
+////		endDate = (endDate == null) ? "" : endDate;
+//		System.out.println(" ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●● 여기까지만이라도 들어와주세열 플리쥬 ");
+//		System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>startDate " + startDate);
+////		list = ordersDetailService.ordersDetailList(pageable);
+//		
+//		LocalDateTime startDateTime = null;
+//		LocalDateTime endDateTime = null;
+//		
+//	    // 입력된 날짜가 빈값일 때
+//	    if (startDate == "" || startDate == null) {
+//	    	startDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0));
+//	    } else {
+//		    // String으로 들어오는 날짜 데이터 변환
+//	    	startDateTime = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(0, 0, 0);
+//	    }
+//	    if (endDate == "" || endDate == null) {
+//	    	endDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
+//	    } else {
+//		    endDateTime = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(23, 59, 59);
+//	    }
+//	    
+////	    Page<Orders> list = ordersRepository.findAllByOrderDateBetween(startDateTime, endDateTime, pageable);
+//	    Page<OrdersDetail> list = ordersDetailRepository.findAllByOdDateBetween(startDateTime, endDateTime, pageable);
+//	    
+//	    System.out.println(list);
+//	    System.out.println(list.getContent());
+//	    System.out.println(list.getTotalElements());
+//		
+////		System.out.println("==========>" + startDateTime);
+////		System.out.println(LocalDate.now());
+////	    System.out.println("==========>" + endDateTime);
+////		System.out.println("psalesManagementList333=============" + list.getContent());
+//	    
+//
+//		// 페이징 처리 넘겨주기
+//		model.addAttribute("list", list);
+//		model.addAttribute("pKind", searchKeyword);
+//		model.addAttribute("startDate", startDate);
+//		model.addAttribute("endDate", endDate);
+//
+//		return "admin/SalesManagement";
+//	}
+	
 	// 매출현황 (날짜별 매출현황) 날짜 조회 넘겨주기
 	@GetMapping("/SalesManagement")
 	public String salesDatecheck(@RequestParam(value = "startDate", required = false) String startDate, 
 								 @RequestParam(value = "endDate", required = false) String endDate,
-								 String searchKeyword, Model model, OrdersDetail ordersDetail, 
+								 @RequestParam(value = "searchKeyword", required = false) String searchKeyword, Model model, OrdersDetail ordersDetail, 
 								 @PageableDefault(page = 0, size = 10, sort = "odSeq", direction = Sort.Direction.ASC) Pageable pageable) {
 		searchKeyword = (searchKeyword == null) ? "" : searchKeyword;
-//		startDate = (startDate == null) ? "" : startDate;
-//		endDate = (endDate == null) ? "" : endDate;
-		System.out.println(" ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●● 여기까지만이라도 들어와주세열 플리쥬 ");
-		System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>startDate " + startDate);
-//		list = ordersDetailService.ordersDetailList(pageable);
-		
 		LocalDateTime startDateTime = null;
 		LocalDateTime endDateTime = null;
-		
-	    // 입력된 날짜가 빈값일 때
-	    if (startDate == "" || startDate == null) {
-	    	startDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0));
-	    } else {
-		    // String으로 들어오는 날짜 데이터 변환
-	    	startDateTime = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(0, 0, 0);
-	    }
-	    if (endDate == "" || endDate == null) {
-	    	endDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
-	    } else {
-		    endDateTime = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(23, 59, 59);
-	    }
-	    
-//	    Page<Orders> list = ordersRepository.findAllByOrderDateBetween(startDateTime, endDateTime, pageable);
-	    Page<OrdersDetail> list = ordersDetailRepository.findAllByOdDateBetween(startDateTime, endDateTime, pageable);
-	    
-	    System.out.println(list);
-	    System.out.println(list.getContent());
-	    System.out.println(list.getTotalElements());
-		
-//		System.out.println("==========>" + startDateTime);
-//		System.out.println(LocalDate.now());
-//	    System.out.println("==========>" + endDateTime);
-//		System.out.println("psalesManagementList333=============" + list.getContent());
-	    
+		Page<OrdersDetail> list = null;
 
+	    // 입력된 날짜가 빈값일 때
+		if (startDate == "" || startDate == null) {
+			startDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			startDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0));
+		} else {
+		    // String으로 들어오는 날짜 데이터 변환
+			startDateTime = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(0, 0, 0);
+		}
+		if (endDate == "" || endDate == null) {
+			endDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			endDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
+		} else {
+			endDateTime = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(23, 59, 59);
+		}
+
+		if (Objects.equals("", searchKeyword)) {
+			list = ordersDetailRepository.findAllByOdDateBetween(startDateTime, endDateTime, pageable);
+		} else {
+			list = ordersDetailRepository.findAllByOdDateBetweenAndPkind(startDateTime, endDateTime, searchKeyword, pageable);
+		}
+			
 		// 페이징 처리 넘겨주기
 		model.addAttribute("list", list);
 		model.addAttribute("pKind", searchKeyword);
@@ -108,8 +169,27 @@ public class AdminController {
 	
 	// 대시보드로 이동
 	@RequestMapping(value = "/Dashboards")
-	public String Dashboards() {
+	public String Dashboards(Model model) {
+		List<Cart> cartList = cartRepository.findByResult('1');
+		List<OrdersDetail> odList = ordersDetailRepository.findByResult('1');
+		List<Reservations> resList = reservationsRepository.findByRsStatus("Y");
+		List<CustomerService> customerList = customerServiceRepository.findAll();
+
+		model.addAttribute("cartCount", cartList.size());
+		model.addAttribute("orderDetailCount", odList.size());
+		model.addAttribute("resCount", resList.size());
+		model.addAttribute("customerCount", customerList.size());
+
 		return "/admin/Dashboards";
+	}
+
+	// 대시보드
+	@GetMapping("/DashboardChart")
+	@ResponseBody
+	public String DashboardChart(HttpServletRequest request) {
+		String jsonData = ordersDetailService.findOrderDetailChartData();
+
+		return jsonData;
 	}
 
 	// 상품등록 (등록 페이지 이동)

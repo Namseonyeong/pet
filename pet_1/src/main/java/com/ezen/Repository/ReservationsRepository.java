@@ -22,10 +22,13 @@ public interface ReservationsRepository extends JpaRepository<Reservations, Inte
 	Page<Reservations> findReservationsByMemberId(String memberId, Pageable pageable);
 	
 	// ----- 멤버타입별로 리스트 불러오기 -----
-	@Query("SELECT m FROM Member m WHERE m.memberType = ?1")
+	@Query("SELECT m FROM Member m WHERE m.memberType = ?1 AND m.memberStatus = 'Y'")
 	public List<Member> findByMemberType(String memberType);
 
 	// ----- 시터,트레이너 Id를 조건으로 예약목록 조회. -----
 	@Query("SELECT r FROM Reservations r WHERE r.assistanceId=?1 ORDER BY r.rsSeq")
 	Page<Reservations> findReservationsByAssistanceId(String memberId, Pageable pageable);
+	
+	// 예약완료 데이터 조회_sy
+	List<Reservations> findByRsStatus(String rsStatus);
 }

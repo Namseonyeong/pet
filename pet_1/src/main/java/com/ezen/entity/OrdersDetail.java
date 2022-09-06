@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -60,17 +61,17 @@ public class OrdersDetail {
 	 * 선영 매출현황 작업으로 인해 임시 주석처리
 	 */
 //	// 주문번호
-//	@ManyToOne
-//	@JoinColumn(name = "order_seq")
-//	private Orders order;
+	@ManyToOne
+	@JoinColumn(name = "order_seq")
+	private Orders order;
 //	// private int orderSeq; 양방향
 	
 	/**
 	 * 선영 매출현황 작업으로 변경한 엔티티
 	 */
-	@OneToOne
-	@JoinColumn(name = "order_seq")
-	private Orders order;
+	// @OneToOne
+	// @JoinColumn(name = "order_seq")
+	// private Orders order;
 	
     // 결제 날짜
     @Column(name = "od_date")
