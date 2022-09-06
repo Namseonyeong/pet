@@ -45,9 +45,7 @@
 		<div style="margin-top: 0px; margin-left: auto; margin-right: auto; width: 1027px; display: flex; flex-direction: row; justify-content: space-between">
 			<div style="width: 570px; position: relative; padding-bottom: 150px">
 				<div style="position: absolute; top: -60px; left: 0">
-					<img th:src="@{/join_img_file/}+${trainer.memberProImage}"
-						style="width: 120px; height: 120px; border-radius: 60px"
-						alt="프로필 이미지">
+					<img th:src="@{${trainer.memberProPath}}" style="width: 120px; height: 120px; border-radius: 60px" alt="프로필 이미지">
 				</div>
 				<div style="padding-bottom: 50px; border-bottom: 1px solid #EBEBEB">
 					<h2 th:text="${trainer.memberTitle}"
