@@ -53,7 +53,7 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		findNotice.setNoTitle(notice.getNoTitle());
 		findNotice.setNoContent(notice.getNoContent());
-		findNotice.setNoRegDate(notice.getNoRegDate());
+
 		
 		noRepo.save(findNotice);
 	}

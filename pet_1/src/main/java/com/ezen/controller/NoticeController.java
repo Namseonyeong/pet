@@ -71,13 +71,13 @@ public class NoticeController {
 	
 	// 공지사항 글 수정 처리
 	@PostMapping("/Notice/update/{noSeq}")
-	public String updateCustomers(@PathVariable("noSeq") Integer noSeq, Notice notice, Model model) {
+	public String updateCustomers(@PathVariable("noSeq") Integer noSeq, @RequestParam(value="noTitle") String noTitle, @RequestParam(value="noContent") String noContent, Model model) {
 		
 		Notice noticeTemp = noService.noticeView(noSeq);
 		
-		noticeTemp.setNoTitle(notice.getNoTitle());
-		noticeTemp.setNoContent(notice.getNoContent());
-		noticeTemp.setNoRegDate(notice.getNoRegDate());
+		noticeTemp.setNoTitle(noTitle);
+		noticeTemp.setNoContent(noContent);
+		noticeTemp.setNoRegDate(noticeTemp.getNoRegDate());
 		
 		noService.insertNotice(noticeTemp);
 		
