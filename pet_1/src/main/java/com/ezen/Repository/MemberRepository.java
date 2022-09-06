@@ -45,10 +45,10 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 //	@Query(value="UPDATE member SET member_pw='1111' WHERE member_id=?1", nativeQuery=true)
 	Optional<Member> findByMemberEmailAndMemberNameAndMemberId(String memberEmail, String memberName, String memberId);
 	
-//	@Modifying
-//	@Transactional
-	@Query(value="UPDATE member SET member_pw='1111' WHERE member_id=?1", nativeQuery=true)
-	void updateMemberPw(String memberId);
+	@Modifying
+	@Transactional
+	@Query(value="UPDATE member SET member_pw=?1 WHERE member_id=?2", nativeQuery=true)
+	void updateMemberPw(String memberPw, String memberId);
 	
 	//중복확인 id
 	boolean existsByMemberId(String memberId);

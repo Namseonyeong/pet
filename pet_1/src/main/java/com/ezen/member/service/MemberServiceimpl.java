@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -113,16 +114,16 @@ public class MemberServiceimpl implements MemberService {
 	@Override
 	public String memberPwFind(Member member) {
 		Optional<Member> memberList = memberRepository.findByMemberEmailAndMemberNameAndMemberId(member.getMemberEmail(), member.getMemberName(), member.getMemberId());
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + memberList );
+		
 		if (memberList.isEmpty()) {
 			return "false"; 
 		} else {
 			String memberId = member.getMemberId();
-			memberRepository.updateMemberPw(memberId);
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String memberPw = encoder.encode("1111");
+			memberRepository.updateMemberPw(memberPw, memberId);
 			return "true";
 		}
-//		return memberList.isEmpty() ? "" : memberList.get().getMemberPw();
-//		return memberList.get().getMemberPw();
 	}
 	
 	// 전체사용자 목록_sy
@@ -156,14 +157,6 @@ public class MemberServiceimpl implements MemberService {
 		
 		return;
 	}
-	
-	// 회원가입시 id 중복체크 (test)
-//	@Override
-//	public String overlappingId(String memberId) {
-//		Optional<Member> memberList = memberRepository.findByMemberId(memberId);
-//		
-//		return memberList.get().getMemberId() != memberId ? "" : memberList.get().getMemberId();
-//	}
 	
 	// 회원가입시 id 중복체크
 	@Transactional
