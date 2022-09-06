@@ -87,7 +87,7 @@
                                                     <label for="name">자격증 첨부</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                        <img th:src="@{${member.memberPath}}" style="width:50px; height:50px;"/>
+                                                        <img th:src="@{${member.memberPath} == null ? '/img_file/no_image.png' : ${member.memberPath}}" style="width:50px; height:50px;"/>
                                                         <input th:type="file" class="form-control" id="file" name="file" required />
                                                 </div>
                                             </div>
@@ -96,7 +96,7 @@
                                                     <label for="name">프로필 첨부</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                        <img th:src="@{${member.memberProPath}}" style="width:50px; height:50px;"/>
+                                                        <img th:src="@{${member.memberProPath} == null ? '/img_file/no_image.png' : ${member.memberProPath}}" style="width:50px; height:50px;"/>
                                                         <input th:type="file" class="form-control" id="file1" name="file1" required />
                                                 </div>
                                             </div>

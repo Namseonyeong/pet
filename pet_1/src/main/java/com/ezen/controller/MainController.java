@@ -94,41 +94,44 @@ public class MainController {
 		return "redirect:/Login";
 	}
 		
-//		// 회원가입시 중복 체크 (아이디)
-		@PostMapping("/overlappingId/action")
-		@ResponseBody
-		public Map<String, String> overlappingId(Model model, @RequestParam("memberId") String memberId) {
-			
-			System.out.println("들어오십니까 >>>>>>>>>>>>>>>>>>" + memberId );
-//			String memberId = memberService.memberIdpwFind(member);
-			
-			Map<String, String> map = new HashMap<String,String>(); 
-			if (memberService.existsByMemberId(memberId)) {
-				map.put("msg", "중복된 ID가 존재합니다.");
-			} else {
-				map.put("msg", "사용가능한 ID 입니다.");
-			}
+	@PostMapping("/overlappingId/action")
+	@ResponseBody
+	public Map<String, String> overlappingId(Model model, @RequestParam("memberId") String memberId) {
 		
-			return map; //아이디 조회 결과 화면
+		System.out.println("들어오십니까 >>>>>>>>>>>>>>>>>>" + memberId );
+//		String memberId = memberService.memberIdpwFind(member);
+		
+		Map<String, String> map = new HashMap<String,String>(); 
+		if (memberService.existsByMemberId(memberId)) {
+			map.put("msg", "중복된 ID가 존재합니다.");
+			map.put("result", "N");
+		} else {
+			map.put("msg", "사용가능한 ID 입니다.");
+			map.put("result", "Y");
 		}
+	
+		return map; //아이디 조회 결과 화면
+	}
 		
-		// 회원가입시 중복 체크 (이메일)
-		@PostMapping("/overlappingEmail/action")
-		@ResponseBody
-		public Map<String, String> overlappingEmail(Model model, @RequestParam("memberEmail") String memberEmail) {
-			
-			System.out.println("이메일 들어오십니까  >>>>>>>>>>>>>>>>>>" + memberEmail );
-//			String memberId = memberService.memberIdpwFind(member);
-			
-			Map<String, String> map = new HashMap<String,String>(); 
-			if (memberService.existsByMemberEmail(memberEmail) == true) {
-				map.put("msg", "중복된 Email이 존재합니다.");
-			} else {
-				map.put("msg", "사용가능한 Email 입니다.");
-			}
+	// 회원가입시 중복 체크 (이메일)
+	@PostMapping("/overlappingEmail/action")
+	@ResponseBody
+	public Map<String, String> overlappingEmail(Model model, @RequestParam("memberEmail") String memberEmail) {
 		
-			return map; //아이디 조회 결과 화면
-		}	
+		System.out.println("이메일 들어오십니까  >>>>>>>>>>>>>>>>>>" + memberEmail );
+//		String memberId = memberService.memberIdpwFind(member);
+		
+		Map<String, String> map = new HashMap<String,String>(); 
+		if (memberService.existsByMemberEmail(memberEmail) == true) {
+			map.put("msg", "중복된 Email이 존재합니다.");
+			map.put("result", "N");
+		} else {
+			map.put("msg", "사용가능한 Email 입니다.");
+			map.put("result", "Y");
+		}
+	
+		return map; //아이디 조회 결과 화면
+	}	
 		
 	// IDPW 찾기 
 	@GetMapping("/IdpwFind")
