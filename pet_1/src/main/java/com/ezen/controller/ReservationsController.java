@@ -140,7 +140,7 @@ public class ReservationsController {
 			System.out.println(rs);
 		} */
 
-		model.addAttribute("reservationList", reservationList.getContent());
+		model.addAttribute("reservationList", reservationList);
 		
 		return "member/MyPage_Reservation";
 	}
