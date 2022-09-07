@@ -51,7 +51,7 @@
 										<th scope="col" style="width: 3%"><input type="checkbox" id="allCheck" name="allCheck" th:onclick="setCheckAll('noSeq')" sec:authorize="hasRole('ROLE_ADMIN')"/></th>
 										<th scope="col" style="width: 10%;">NO</th>
 										<th scope="col" style="width: 50%; text-align: center;">제목</th>
-										<th scope="col">조회수</th>
+<!--									<th scope="col">조회수</th>   -->
 										<th scope="col">등록일</th>
 									</tr>
 								</thead>
@@ -60,7 +60,7 @@
 										<td><input type="checkbox" name="noSeq" id="noSeq" th:value="${notice.noSeq}" sec:authorize="hasRole('ROLE_ADMIN')"/></td>
 										<td th:text="${notice.noSeq}" th:onclick="|location.href='@{NoticeDetail/{noSeq} (noSeq = ${notice.noSeq})}'|"></td>
 										<td style="text-align: center;" th:text="${notice.noTitle}" th:onclick="|location.href='@{NoticeDetail/{noSeq} (noSeq = ${notice.noSeq})}'|"></td>
-										<td th:text="${notice.noCnt}" th:onclick="|location.href='@{NoticeDetail/{noSeq} (noSeq = ${notice.noSeq})}'|"></td>
+<!--									<td th:text="${notice.noCnt}" th:onclick="|location.href='@{NoticeDetail/{noSeq} (noSeq = ${notice.noSeq})}'|"></td>   -->
 										<td th:text="${#temporals.format(notice.noRegDate,'yyyy-MM-dd HH:mm')}" th:onclick="|location.href='@{NoticeDetail/{noSeq} (noSeq = ${notice.noSeq})}'|"></td>
 										<td></td>
 									</tr>
@@ -88,17 +88,24 @@
                             </ul>
                         </nav> -->
 						<!-- 페이징처리 -->
-						<nav aria-label="Page navigation example ">
-							<ul class="pagination justify-content-center">
-								<li class="page-item"><a class="page-link" th:href="@{#}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-								<li class="page-item"><a class="page-link" th:href="@{#}">1</a></li>
-								<li class="page-item"><a class="page-link" th:href="@{#}">2</a></li>
-								<li class="page-item"><a class="page-link" th:href="@{#}">3</a></li>
-								<li class="page-item"><a class="page-link" th:href="@{#}">4</a></li>
-								<li class="page-item"><a class="page-link" th:href="@{#}">5</a></li>
-								<li class="page-item"><a class="page-link" th:href="@{#}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-							</ul>
-						</nav>
+                        <div th:if="${!noticeList.isEmpty()}">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item" th:classappend="${!noticeList.hasPrevious} ? 'disabled'">
+                                    <a class="page-link" th:href="@{/Notice(page = ${noticeList.number-1})}">
+                                        <span>이전</span>
+                                    </a>
+                                </li>
+                                <li th:each="page: ${#numbers.sequence(0, noticeList.totalPages-1)}" th:if="${page >= noticeList.number-1 and page <= noticeList.number+1}" th:classappend="${page == noticeList.number} ? 'active'" class="page-item">
+                                    <a th:text="${page+1}" class="page-link" th:href="@{/Notice(page = ${page})}"></a>
+                                </li>
+                                <li class="page-item" th:classappend="${!noticeList.hasNext} ? 'disabled'">
+                                    <a class="page-link" th:href="@{/Notice(page = ${noticeList.number+1})}">
+                                        <span>다음</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+						<!-- 페이징처리 끝 -->
 					</div>
 					<!-- <div class="col-md-1"></div> -->
 				</div>

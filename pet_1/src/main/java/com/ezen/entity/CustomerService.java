@@ -62,9 +62,7 @@ public class CustomerService {
 	  @JoinColumn(name = "admin_id")
 	  private Admin admin;
 	  
-	  // 조회수
-	  @Column(name = "cs_cnt" , columnDefinition = "Integer default 0")
-	  private Long csCnt;
+
 		  
   }
  

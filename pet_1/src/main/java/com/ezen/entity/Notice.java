@@ -40,8 +40,6 @@ public class Notice {
 		@CreatedDate
 		private LocalDateTime noRegDate;
 
-		// 조회수
-		@Column(name = "no_cnt")
-		private Long noCnt;
+
 }
  
