@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -64,7 +65,7 @@ public class Orders {
     /**
      *  선영 매출현황 작업으로 인해 임시 주석처리
      */
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
     List<OrdersDetail> orderDetailList = new ArrayList<>();
     
 	/**

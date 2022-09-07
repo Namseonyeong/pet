@@ -2,6 +2,8 @@ package com.ezen.member.service;
 
 import java.io.File;
 import java.security.Principal;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,11 +14,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ezen.Repository.CartRepository;
 import com.ezen.Repository.MemberRepository;
-import com.ezen.controller.MainController;
+import com.ezen.entity.Cart;
 import com.ezen.entity.Member;
 import com.ezen.security.SecurityUserService;
 
@@ -32,6 +34,9 @@ public class MemberServiceimpl implements MemberService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+
+	@Autowired
+	CartRepository cartRepository;
 	
 	// 회원가입 (이미지)
 	@Override
@@ -42,22 +47,26 @@ public class MemberServiceimpl implements MemberService {
 
 		// 식별자 (랜덤 파일 이름)
 		UUID uuid = UUID.randomUUID();
-
-		String fileName = uuid + "_" + file.getOriginalFilename();
-		String fileName1 = uuid + "_" + file1.getOriginalFilename();
-		// 이미지 파일 등록
-		File saveFile = new File(projectPath, fileName);
-		File saveFile1 = new File(projectPath, fileName1);
 		
-		file.transferTo(saveFile);
-		file1.transferTo(saveFile1);
+		if (!Objects.equals("", file.getOriginalFilename())) {
+			String fileName = uuid + "_" + file.getOriginalFilename();
+			File saveFile = new File(projectPath, fileName);
+			file.transferTo(saveFile);
+			member.setMemberImage(fileName);
+			member.setMemberPath("/join_img_file/" + fileName);
+		}
 
-		// DB에 이미지값 저장
-		member.setMemberImage(fileName);
-		member.setMemberPath("/join_img_file/" + fileName);
-		member.setMemberProImage(fileName1);
-		member.setMemberProPath("/join_img_file/" + fileName1);
+		if (!Objects.equals("", file1.getOriginalFilename())) {
+			String fileName1 = uuid + "_" + file1.getOriginalFilename();
 
+			// 이미지 파일 등록
+			File saveFile1 = new File(projectPath, fileName1);
+			file1.transferTo(saveFile1);
+
+			// DB에 이미지값 저장
+			member.setMemberProImage(fileName1);
+			member.setMemberProPath("/join_img_file/" + fileName1);
+		}
 	}
 		
 	// 회원정보 조회 (정보 수정)
@@ -99,6 +108,11 @@ public class MemberServiceimpl implements MemberService {
 	// 탈퇴
 	@Override
 	public void memberDelete(String memberId) {
+		List<Cart> cartList = cartRepository.findByMemberId(memberId);
+		for(Cart item : cartList) {
+			cartRepository.deleteById(item.getCartSeq());
+		}
+
 		memberRepository.deleteById(memberId);
 	}
 	

@@ -1,10 +1,15 @@
 package com.ezen.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.ezen.BaseTimeEntity;
@@ -72,6 +77,17 @@ public class Member extends BaseTimeEntity {
 	@Column(columnDefinition = "varchar(20) default 'ROLE_MEMBER'")
 	private Role role; // ROLE_USER, ROLE_ADMIN
 
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+	private List<Cart> cart = new ArrayList<>();
+
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+	private List<CustomerService> customerService = new ArrayList<>();
+
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+	private List<Reservations> reservations = new ArrayList<>();
+
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+	private List<Orders> orders = new ArrayList<>();
 	}
 	
 

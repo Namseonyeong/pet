@@ -33,4 +33,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 	
 	// 주문완료된 데이터 조회
 	List<Cart> findByResult(char result);
+
+	@Query("SELECT c FROM Cart c WHERE c.member.memberId=?1")
+	List<Cart> findByMemberId(String memberId);
 }
