@@ -26,9 +26,9 @@ public interface CustomerServiceRepository extends JpaRepository<CustomerService
 	Page<CustomerService> findCustomerListByMemberId(String memberId, Pageable pageable);
 
 	// ----- 조회수 증가. -----
-	@Modifying
-	@Transactional
-	@Query(value="UPDATE customer_service  SET cs_cnt=cs_cnt+1 WHERE cs_seq=?1", nativeQuery=true)
-	void UpdateCsCnt (Integer csSeq);
-	
+//	@Modifying
+//	@Transactional
+//	@Query(value="UPDATE customer_service  SET cs_cnt=cs_cnt+1 WHERE cs_seq=?1", nativeQuery=true)
+//	void UpdateCsCnt (Integer csSeq);
+//	
 }

@@ -27,7 +27,7 @@ public class CustomersServiceImpl implements CustomersService {
 	// ----- 고객센터 글 상세 조회 -----
 	@Override
 	public CustomerService customersView(Integer csSeq) {
-		csRepo.UpdateCsCnt(csSeq);
+//		csRepo.UpdateCsCnt(csSeq);
 		return csRepo.findById(csSeq).get();
 	}
 	

@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse dropmenu" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{#}">돌봐주시개<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" th:href="@{#}" style="font-size: 1.3rem;font-weight: bolder;">돌봐주시개<span class="sr-only">(current)</span></a>
                         <!-- 메뉴 드롭다운 -->
                         <ul class="dropdown-menu bg-light m-0">
                             <li><a th:href="@{/AllSitters(memberType='펫시터')}" class="dropdown-item">펫시터 프로필</a></li>
@@ -25,7 +25,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{#}">알려주시개</a>
+                        <a class="nav-link" th:href="@{#}" style="font-size: 1.3rem;font-weight: bolder;">알려주시개</a>
                         <ul class="dropdown-menu bg-light m-0">
                             <li><a th:href="@{/AllTrainers(memberType='훈련사')}" class="dropdown-item">훈련사 프로필</a></li>
                             <li><a th:href="@{/Trainer1}" class="dropdown-item">훈련 과정</a></li>
@@ -33,10 +33,10 @@
                         
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/Menu}">사주시개</a>
+                        <a class="nav-link" th:href="@{/Menu}" style="font-size: 1.3rem;font-weight: bolder;">사주시개</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/Notice}">공지사항/고객센터</a>
+                        <a class="nav-link" th:href="@{/Notice}" style="font-size: 1.3rem;font-weight: bolder;">공지사항/고객센터</a>
                     </li>
                 </ul>
                 
@@ -48,7 +48,7 @@
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
                     <!-- 장바구니 -->
-                     <a class="cart_link" th:href="@{/getCartList}" sec:authorize="hasRole('ROLE_MEMBER')" >
+                    <a class="cart_link" th:href="@{/getCartList}" sec:authorize="hasRole('ROLE_MEMBER')" >
                         <i class="fa fa-shopping-cart" aria-hidden="true" ></i>
                     </a>
                     <a class="cart_link" th:href="@{/MyPage}" sec:authorize="hasRole('ROLE_MEMBER')" >

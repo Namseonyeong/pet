@@ -57,7 +57,7 @@ public class CustomerServiceController {
 	// 마이페이지 '본인' 작성 글 전체 조회
 	@GetMapping("/MyCustomerList")
 	public String myCustomerList(CustomerService customers, Model model, Principal principal,
-			@PageableDefault(page = 0, size = 1, sort = "csSeq", direction = Sort.Direction.DESC) Pageable pageable) {
+			@PageableDefault(page = 0, size = 10, sort = "csSeq", direction = Sort.Direction.DESC) Pageable pageable) {
 		
 		Page<CustomerService> myCustomerList = csService.findCustomerListByMemberId(principal.getName(), pageable);
 		
